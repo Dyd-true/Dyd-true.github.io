@@ -8,13 +8,15 @@
       <link href="/2021/11/24/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"/>
       <url>/2021/11/24/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
       
-        <content type="html"><![CDATA[<p>too difficult for me</p><span id="more"></span><h1 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a>生成函数</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>任给我们一个序列 ${ a_i } ( i \in [ 0, n ] )$ ，可以定义一个函数 $g(x) = a_0 + a_1x + a_2x^2 + … + a_nx^n$ （一般为了使函数可以收敛，定义 $x \in ( -1, 1 )$ ），则称 $g(x)$ 为序列 ${ a_i }$ 的生成函数</p><p>我们将序列转化为函数的原因是为了用函数的知识（一般是数学知识）使问题变的简单</p><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a href="https://www.acwing.com/problem/content/3135/">食物</a></p><p>本题是一个常用的转换，即将乘法原理转化为多项式的乘法，具体如下：</p><p>先将每一种食物当作一个子问题，如，对于食物1 ，定义序列 ${ a_i }$  为只选食物1能够选出 $i$ 个食物的方案数，由于食物以只能选偶数个，故 ${ a_i } = { 1,0,1,0,1…}$ ，定义其生成函数为 $f_1(x) = 1 + x^2 + x^4 + x^6 + … (x \in (-1, 1))$ 由等比数列求和公式有 $f_1(x) = \frac{1 - x^n}{1 - x^2}$ ，又因为 $n \rightarrow \infty$ ，所以 $x^n \rightarrow 0$ ，则 $f_1(x) = \frac{1}{1 - x^2}$ </p><p>同理，有：<br>$$<br>\begin{align}<br>f_2(x) &amp;= 1 + x = \frac{1 - x^2}{1 - x}\\<br>f_3(x) &amp;= 1 + x + x^2 = \frac{1 - x^3}{1 - x}\\<br>f_4(x) &amp;= x + x^3 + x^5 + … = \frac{x}{1 - x^2}\\<br>f_6(x) &amp;= 1 + x^4 + x^8 + … = \frac{1}{1 - x^4}\\<br>f_6(x) &amp;= 1 + x + x^2 + x^3 = \frac{1 - x^4}{1 - x}\\<br>f_7(x) &amp;= 1 + x = \frac{1 - x^2}{1 - x}\\<br>f_8(x) &amp;= 1 + x^3 + x^6 + x^9 = \frac{1}{1 - x^3}\\<br>\end{align}<br>$$<br> 设 $Ans(x) = \prod_{i = 1}^{8} f_i(x)$ ，则答案即为 $Ans(x)$ 展开后 $x^n$ 项的系数，证明可以考虑乘法原理，每一个多项式 $f_i(x)$ 中选一项 $ai_jx^j$ ，代表用第 $i$ 种食物凑成 $j$ 个的方案数有 $ai<br><em>j$ 种，乘起来方案共有 $\prod</em>{i = 1}^{8} ai_j$ 种，这些方案共献到 $x^{\sum j}$ 中，最后 $x^n$ 的系数就是最终方案数，正确性显然</p><p>现在考虑如何求系数<br>$$<br>\begin{align}<br>Ans &amp;= \prod_{i = 1}^{8} f_i(x)\\<br>    &amp;= \frac{1 - x^2}{1 - x} \frac{1 - x^3}{1 - x} \frac{x}{1 - x^2} \frac{1}{1 - x^4} \frac{1 - x^4}{1 - x} \frac{1 - x^2}{1 - x} \frac{1}{1 - x^3}\\<br>    &amp;= \frac{x}{(1 - x)^4}\\<br>    &amp;= x (1 - x)^{-4}\\<br>\text{又由} &amp;\text{牛顿广义二项式定理（广义二项式定理）：}\\<br>(x + y)^\alpha &amp;= \sum_{k = 0}^{\infty} \binom{\alpha}{k} x^{\alpha - k} y^k , \text{其中} \binom{\alpha}{k} = \frac{\alpha (\alpha - 1) (\alpha - 2) … (\alpha - k + 1)}{k!} , (\alpha \in \mathbb{R})\\<br>\text{有：} &amp; \\<br>(1 - x)^{-4} &amp;= \sum_{k = 0}^{\infty} \binom{-4}{k} 1^{-4 - k} (-x)^{k}\\<br>\text{又因} &amp;\binom{-k}{n} * (-x)^n = [(-1)^n * \binom{n+k-1}{n}] * [(-1)^n * x^n] = \binom{n+k-1}{n} x^n\\<br>\text{故} &amp; (1 - x)^4 \text{展开后} x^n \text系数为 \binom{n+k-1}{n}\\<br>\text{所以}\\<br>Ans &amp;= x (1 - x)^{-4}\\<br>    &amp;= x (\sum_{n = 0}^{\infty} \binom{n + 4 - 1}{4 - 1} x^n)\\<br>    &amp;= \sum_{n = 0}^{\infty} \binom{n + 4 - 1}{4 - 1} x^{n + 1}\\<br>\end{align}<br>$$</p><p>由上， $x^n$ 项的系数为 $\binom{n + 2}{3} = \frac{(n + 2)(n + 1)n}{6}$ ，问题得以解决</p><p> 代码：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">500</span>, P = <span class="number">10007</span>;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">0</span>, l = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= l; ++i)</span><br><span class="line">n = (n * <span class="number">10</span> + s[i] - <span class="string">&#x27;0&#x27;</span>) % P;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, (LL)n * (n + <span class="number">1</span>) * (n + <span class="number">2</span>) / <span class="number">6</span> % P); </span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>too difficult for me</p><span id="more"></span><h1 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a>生成函数</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>任给我们一个序列 ${ a_i } ( i \in [ 0, n ] )$ ，可以定义一个函数 $g(x) = a_0 + a_1x + a_2x^2 + … + a_nx^n$ （一般为了使函数可以收敛，定义 $x \in ( -1, 1 )$ ），则称 $g(x)$ 为序列 ${ a_i }$ 的生成函数</p><p>我们将序列转化为函数的原因是为了用函数的知识（一般是数学知识，数学不好的慎用）使问题变的简单</p><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a href="https://www.acwing.com/problem/content/3135/">食物</a></p><p>本题是一个常用的转换，即将乘法原理转化为多项式的乘法，具体如下：</p><p>先将每一种食物当作一个子问题，如，对于食物1 ，定义序列 ${ a_i }$  为只选食物1能够选出 $i$ 个食物的方案数，由于食物以只能选偶数个，故 ${ a_i } = { 1,0,1,0,1…}$ ，定义其生成函数为 $f_1(x) = 1 + x^2 + x^4 + x^6 + … (x \in (-1, 1))$ 由等比数列求和公式有 $f_1(x) = \frac{1 - x^n}{1 - x^2}$ ，又因为 $n \rightarrow \infty$ ，所以 $x^n \rightarrow 0$ ，则 $f_1(x) = \frac{1}{1 - x^2}$ </p><p>同理，有：<br>$$<br>\begin{align}<br>f_2(x) &amp;= 1 + x = \frac{1 - x^2}{1 - x}\\<br>f_3(x) &amp;= 1 + x + x^2 = \frac{1 - x^3}{1 - x}\\<br>f_4(x) &amp;= x + x^3 + x^5 + … = \frac{x}{1 - x^2}\\<br>f_6(x) &amp;= 1 + x^4 + x^8 + … = \frac{1}{1 - x^4}\\<br>f_6(x) &amp;= 1 + x + x^2 + x^3 = \frac{1 - x^4}{1 - x}\\<br>f_7(x) &amp;= 1 + x = \frac{1 - x^2}{1 - x}\\<br>f_8(x) &amp;= 1 + x^3 + x^6 + x^9 = \frac{1}{1 - x^3}\\<br>\end{align}<br>$$<br> 设 $Ans(x) = \prod_{i = 1}^{8} f_i(x)$ ，则答案即为 $Ans(x)$ 展开后 $x^n$ 项的系数，证明可以考虑乘法原理，每一个多项式 $f_i(x)$ 中选一项 $ai_jx^j$ ，代表用第 $i$ 种食物凑成 $j$ 个的方案数有 $ai<br><em>j$ 种，乘起来方案共有 $\prod</em>{i = 1}^{8} ai_j$ 种，这些方案共献到 $x^{\sum j}$ 中，最后 $x^n$ 的系数就是最终方案数，正确性显然</p><p>现在考虑如何求系数<br>$$<br>\begin{align}<br>Ans &amp;= \prod_{i = 1}^{8} f_i(x)\\<br>    &amp;= \frac{1 - x^2}{1 - x} \frac{1 - x^3}{1 - x} \frac{x}{1 - x^2} \frac{1}{1 - x^4} \frac{1 - x^4}{1 - x} \frac{1 - x^2}{1 - x} \frac{1}{1 - x^3}\\<br>    &amp;= \frac{x}{(1 - x)^4}\\<br>    &amp;= x (1 - x)^{-4}\\<br>\text{又由} &amp;\text{牛顿广义二项式定理（广义二项式定理）：}\\<br>(x + y)^\alpha &amp;= \sum_{k = 0}^{\infty} \binom{\alpha}{k} x^{\alpha - k} y^k , \text{其中} \binom{\alpha}{k} = \frac{\alpha (\alpha - 1) (\alpha - 2) … (\alpha - k + 1)}{k!} , (\alpha \in \mathbb{R})\\<br>\text{有：} &amp; \\<br>(1 - x)^{-4} &amp;= \sum_{k = 0}^{\infty} \binom{-4}{k} 1^{-4 - k} (-x)^{k}\\<br>\text{又因} &amp;\binom{-k}{n} * (-x)^n = [(-1)^n * \binom{n+k-1}{n}] * [(-1)^n * x^n] = \binom{n+k-1}{n} x^n\\<br>\text{故} &amp; (1 - x)^4 \text{展开后} x^n \text系数为 \binom{n+k-1}{n}\\<br>\text{所以}\\<br>Ans &amp;= x (1 - x)^{-4}\\<br>    &amp;= x (\sum_{n = 0}^{\infty} \binom{n + 4 - 1}{4 - 1} x^n)\\<br>    &amp;= \sum_{n = 0}^{\infty} \binom{n + 4 - 1}{4 - 1} x^{n + 1}\\<br>\end{align}<br>$$</p><p>由上， $x^n$ 项的系数为 $\binom{n + 2}{3} = \frac{(n + 2)(n + 1)n}{6}$ ，问题得以解决</p><p> 代码：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">500</span>, P = <span class="number">10007</span>;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">0</span>, l = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= l; ++i)</span><br><span class="line">n = (n * <span class="number">10</span> + s[i] - <span class="string">&#x27;0&#x27;</span>) % P;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, (LL)n * (n + <span class="number">1</span>) * (n + <span class="number">2</span>) / <span class="number">6</span> % P); </span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
         <tags>
             
-            <tag> 数论,数学 生成函数 </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> 生成函数 </tag>
             
         </tags>
       
@@ -33,7 +35,9 @@
       
         <tags>
             
-            <tag> dp 斜率优化 </tag>
+            <tag> dp </tag>
+            
+            <tag> 斜率优化 </tag>
             
         </tags>
       
@@ -52,7 +56,11 @@
       
         <tags>
             
-            <tag> 线段树 数据结构 树 </tag>
+            <tag> 数据结构 </tag>
+            
+            <tag> 树 </tag>
+            
+            <tag> 线段树 </tag>
             
         </tags>
       
@@ -71,7 +79,15 @@
       
         <tags>
             
-            <tag> 图论 网络流 Dinic HLPP 费用流 </tag>
+            <tag> 图论 </tag>
+            
+            <tag> 网络流 </tag>
+            
+            <tag> Dinic </tag>
+            
+            <tag> HLPP </tag>
+            
+            <tag> 费用流 </tag>
             
         </tags>
       
@@ -90,7 +106,9 @@
       
         <tags>
             
-            <tag> 数论,数学 拓展欧几里得 </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> 拓展欧几里得 </tag>
             
         </tags>
       
@@ -109,7 +127,9 @@
       
         <tags>
             
-            <tag> dp 数论,数学 </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> dp </tag>
             
         </tags>
       
@@ -128,7 +148,11 @@
       
         <tags>
             
-            <tag> 树状数组 数据结构 树 </tag>
+            <tag> 数据结构 </tag>
+            
+            <tag> 树 </tag>
+            
+            <tag> 树状数组 </tag>
             
         </tags>
       
@@ -147,7 +171,15 @@
       
         <tags>
             
-            <tag> 树 树套树 平衡树 线段树 数据结构 </tag>
+            <tag> 平衡树 </tag>
+            
+            <tag> 数据结构 </tag>
+            
+            <tag> 树 </tag>
+            
+            <tag> 线段树 </tag>
+            
+            <tag> 树套树 </tag>
             
         </tags>
       
@@ -166,7 +198,13 @@
       
         <tags>
             
-            <tag> 树链剖分 树 线段树 数据结构 </tag>
+            <tag> 数据结构 </tag>
+            
+            <tag> 树 </tag>
+            
+            <tag> 树链剖分 </tag>
+            
+            <tag> 线段树 </tag>
             
         </tags>
       
@@ -185,7 +223,11 @@
       
         <tags>
             
-            <tag> dp 数论,数学 期望 </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> dp </tag>
+            
+            <tag> 期望 </tag>
             
         </tags>
       
@@ -204,7 +246,11 @@
       
         <tags>
             
-            <tag> 莫队 暴力 分块 </tag>
+            <tag> 分块 </tag>
+            
+            <tag> 暴力 </tag>
+            
+            <tag> 莫队 </tag>
             
         </tags>
       
@@ -223,7 +269,9 @@
       
         <tags>
             
-            <tag> 莫比乌斯反演 数论,数学 </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> 莫比乌斯反演 </tag>
             
         </tags>
       
@@ -242,7 +290,13 @@
       
         <tags>
             
-            <tag> 模拟退火 爬山法 暴力 随机数 </tag>
+            <tag> 暴力 </tag>
+            
+            <tag> 模拟退火 </tag>
+            
+            <tag> 爬山法 </tag>
+            
+            <tag> 随机数 </tag>
             
         </tags>
       
@@ -261,7 +315,11 @@
       
         <tags>
             
-            <tag> 快速傅里叶变换,FFT 数论,数学 多项式 </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> 快速傅里叶变换,FFT </tag>
+            
+            <tag> 多项式 </tag>
             
         </tags>
       
@@ -280,7 +338,13 @@
       
         <tags>
             
-            <tag> dp 树 基环树 图论 </tag>
+            <tag> 树 </tag>
+            
+            <tag> 图论 </tag>
+            
+            <tag> dp </tag>
+            
+            <tag> 基环树 </tag>
             
         </tags>
       
@@ -299,7 +363,11 @@
       
         <tags>
             
-            <tag> 分块 暴力 数据结构 </tag>
+            <tag> 数据结构 </tag>
+            
+            <tag> 分块 </tag>
+            
+            <tag> 暴力 </tag>
             
         </tags>
       
@@ -318,7 +386,13 @@
       
         <tags>
             
-            <tag> 树 笛卡尔树 堆 数据结构 </tag>
+            <tag> 数据结构 </tag>
+            
+            <tag> 树 </tag>
+            
+            <tag> 笛卡尔树 </tag>
+            
+            <tag> 堆 </tag>
             
         </tags>
       
@@ -337,7 +411,13 @@
       
         <tags>
             
-            <tag> 数论,数学 逆元 费马小定理 拓展欧几里得 </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> 逆元 </tag>
+            
+            <tag> 费马小定理 </tag>
+            
+            <tag> 拓展欧几里得 </tag>
             
         </tags>
       
@@ -356,7 +436,11 @@
       
         <tags>
             
-            <tag> dp 背包 优化 </tag>
+            <tag> dp </tag>
+            
+            <tag> 背包 </tag>
+            
+            <tag> 优化 </tag>
             
         </tags>
       
@@ -375,7 +459,11 @@
       
         <tags>
             
-            <tag> 图论 缩点 Tarjan </tag>
+            <tag> Tarjan </tag>
+            
+            <tag> 图论 </tag>
+            
+            <tag> 缩点 </tag>
             
         </tags>
       
@@ -394,7 +482,13 @@
       
         <tags>
             
-            <tag> Splay 平衡树 数据结构 树 </tag>
+            <tag> 平衡树 </tag>
+            
+            <tag> 数据结构 </tag>
+            
+            <tag> 树 </tag>
+            
+            <tag> Splay </tag>
             
         </tags>
       
@@ -413,7 +507,13 @@
       
         <tags>
             
-            <tag> SBT 平衡树 数据结构 树 </tag>
+            <tag> SBT </tag>
+            
+            <tag> 平衡树 </tag>
+            
+            <tag> 数据结构 </tag>
+            
+            <tag> 树 </tag>
             
         </tags>
       
@@ -432,7 +532,9 @@
       
         <tags>
             
-            <tag> cdq 分治 </tag>
+            <tag> cdq </tag>
+            
+            <tag> 分治 </tag>
             
         </tags>
       
@@ -451,7 +553,11 @@
       
         <tags>
             
-            <tag> 数论,数学 欧拉定理 hash </tag>
+            <tag> 数论,数学 </tag>
+            
+            <tag> 欧拉定理 </tag>
+            
+            <tag> hash </tag>
             
         </tags>
       
@@ -470,7 +576,9 @@
       
         <tags>
             
-            <tag> 字符串 自动机 </tag>
+            <tag> 字符串 </tag>
+            
+            <tag> 自动机 </tag>
             
         </tags>
       

@@ -28,9 +28,10 @@
 <meta property="og:description" content="too difficult for me">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-24T09:05:49.000Z">
-<meta property="article:modified_time" content="2021-11-24T09:10:25.222Z">
+<meta property="article:modified_time" content="2021-11-24T09:27:28.910Z">
 <meta property="article:author" content="Dyd">
-<meta property="article:tag" content="数论,数学 生成函数">
+<meta property="article:tag" content="数论,数学">
+<meta property="article:tag" content="生成函数">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://dyd-true.github.io/2021/11/24/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">
@@ -213,7 +214,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-11-24 17:05:49 / Modified: 17:10:25" itemprop="dateCreated datePublished" datetime="2021-11-24T17:05:49+08:00">2021-11-24</time>
+              <time title="Created: 2021-11-24 17:05:49 / Modified: 17:27:28" itemprop="dateCreated datePublished" datetime="2021-11-24T17:05:49+08:00">2021-11-24</time>
             </span>
 
           
@@ -252,7 +253,7 @@
 <span id="more"></span>
 
 <h1 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a>生成函数</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>任给我们一个序列 ${ a_i } ( i \in [ 0, n ] )$ ，可以定义一个函数 $g(x) = a_0 + a_1x + a_2x^2 + … + a_nx^n$ （一般为了使函数可以收敛，定义 $x \in ( -1, 1 )$ ），则称 $g(x)$ 为序列 ${ a_i }$ 的生成函数</p>
-<p>我们将序列转化为函数的原因是为了用函数的知识（一般是数学知识）使问题变的简单</p>
+<p>我们将序列转化为函数的原因是为了用函数的知识（一般是数学知识，数学不好的慎用）使问题变的简单</p>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/3135/">食物</a></p>
 <p>本题是一个常用的转换，即将乘法原理转化为多项式的乘法，具体如下：</p>
 <p>先将每一种食物当作一个子问题，如，对于食物1 ，定义序列 ${ a_i }$  为只选食物1能够选出 $i$ 个食物的方案数，由于食物以只能选偶数个，故 ${ a_i } = { 1,0,1,0,1…}$ ，定义其生成函数为 $f_1(x) = 1 + x^2 + x^4 + x^6 + … (x \in (-1, 1))$ 由等比数列求和公式有 $f_1(x) = \frac{1 - x^n}{1 - x^2}$ ，又因为 $n \rightarrow \infty$ ，所以 $x^n \rightarrow 0$ ，则 $f_1(x) = \frac{1}{1 - x^2}$ </p>
@@ -274,7 +275,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E8%AE%BA-%E6%95%B0%E5%AD%A6-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 数论,数学 生成函数</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA-%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数论,数学</a>
+              <a href="/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 生成函数</a>
           </div>
 
         
@@ -368,7 +370,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
