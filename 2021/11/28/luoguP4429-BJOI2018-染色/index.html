@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dyd-true.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="结论题，靠手玩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="luoguP4429 [BJOI2018]染色">
+<meta property="og:url" content="https://dyd-true.github.io/2021/11/28/luoguP4429-BJOI2018-%E6%9F%93%E8%89%B2/index.html">
+<meta property="og:site_name" content="Dyd&#39;s Blog">
+<meta property="og:description" content="结论题，靠手玩">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/11/28/41UTVmnNBcKjADr.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/28/OhjP4dcNZMFwrt8.png">
+<meta property="article:published_time" content="2021-11-28T02:02:51.000Z">
+<meta property="article:modified_time" content="2021-11-28T06:23:17.876Z">
+<meta property="article:author" content="Dyd">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="luogu">
+<meta property="article:tag" content="练习">
+<meta property="article:tag" content="结论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/28/41UTVmnNBcKjADr.png">
+
+<link rel="canonical" href="https://dyd-true.github.io/2021/11/28/luoguP4429-BJOI2018-%E6%9F%93%E8%89%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>luoguP4429 [BJOI2018]染色 | Dyd's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Dyd's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dyd's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">He who has a strong enough why can bear almost any how.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Dyd-true" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://dyd-true.github.io/2021/11/28/luoguP4429-BJOI2018-%E6%9F%93%E8%89%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Dyd">
+      <meta itemprop="description" content="一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dyd's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          luoguP4429 [BJOI2018]染色
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-11-28 10:02:51 / Modified: 14:23:17" itemprop="dateCreated datePublished" datetime="2021-11-28T10:02:51+08:00">2021-11-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 结论题，靠手玩</p>
+<span id="more"></span>
+
+<p>拿到题就先被吓了一跳，然后又看了看数据范围，毫无提示性</p>
+<p>先盲猜一手考的二分图，也就是每个点的颜色集合都相同，然后……<del>理所当然的</del> 错了，但还是给了我们一点希望，因为我们发现明显，存在奇环就是No</p>
+<p>那就还有不存在环和存在偶环两种情况</p>
+<p>不存在环，即 $m &lt; n$ ，考虑节点 $u$ 染为颜色 $A$ ，那么与它相连的节点 $v$ 最多只是有一个颜色不能染，此外便再无其它限制，明显是有染色方案的，故为Yes</p>
+<p>再考虑偶环的情况，若只有一个偶环，即 $n = m$ ，我们将其断开，记断开处两个节点为根节点和尾节点，从根节点开始用无环的方法染色，设根节的颜色集合为 ${A, B}$ ，分三种情况：</p>
+<ol>
+<li>若尾节点的颜色集合为 ${C, D}$ ，则染色成立</li>
+<li>若尾节点的颜色集合为 ${A, C}$ ，只要根节点染为颜色 $B$ 即可</li>
+<li>若尾节点的颜色集合为 ${A, B}$ ，设根节点染为颜色 $A$ 如果要让尾节点也必须染颜色 $A$ 则与尾节点相连的另一个点必须染为颜色 $B$ ，以此类推，每个节点的颜色都是“必须染成颜色 $X$ ”，设于根节点相连的另一个点的颜色是必须染成颜色 $E$ （这个 $E$ 可以等于于任何颜色，包括 $A, B$ ），由于这个“必须”，该节点的颜色集合一定是 ${A, E}$ （这样才能用“根节点染成颜色 $A$ ”推出“该节点染成颜色 $E$ ”），那么只要将根节点染成颜色 $B$ ，该节点染成颜色 $E$ ，由于刚才的一系列“必须”，尾节点只能保持颜色 $A$ 不变，染色成立</li>
+</ol>
+<p>综上，若只有一个偶环，必定可以染色，故为Yes</p>
+<p>那有多个偶环，即 $m &gt; n$ ，怎么办？</p>
+<p>先考虑两个偶环没有公共边，看看下图：</p>
+<p><img src="https://i.loli.net/2021/11/28/41UTVmnNBcKjADr.png" alt="偶环"></p>
+<p>不难发现在这种构造下，最下方的点只能选颜色 $X$ </p>
+<p>于是有下图：</p>
+<p><img src="https://i.loli.net/2021/11/28/OhjP4dcNZMFwrt8.png" alt="卡"></p>
+<p>明显为No</p>
+<p>推广一下，考虑把节点 ${C, D}$ 拆成多个节点相连，换句话说，用多个节点连成的链作为广义的“交叉节点”，我们 <del>玄学的</del> 得出了结论：如果存在两个没有公共边但联通的环，那么答案是No，构造方法类似上图，可以证明（<del>我也不知道咋证</del>）这种情况的充分条件为 $m &gt; n + 1$ </p>
+<p>最后只剩一种情况： $m = n + 1$ 且为偶环</p>
+<p>这种情况下，要么有一个点度数为4，要么有两个点度数为3，度数为四的情况就和上图一样，明显为No</p>
+<p>考虑两个度数为3的点，它们之间必定有3条路径，设路径长度（经过的边数）分别为 $(x, y, z)$ ，<del>手玩一下</del> 发现只有 $(2, 2, 2k), k\in \mathbb{N_+}$ 的情况为Yes</p>
+<hr>
+<p>最后总结一下：</p>
+<ol>
+<li> $m &lt; n$ 为Yes</li>
+<li> $m = n$ 且无奇环为Yes，否则为No</li>
+<li> $m = n + 1$ 且无奇环，若有两个度为3的节点且两点间路径为 $(2, 2, 2k), k\in \mathbb{N_+}$ 则为Yes，否则为No；若有奇环为No</li>
+<li> $m &gt; n + 1$ 为No</li>
+</ol>
+<p>注意以上结论均是在保证图联通的情况下得出</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> VIT vector<span class="meta-string">&lt;int&gt;</span>::iterator</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e4</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, e, v;</span><br><span class="line"><span class="keyword">int</span> c[N], du[N];</span><br><span class="line"><span class="keyword">bool</span> f; <span class="comment">//true-No,false-Yes</span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; to[N], cir;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">		to[i].<span class="built_in">clear</span>(), c[i] = <span class="number">0</span>;</span><br><span class="line">	f = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> _c)</span> <span class="comment">//染色法判奇环</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (f)</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">if</span> (c[x])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (c[x] != _c)</span><br><span class="line">			f = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	c[x] = _c;</span><br><span class="line">	++v;</span><br><span class="line">	e += to[x].<span class="built_in">size</span>();</span><br><span class="line">	cir.<span class="built_in">push_back</span>(x);</span><br><span class="line">	<span class="keyword">for</span> (VIT i = to[x].<span class="built_in">begin</span>(); i != to[x].<span class="built_in">end</span>(); ++i)</span><br><span class="line">		<span class="built_in">dfs</span>(*i, <span class="number">3</span> - _c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">topu</span><span class="params">()</span> <span class="comment">//拓扑处理非环节点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	<span class="keyword">for</span> (VIT i = cir.<span class="built_in">begin</span>(); i != cir.<span class="built_in">end</span>(); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		du[*i] = to[*i].<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">if</span> (du[*i] == <span class="number">1</span>)</span><br><span class="line">			q.<span class="built_in">push</span>(*i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">while</span> (!q.<span class="built_in">empty</span>())</span><br><span class="line">	&#123;</span><br><span class="line">		x = q.<span class="built_in">front</span>(), q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span> (VIT i = to[x].<span class="built_in">begin</span>(); i != to[x].<span class="built_in">end</span>(); ++i)</span><br><span class="line">			<span class="keyword">if</span>(--du[*i] == <span class="number">1</span>)</span><br><span class="line">				q.<span class="built_in">push</span>(*i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T, t, tt;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">	<span class="keyword">while</span> (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">		<span class="built_in">clear</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, x, y; i &lt;= m; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;x, &amp;y);</span><br><span class="line">			to[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">			to[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">			<span class="keyword">if</span> (!c[i])</span><br><span class="line">			&#123;</span><br><span class="line">				e = v = <span class="number">0</span>;</span><br><span class="line">				cir.<span class="built_in">clear</span>();</span><br><span class="line">				<span class="built_in">dfs</span>(i, <span class="number">1</span>);</span><br><span class="line">				e /= <span class="number">2</span>; <span class="comment">//存的是双向边,真正的边数要除以2</span></span><br><span class="line">				<span class="keyword">if</span> (e &gt; v + <span class="number">1</span>)</span><br><span class="line">					f = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">if</span> (f)</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">if</span> (e &lt;= v)</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				<span class="built_in">topu</span>();</span><br><span class="line">				tt = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span> (VIT j = cir.<span class="built_in">begin</span>(); j != cir.<span class="built_in">end</span>(); ++j)</span><br><span class="line">					<span class="keyword">if</span> (du[*j] == <span class="number">2</span>)</span><br><span class="line">					&#123;</span><br><span class="line">						t = <span class="number">0</span>;</span><br><span class="line">						<span class="keyword">for</span> (VIT k = to[*j].<span class="built_in">begin</span>(); k != to[*j].<span class="built_in">end</span>(); ++k)</span><br><span class="line">							<span class="keyword">if</span> (du[*k] == <span class="number">3</span>)</span><br><span class="line">								++t;</span><br><span class="line">						<span class="keyword">if</span> (t == <span class="number">2</span>)</span><br><span class="line">							++tt;</span><br><span class="line">					&#125;</span><br><span class="line">				<span class="keyword">if</span> (tt &lt; <span class="number">2</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					f = <span class="literal">true</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">if</span> (f)</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+              <a href="/tags/luogu/" rel="tag"><i class="fa fa-tag"></i> luogu</a>
+              <a href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 练习</a>
+              <a href="/tags/%E7%BB%93%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 结论</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/28/luoguP2723-USACO3-1-%E4%B8%91%E6%95%B0-Humble-Numbers/" rel="prev" title="luoguP2723 [USACO3.1]丑数 Humble Numbers">
+      <i class="fa fa-chevron-left"></i> luoguP2723 [USACO3.1]丑数 Humble Numbers
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/28/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/" rel="next" title="斯特林数">
+      斯特林数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Dyd"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Dyd</p>
+  <div class="site-description" itemprop="description">一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Dyd-true" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Dyd-true" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2741501882@qq.com" title="E-Mail → mailto:2741501882@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sighttp.qq.com/msgrd?v=1&uin=2741501882" title="QQ → https:&#x2F;&#x2F;sighttp.qq.com&#x2F;msgrd?v&#x3D;1&amp;uin&#x3D;2741501882" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/141393" title="LuoGu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;141393" rel="noopener" target="_blank"><i class=" fa-fw"></i>LuoGu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      some of my mates
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.pigaunt.top/" title="https:&#x2F;&#x2F;www.pigaunt.top" rel="noopener" target="_blank">PigAunt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hewo233.blog.luogu.org/" title="https:&#x2F;&#x2F;hewo233.blog.luogu.org" rel="noopener" target="_blank">Hewo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wiki.pigaunt.top/" title="https:&#x2F;&#x2F;wiki.pigaunt.top" rel="noopener" target="_blank">PekingOpera</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io" rel="noopener" target="_blank">lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io" rel="noopener" target="_blank">RuSun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy-342891.blog.luogu.org/" title="https:&#x2F;&#x2F;mydcwfy-342891.blog.luogu.org" rel="noopener" target="_blank">mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dyd</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">183k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">2:47</span>
+</div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "The site has running for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
