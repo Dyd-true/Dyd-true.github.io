@@ -27,17 +27,17 @@
 <meta property="og:site_name" content="Dyd&#39;s Blog">
 <meta property="og:description" content="然而AC自动机并不能自动帮你AC">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/i2un0f3w.png">
+<meta property="og:image" content="https://i.loli.net/2021/12/02/RfbB6x92tagA71D.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/vcxx8qhd.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/vnrb9ian.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/c9lxu68e.png">
 <meta property="article:published_time" content="2021-11-22T08:01:22.000Z">
-<meta property="article:modified_time" content="2021-11-24T09:17:48.481Z">
+<meta property="article:modified_time" content="2021-12-02T13:56:31.049Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="字符串">
 <meta property="article:tag" content="自动机">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/i2un0f3w.png">
+<meta name="twitter:image" content="https://i.loli.net/2021/12/02/RfbB6x92tagA71D.png">
 
 <link rel="canonical" href="https://dyd-true.github.io/2021/11/22/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/">
 
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-24 17:17:48" itemprop="dateModified" datetime="2021-11-24T17:17:48+08:00">2021-11-24</time>
+                <time title="Modified: 2021-12-02 21:56:31" itemprop="dateModified" datetime="2021-12-02T21:56:31+08:00">2021-12-02</time>
               </span>
 
           
@@ -264,7 +264,7 @@
 <span id="more"></span>
 
 <h2 id="钳制芝士"><a href="#钳制芝士" class="headerlink" title="钳制芝士"></a>钳制芝士</h2><ul>
-<li>KMP<br>对字符串 $A$ 进行自我匹配，求出数组 $ne$ 使 $ne[i]$ 表示“ $A$ 中以 $i$ 结尾的非前缀子串与 $A$ 的前缀子串能匹配的最长长度”，即： $ne[i]=max{j}$ ，其中 $j&lt;i$ 并且 $\forall k \in [i-j+1,i],A[k]=A[k+j-i]$ （ $A[k+j-i]$ 即是 $A[1 \sim j]$ ） ，如图：<img src="https://cdn.luogu.com.cn/upload/image_hosting/i2un0f3w.png" alt="KMP例子"><br>同理我们对字符串 $A$ 与 $B$ 进行匹配，求出数组 $f$ ，使 $f[i]$ 表示“ $B$ 中以 $i$ 结尾的子串与 $A$ 的前缀子串能匹配的最长长度”,即： $f[i]=max{j}$ ，其中 $j \le i$ 并且 $\forall k \in [i-j+1,i],B[k]=A[k+j-i]$<br>代码实现：</li>
+<li>KMP<br>对字符串 $A$ 进行自我匹配，求出数组 $ne$ 使 $ne[i]$ 表示“ $A$ 中以 $i$ 结尾的非前缀子串与 $A$ 的前缀子串能匹配的最长长度”，即： $ne[i]=max{j}$ ，其中 $j&lt;i$ 并且 $\forall k \in [i-j+1,i],A[k]=A[k+j-i]$ （ $A[k+j-i]$ 即是 $A[1 \sim j]$ ） ，如图：<img src="https://i.loli.net/2021/12/02/RfbB6x92tagA71D.png" alt="KMP例子"><br>同理我们对字符串 $A$ 与 $B$ 进行匹配，求出数组 $f$ ，使 $f[i]$ 表示“ $B$ 中以 $i$ 结尾的子串与 $A$ 的前缀子串能匹配的最长长度”,即： $f[i]=max{j}$ ，其中 $j \le i$ 并且 $\forall k \in [i-j+1,i],B[k]=A[k+j-i]$<br>代码实现：</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求ne数组</span></span><br><span class="line">ne[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>,j=<span class="number">0</span>;i&lt;=n;++i)&#123;		<span class="comment">//&quot;非前缀子串&quot;,故i从2开始 </span></span><br><span class="line">	<span class="keyword">while</span>(j&gt;<span class="number">0</span>&amp;&amp;a[i]!=a[j+<span class="number">1</span>]) j=ne[j];</span><br><span class="line">	<span class="keyword">if</span>(a[i]==a[j+<span class="number">1</span>]) ++j;</span><br><span class="line">	ne[i]=j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//求f数组</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=<span class="number">0</span>;i&lt;=m;++i)&#123;</span><br><span class="line">	<span class="keyword">while</span>(j&gt;<span class="number">0</span>&amp;&amp;(j==n||b[i]!=a[j+<span class="number">1</span>])) j=ne[j];</span><br><span class="line">	<span class="keyword">if</span>(b[i]==a[j+<span class="number">1</span>]) ++j;</span><br><span class="line">	f[i]=j;</span><br><span class="line">	<span class="keyword">if</span>(f[i]==n)&#123;</span><br><span class="line">		<span class="comment">//此时就是A在B中的一次出现 </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;                     </span><br></pre></td></tr></table></figure>
 
@@ -392,14 +392,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -488,13 +488,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">187k</span>
+    <span title="Symbols count total">210k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:50</span>
+    <span title="Reading time total">3:11</span>
 </div>
 
 <div>
