@@ -28,7 +28,7 @@
 <meta property="og:description" content="不要老往数学上想">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-30T03:35:17.000Z">
-<meta property="article:modified_time" content="2021-12-01T09:06:35.070Z">
+<meta property="article:modified_time" content="2021-12-08T12:57:27.763Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="树">
 <meta property="article:tag" content="图论">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-01 17:06:35" itemprop="dateModified" datetime="2021-12-01T17:06:35+08:00">2021-12-01</time>
+                <time title="Modified: 2021-12-08 20:57:27" itemprop="dateModified" datetime="2021-12-08T20:57:27+08:00">2021-12-08</time>
               </span>
 
           
@@ -265,6 +265,7 @@
         <p> 不要老往数学上想</p>
 <span id="more"></span>
 
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4616">Pictionary</a></p>
 <p>第一反应是 $O(n^2)$ 40分的做法（很显然），直接 $O(n\sqrt{n})$ 把每个数分解，建图连边，再从大到小扫描每个因数，由此处理出所有 $gcd(a, b)$ ，这里是 $O(n^2)$ ，然后暴力枚举 $i : 1 \rightarrow m$  ，并查集维护即可，这里是 $O(n\log n)$ </p>
 <p>但满数据 $n \le 10^5$ 肯定不允许 $n^2$ ，空间时间都挂了</p>
 <p>仔细看，上面的瓶颈主要在求 $gcd(a, b)$ 只要我们要求出所有 $gcd$ ，就一定会有一个 $n^2$ 的时空复杂度，这显然应该<strong>放弃</strong>，那么考虑题目可否不求或者不求出全部的 $gcd$ </p>
@@ -390,14 +391,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">81</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -445,7 +446,7 @@
           <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://mydcwfy-342891.blog.luogu.org/" title="https:&#x2F;&#x2F;mydcwfy-342891.blog.luogu.org" rel="noopener" target="_blank">mydcwfy</a>
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
@@ -486,13 +487,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">218k</span>
+    <span title="Symbols count total">224k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:18</span>
+    <span title="Reading time total">3:23</span>
 </div>
 
 <div>

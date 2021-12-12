@@ -28,7 +28,7 @@
 <meta property="og:description" content="题目描述过于“清晰”">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-26T14:23:15.000Z">
-<meta property="article:modified_time" content="2021-11-28T00:15:32.325Z">
+<meta property="article:modified_time" content="2021-12-08T12:57:41.041Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="luogu">
 <meta property="article:tag" content="练习">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-28 08:15:32" itemprop="dateModified" datetime="2021-11-28T08:15:32+08:00">2021-11-28</time>
+                <time title="Modified: 2021-12-08 20:57:41" itemprop="dateModified" datetime="2021-12-08T20:57:41+08:00">2021-12-08</time>
               </span>
 
           
@@ -261,7 +261,8 @@
         <p> 题目描述过于“清晰”</p>
 <span id="more"></span>
 
-<p>最开始理解了，以为是一个搜索，大概是预处理出每个点到终点的最长路，然后bfs，每个状态由位置、失误次数、权值和组成，不会TLE</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2991">Water Slides G</a></p>
+<p>最开始理解错了，以为是一个搜索，大概是预处理出每个点到终点的最长路，然后bfs，每个状态由位置、失误次数、权值和组成，不会TLE</p>
 <p>但其实题目要求中失误是走“最坏的”，而不失误是走“最好的”；我理解的失误是走“除最好的以外的节点”（<del>太nm离谱了</del>）</p>
 <p>再看原题，发现只有两种选择（最好的和最坏的），在暴搜的基础上加一个记忆化，令 $f[i][j]$ 表示从 $i$ 走到 $n$ 失误 $j$ 条边的情况下最大权值和，明显有 $f[n][0] = 0$ ， $Ans = f[1][k]$ ，由于是在一个DAG上，在搜索时转移，方程为<br>$$<br>f[u][j] =<br>\begin{cases}<br>    \min(f[v][j - 1] + w_{u,v})\\<br>    \max(f[v][j] + w_{u,v})<br>\end{cases}<br>$$<br>最后，记得开long long</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">5e4</span> + <span class="number">5</span>, M = <span class="number">1.5e5</span> + <span class="number">5</span>, K = <span class="number">10</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, k;</span><br><span class="line">LL f[N][K];</span><br><span class="line"><span class="keyword">bool</span> vis[N][K];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> ne, ver;</span><br><span class="line">	LL w;</span><br><span class="line">&#125; e[M];</span><br><span class="line"><span class="keyword">int</span> h[N], idx;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, LL z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	e[idx] = (Edge)&#123;h[x], y, z&#125;, h[x] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (vis[x][j])</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = h[x], y; i != <span class="number">-1</span>; i = e[i].ne)</span><br><span class="line">	&#123;</span><br><span class="line">		y = e[i].ver;</span><br><span class="line">		<span class="built_in">dp</span>(y, j);</span><br><span class="line">		f[x][j] = <span class="built_in">max</span>(f[y][j] + e[i].w, f[x][j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (j)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = h[x], y; i != <span class="number">-1</span>; i = e[i].ne)</span><br><span class="line">		&#123;</span><br><span class="line">			y = e[i].ver;</span><br><span class="line">			<span class="built_in">dp</span>(y, j - <span class="number">1</span>);</span><br><span class="line">			f[x][j] = <span class="built_in">min</span>(f[y][j - <span class="number">1</span>] + e[i].w, f[x][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	vis[x][j] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">		h[i] = <span class="number">-1</span>;</span><br><span class="line">	idx = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> u, v;</span><br><span class="line">	LL w;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">		<span class="built_in">add</span>(u, v, w);</span><br><span class="line">	&#125;</span><br><span class="line">	f[n][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	vis[n][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">	<span class="built_in">dp</span>(<span class="number">1</span>, k);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, f[<span class="number">1</span>][k]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -369,14 +370,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">81</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -424,7 +425,7 @@
           <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://mydcwfy-342891.blog.luogu.org/" title="https:&#x2F;&#x2F;mydcwfy-342891.blog.luogu.org" rel="noopener" target="_blank">mydcwfy</a>
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
@@ -465,13 +466,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">218k</span>
+    <span title="Symbols count total">224k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:18</span>
+    <span title="Reading time total">3:23</span>
 </div>
 
 <div>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="时间复杂度的计算是个技术活">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-28T00:47:16.000Z">
-<meta property="article:modified_time" content="2021-11-28T01:49:45.263Z">
+<meta property="article:modified_time" content="2021-12-08T12:54:41.232Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="luogu">
 <meta property="article:tag" content="练习">
@@ -215,10 +215,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-11-28 08:47:16 / Modified: 09:49:45" itemprop="dateCreated datePublished" datetime="2021-11-28T08:47:16+08:00">2021-11-28</time>
+              <time title="Created: 2021-11-28 08:47:16" itemprop="dateCreated datePublished" datetime="2021-11-28T08:47:16+08:00">2021-11-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-08 20:54:41" itemprop="dateModified" datetime="2021-12-08T20:54:41+08:00">2021-12-08</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -233,7 +239,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>972</span>
+              <span>974</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -255,6 +261,7 @@
         <p> 时间复杂度的计算是个技术活</p>
 <span id="more"></span>
 
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2723">丑数</a></p>
 <p>第一次想到的是用一个小根堆，每次取出最小值，乘其它数的积插入堆中，最后取出的第 $n$ 个就是答案，然鹅，时间（ $O(n^2\log n)$ ）和空间（ $O(n^2)$ ）上都不允许（ $n \le 10^5$ 太艹了）</p>
 <p>然后发现其实真正有用的跟新只有 $f[i] * a[i]$ 的形式，其中 $f[i]$ 表示第 $i$ 个丑数， $a[i]$ 表示质数，由于 $k$ 很小，用平衡树维护貌似可做？（<del>黄题啊，平衡树个寂寞啊</del>）</p>
 <p>最后实在 <del>不想打平衡树</del> 想不出来，一看题解：艹，暴力求第 $n$ 个就好了，加个记录的优化，时间复杂度 $O(nk \xi)$ ，其中 $\xi$ 代表玄学因子（因为没人知道那层while会跑多少），空间复杂度 $O(n)$ </p>
@@ -365,14 +372,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">81</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -420,7 +427,7 @@
           <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://mydcwfy-342891.blog.luogu.org/" title="https:&#x2F;&#x2F;mydcwfy-342891.blog.luogu.org" rel="noopener" target="_blank">mydcwfy</a>
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
@@ -461,13 +468,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">218k</span>
+    <span title="Symbols count total">224k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:18</span>
+    <span title="Reading time total">3:23</span>
 </div>
 
 <div>

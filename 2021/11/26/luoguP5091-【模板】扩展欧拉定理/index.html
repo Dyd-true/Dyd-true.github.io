@@ -28,7 +28,7 @@
 <meta property="og:description" content="我太弱了">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-26T03:56:02.000Z">
-<meta property="article:modified_time" content="2021-11-26T14:23:59.439Z">
+<meta property="article:modified_time" content="2021-12-08T12:58:55.939Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="luogu">
 <meta property="article:tag" content="练习">
@@ -214,10 +214,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-11-26 11:56:02 / Modified: 22:23:59" itemprop="dateCreated datePublished" datetime="2021-11-26T11:56:02+08:00">2021-11-26</time>
+              <time title="Created: 2021-11-26 11:56:02" itemprop="dateCreated datePublished" datetime="2021-11-26T11:56:02+08:00">2021-11-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-08 20:58:55" itemprop="dateModified" datetime="2021-12-08T20:58:55+08:00">2021-12-08</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -232,7 +238,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>840</span>
+              <span>850</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -254,6 +260,7 @@
         <p> 我太弱了</p>
 <span id="more"></span>
 
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5091">【模板】扩展欧拉定理</a></p>
 <p>本来以为可以秒杀的（<del>毕竟是板子</del>），但遗忘的比我想象的严重，主要是当 $b &lt; \varphi(m)$ 时，不能让 $b = (b \mod \varphi(m)) + \varphi(m)$ 这个特判改了 ${\color{red} \text{三次}}$ </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">20000000</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a, m, phi, p;</span><br><span class="line"><span class="keyword">char</span> b[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qpow</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (y)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (y &amp; <span class="number">1</span>)</span><br><span class="line">			res = (LL)res * x % p;</span><br><span class="line">		x = (LL)x * x % p;</span><br><span class="line">		y &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%s&quot;</span>, &amp;a, &amp;m, b + <span class="number">1</span>);</span><br><span class="line">	phi = p = m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>, j; i &lt;= m; ++i)</span><br><span class="line">		<span class="keyword">if</span> (m % i == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			phi = (LL)phi * (i - <span class="number">1</span>) / i;</span><br><span class="line">			<span class="keyword">while</span> (m % i == <span class="number">0</span>)</span><br><span class="line">				m /= i;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="built_in">strlen</span>(b + <span class="number">1</span>), bb = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (n &lt;= <span class="number">8</span>) <span class="comment">//特判</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">			bb = bb * <span class="number">10</span> + b[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">		<span class="keyword">if</span> (bb &gt;= phi)</span><br><span class="line">			bb = bb % phi + phi;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">			bb = (bb * <span class="number">10</span> + b[i] - <span class="string">&#x27;0&#x27;</span>) % phi;</span><br><span class="line">		bb += phi;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, <span class="built_in">qpow</span>(a, bb));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -359,14 +366,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">81</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -414,7 +421,7 @@
           <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://mydcwfy-342891.blog.luogu.org/" title="https:&#x2F;&#x2F;mydcwfy-342891.blog.luogu.org" rel="noopener" target="_blank">mydcwfy</a>
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
@@ -455,13 +462,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">218k</span>
+    <span title="Symbols count total">224k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:18</span>
+    <span title="Reading time total">3:23</span>
 </div>
 
 <div>
