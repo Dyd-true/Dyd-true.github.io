@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dyd-true.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="不给好质数的出题人都***">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速数论变换">
+<meta property="og:url" content="https://dyd-true.github.io/2021/12/26/%E5%BF%AB%E9%80%9F%E6%95%B0%E8%AE%BA%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Dyd&#39;s Blog">
+<meta property="og:description" content="不给好质数的出题人都***">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-26T06:40:03.000Z">
+<meta property="article:modified_time" content="2021-12-27T14:24:45.686Z">
+<meta property="article:author" content="Dyd">
+<meta property="article:tag" content="数论,数学">
+<meta property="article:tag" content="多项式">
+<meta property="article:tag" content="快速数论变换,NTT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://dyd-true.github.io/2021/12/26/%E5%BF%AB%E9%80%9F%E6%95%B0%E8%AE%BA%E5%8F%98%E6%8D%A2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>快速数论变换 | Dyd's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Dyd's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dyd's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">He who has a strong enough why can bear almost any how.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Dyd-true" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://dyd-true.github.io/2021/12/26/%E5%BF%AB%E9%80%9F%E6%95%B0%E8%AE%BA%E5%8F%98%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Dyd">
+      <meta itemprop="description" content="一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dyd's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          快速数论变换
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-26 14:40:03" itemprop="dateCreated datePublished" datetime="2021-12-26T14:40:03+08:00">2021-12-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-27 22:24:45" itemprop="dateModified" datetime="2021-12-27T22:24:45+08:00">2021-12-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 不给好质数的出题人都***</p>
+<span id="more"></span>
+
+<h1 id="快速数论变换"><a href="#快速数论变换" class="headerlink" title="快速数论变换"></a>快速数论变换</h1><p>众所周知，FFT有两个缺陷：虚数常数大、无法支持取模</p>
+<p>而NTT就巧妙的把这两个缺陷（<del>转化成另外的缺陷</del>）解决了</p>
+<p>思路大体和FFT一样，不同的是，NTT不用虚数的单位根了，而用的是数论中的<strong>原根</strong></p>
+<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>设 $a \in \mathbb{Z}, p \in \mathbb{N_+}$ ，且 $gcd(a, p) = 1$ ，设 $d$ 为使 $a^d \equiv 1 \pmod p$ 成立的最小正整数，则称 $d$ 为 $a$ 在模 $p$ 意义下的<strong>阶</strong>，若 $d = \varphi(p)$ ，则称 $a$ 为 $p$ 的一个<strong>原根</strong></p>
+<p>可以证明，<strong>奇质数一定存在原根</strong></p>
+<p>原根有一个关键性质：**若 $g$ 是 $p$ 的原根，则 $g^i \mod p(i \in [1, p - 1])$ 两两不同且取遍 $[1, p - 1]$**，则让我们可以取原根做点值表达式的点</p>
+<p>下面用 $g_n$ 表示 $g^{\frac{p - 1}{n}}$ </p>
+<p>而原根也和虚数一样满足折半引理、消去引理和求和引理，即（以下都在模 $p$ 意义下）：</p>
+<ul>
+<li>  $g_n^n = 1$ </li>
+<li> $g_n^{k + \frac{n}{2}} = -g_n^k$ </li>
+<li> $g_{dn}^{dk} = g_{n}^k$ </li>
+<li> $(g_n^{k + \frac{n}{2}})^2 = g_n^{2k + n} = g_n^{2k}$ </li>
+</ul>
+<p>也就是说，在FFT中用到的虚数的性质原根都有，而且原根支持取模</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">3e6</span> + <span class="number">5</span>, P = <span class="number">998244353</span>; <span class="comment">//注意N要大于二倍n</span></span><br><span class="line"><span class="keyword">int</span> r[N], bit, tot;</span><br><span class="line"><span class="keyword">int</span> a[N], b[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qpow</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (y &amp; <span class="number">1</span>)</span><br><span class="line">            res = (LL)res * x % P;</span><br><span class="line">        x = (LL)x * x % P;</span><br><span class="line">        y &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ntt</span><span class="params">(<span class="keyword">int</span> x[], <span class="keyword">int</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tot; ++i)</span><br><span class="line">        <span class="keyword">if</span> (i &lt; r[i])</span><br><span class="line">            <span class="built_in">swap</span>(x[i], x[r[i]]);</span><br><span class="line">    <span class="keyword">int</span> mid, i, j, len, gn, g, a, b;</span><br><span class="line">    <span class="keyword">for</span> (mid = <span class="number">1</span>; mid &lt; tot; mid &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        len = mid &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        这里可以预处理3和inv的次幂卡常</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        gn = <span class="built_in">qpow</span>(<span class="number">3</span>, (P - <span class="number">1</span>) / len); <span class="comment">//3是998244353的原根</span></span><br><span class="line">        <span class="keyword">if</span> (op == <span class="number">-1</span>) <span class="comment">//负数的bool值是true!</span></span><br><span class="line">            gn = <span class="built_in">qpow</span>(gn, P - <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; tot; i += len)</span><br><span class="line">        &#123;</span><br><span class="line">            g = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; mid; ++j, g = (LL)g * gn % P)</span><br><span class="line">            &#123;</span><br><span class="line">                a = x[i + j], b = (LL)g * x[i + j + mid] % P;</span><br><span class="line">                x[i + j] = (a + b) % P;</span><br><span class="line">                x[i + j + mid] = (a - b + P) % P;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]), a[i] = (a[i] + P) % P; <span class="comment">//一定要保证是正数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; ++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;b[i]), b[i] = (b[i] + P) % P;</span><br><span class="line">    bit = <span class="number">0</span>, tot = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (tot &lt;= n + m)</span><br><span class="line">        tot &lt;&lt;= <span class="number">1</span>, ++bit;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tot; ++i)</span><br><span class="line">        r[i] = (r[i &gt;&gt; <span class="number">1</span>] &gt;&gt; <span class="number">1</span>) | ((i &amp; <span class="number">1</span>) &lt;&lt; (bit - <span class="number">1</span>));</span><br><span class="line">    <span class="built_in">ntt</span>(a, <span class="number">1</span>), <span class="built_in">ntt</span>(b, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tot; ++i)</span><br><span class="line">        a[i] = (LL)a[i] * b[i] % P;</span><br><span class="line">    <span class="built_in">ntt</span>(a, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">int</span> inv = <span class="built_in">qpow</span>(tot, P - <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n + m; ++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, (LL)a[i] * inv % P);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于质数"><a href="#关于质数" class="headerlink" title="关于质数"></a>关于质数</h2><p>模数必须是 $2^n + 1$ 的形式且 $n$ 要足够大常见的有998244353，1004535809，469762049它们的原根都是3</p>
+<p>具体的，见表：</p>
+<p>设 $P = k2^r + 1$ ，原根为 $g$ </p>
+<table>
+<thead>
+<tr>
+<th>P</th>
+<th>r</th>
+<th>k</th>
+<th>g</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>81788929</td>
+<td>21</td>
+<td>39</td>
+<td>7</td>
+</tr>
+<tr>
+<td>104857601</td>
+<td>21</td>
+<td>50</td>
+<td>3</td>
+</tr>
+<tr>
+<td>104857601</td>
+<td>22</td>
+<td>25</td>
+<td>3</td>
+</tr>
+<tr>
+<td>113246209</td>
+<td>21</td>
+<td>54</td>
+<td>7</td>
+</tr>
+<tr>
+<td>113246209</td>
+<td>22</td>
+<td>27</td>
+<td>7</td>
+</tr>
+<tr>
+<td>132120577</td>
+<td>21</td>
+<td>63</td>
+<td>5</td>
+</tr>
+<tr>
+<td>136314881</td>
+<td>21</td>
+<td>65</td>
+<td>3</td>
+</tr>
+<tr>
+<td>138412033</td>
+<td>21</td>
+<td>66</td>
+<td>5</td>
+</tr>
+<tr>
+<td>155189249</td>
+<td>21</td>
+<td>74</td>
+<td>6</td>
+</tr>
+<tr>
+<td>167772161</td>
+<td>23</td>
+<td>20</td>
+<td>3</td>
+</tr>
+<tr>
+<td>249561089</td>
+<td>21</td>
+<td>119</td>
+<td>3</td>
+</tr>
+<tr>
+<td>377487361</td>
+<td>21</td>
+<td>180</td>
+<td>7</td>
+</tr>
+<tr>
+<td>377487361</td>
+<td>22</td>
+<td>90</td>
+<td>7</td>
+</tr>
+<tr>
+<td>383778817</td>
+<td>21</td>
+<td>183</td>
+<td>5</td>
+</tr>
+<tr>
+<td>415236097</td>
+<td>22</td>
+<td>99</td>
+<td>5</td>
+</tr>
+<tr>
+<td>415236097</td>
+<td>21</td>
+<td>198</td>
+<td>5</td>
+</tr>
+<tr>
+<td>469762049</td>
+<td>24</td>
+<td>28</td>
+<td>3</td>
+</tr>
+<tr>
+<td>469762049</td>
+<td>21</td>
+<td>224</td>
+<td>3</td>
+</tr>
+<tr>
+<td>469762049</td>
+<td>23</td>
+<td>56</td>
+<td>3</td>
+</tr>
+<tr>
+<td>469762049</td>
+<td>22</td>
+<td>112</td>
+<td>3</td>
+</tr>
+<tr>
+<td>576716801</td>
+<td>21</td>
+<td>275</td>
+<td>6</td>
+</tr>
+<tr>
+<td>645922817</td>
+<td>22</td>
+<td>154</td>
+<td>3</td>
+</tr>
+<tr>
+<td>645922817</td>
+<td>21</td>
+<td>308</td>
+<td>3</td>
+</tr>
+<tr>
+<td>666894337</td>
+<td>21</td>
+<td>318</td>
+<td>5</td>
+</tr>
+<tr>
+<td>683671553</td>
+<td>22</td>
+<td>163</td>
+<td>3</td>
+</tr>
+<tr>
+<td>740294657</td>
+<td>21</td>
+<td>353</td>
+<td>3</td>
+</tr>
+<tr>
+<td>897581057</td>
+<td>22</td>
+<td>214</td>
+<td>3</td>
+</tr>
+<tr>
+<td>897581057</td>
+<td>21</td>
+<td>428</td>
+<td>3</td>
+</tr>
+<tr>
+<td>918552577</td>
+<td>22</td>
+<td>219</td>
+<td>5</td>
+</tr>
+<tr>
+<td>935329793</td>
+<td>22</td>
+<td>223</td>
+<td>3</td>
+</tr>
+<tr>
+<td>935329793</td>
+<td>21</td>
+<td>446</td>
+<td>3</td>
+</tr>
+<tr>
+<td>950009857</td>
+<td>21</td>
+<td>453</td>
+<td>7</td>
+</tr>
+<tr>
+<td>962592769</td>
+<td>21</td>
+<td>459</td>
+<td>7</td>
+</tr>
+<tr>
+<td>998244353</td>
+<td>23</td>
+<td>119</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1004535809</td>
+<td>21</td>
+<td>479</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1107296257</td>
+<td>23</td>
+<td>132</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1107296257</td>
+<td>24</td>
+<td>66</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1107296257</td>
+<td>21</td>
+<td>528</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1138753537</td>
+<td>21</td>
+<td>543</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1161822209</td>
+<td>22</td>
+<td>277</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1161822209</td>
+<td>21</td>
+<td>554</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1205862401</td>
+<td>21</td>
+<td>575</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1212153857</td>
+<td>22</td>
+<td>289</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1212153857</td>
+<td>21</td>
+<td>578</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1214251009</td>
+<td>21</td>
+<td>579</td>
+<td>7</td>
+</tr>
+<tr>
+<td>1218445313</td>
+<td>21</td>
+<td>581</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1224736769</td>
+<td>22</td>
+<td>292</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1224736769</td>
+<td>21</td>
+<td>584</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1281359873</td>
+<td>21</td>
+<td>611</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1300234241</td>
+<td>23</td>
+<td>155</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1300234241</td>
+<td>21</td>
+<td>620</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1306525697</td>
+<td>21</td>
+<td>623</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1327497217</td>
+<td>21</td>
+<td>633</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1438646273</td>
+<td>21</td>
+<td>686</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1484783617</td>
+<td>21</td>
+<td>708</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1570766849</td>
+<td>21</td>
+<td>749</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1709178881</td>
+<td>21</td>
+<td>815</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1835008001</td>
+<td>21</td>
+<td>875</td>
+<td>6</td>
+</tr>
+<tr>
+<td>1866465281</td>
+<td>22</td>
+<td>445</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1866465281</td>
+<td>21</td>
+<td>890</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1893728257</td>
+<td>21</td>
+<td>903</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1931476993</td>
+<td>21</td>
+<td>921</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2088763393</td>
+<td>22</td>
+<td>498</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2113929217</td>
+<td>22</td>
+<td>504</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2113929217</td>
+<td>25</td>
+<td>63</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2113929217</td>
+<td>23</td>
+<td>252</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2130706433</td>
+<td>22</td>
+<td>508</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2130706433</td>
+<td>23</td>
+<td>254</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2281701377</td>
+<td>27</td>
+<td>17</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2483027969</td>
+<td>23</td>
+<td>296</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2483027969</td>
+<td>25</td>
+<td>74</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2533359617</td>
+<td>24</td>
+<td>151</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2533359617</td>
+<td>23</td>
+<td>302</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2558525441</td>
+<td>23</td>
+<td>305</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2671771649</td>
+<td>22</td>
+<td>637</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2680160257</td>
+<td>22</td>
+<td>639</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2717908993</td>
+<td>22</td>
+<td>648</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2717908993</td>
+<td>24</td>
+<td>162</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2722103297</td>
+<td>22</td>
+<td>649</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2780823553</td>
+<td>22</td>
+<td>663</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2885681153</td>
+<td>24</td>
+<td>172</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2885681153</td>
+<td>26</td>
+<td>43</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2910846977</td>
+<td>22</td>
+<td>694</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2998927361</td>
+<td>22</td>
+<td>715</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3112173569</td>
+<td>22</td>
+<td>742</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3221225473</td>
+<td>24</td>
+<td>192</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3221225473</td>
+<td>25</td>
+<td>96</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3221225473</td>
+<td>26</td>
+<td>48</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3238002689</td>
+<td>22</td>
+<td>772</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3238002689</td>
+<td>23</td>
+<td>386</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3313500161</td>
+<td>22</td>
+<td>790</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3414163457</td>
+<td>23</td>
+<td>407</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3435134977</td>
+<td>22</td>
+<td>819</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3451912193</td>
+<td>22</td>
+<td>823</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3489660929</td>
+<td>23</td>
+<td>416</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3489660929</td>
+<td>25</td>
+<td>104</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3489660929</td>
+<td>22</td>
+<td>832</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3510632449</td>
+<td>22</td>
+<td>837</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3577741313</td>
+<td>22</td>
+<td>853</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3615490049</td>
+<td>23</td>
+<td>431</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3615490049</td>
+<td>22</td>
+<td>862</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3628072961</td>
+<td>22</td>
+<td>865</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3665821697</td>
+<td>23</td>
+<td>437</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3686793217</td>
+<td>22</td>
+<td>879</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3749707777</td>
+<td>23</td>
+<td>447</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3892314113</td>
+<td>23</td>
+<td>464</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3892314113</td>
+<td>25</td>
+<td>116</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3892314113</td>
+<td>24</td>
+<td>232</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3892314113</td>
+<td>22</td>
+<td>928</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3938451457</td>
+<td>22</td>
+<td>939</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3942645761</td>
+<td>23</td>
+<td>470</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3942645761</td>
+<td>24</td>
+<td>235</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3942645761</td>
+<td>22</td>
+<td>940</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4013948929</td>
+<td>22</td>
+<td>957</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4194304001</td>
+<td>24</td>
+<td>250</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4253024257</td>
+<td>23</td>
+<td>507</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4630511617</td>
+<td>26</td>
+<td>69</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4630511617</td>
+<td>25</td>
+<td>138</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4882169857</td>
+<td>24</td>
+<td>291</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4882169857</td>
+<td>23</td>
+<td>582</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5158993921</td>
+<td>23</td>
+<td>615</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5175771137</td>
+<td>23</td>
+<td>617</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5251268609</td>
+<td>23</td>
+<td>626</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5528092673</td>
+<td>23</td>
+<td>659</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5536481281</td>
+<td>24</td>
+<td>330</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5578424321</td>
+<td>23</td>
+<td>665</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5788139521</td>
+<td>24</td>
+<td>345</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5788139521</td>
+<td>23</td>
+<td>690</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5838471169</td>
+<td>25</td>
+<td>174</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5838471169</td>
+<td>26</td>
+<td>87</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6014631937</td>
+<td>23</td>
+<td>717</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6165626881</td>
+<td>23</td>
+<td>735</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6333399041</td>
+<td>23</td>
+<td>755</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6434062337</td>
+<td>23</td>
+<td>767</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6534725633</td>
+<td>23</td>
+<td>779</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6593445889</td>
+<td>24</td>
+<td>393</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6660554753</td>
+<td>23</td>
+<td>794</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6719275009</td>
+<td>23</td>
+<td>801</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6811549697</td>
+<td>25</td>
+<td>203</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6811549697</td>
+<td>23</td>
+<td>812</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6996099073</td>
+<td>23</td>
+<td>834</td>
+<td>2</td>
+</tr>
+<tr>
+<td>6996099073</td>
+<td>24</td>
+<td>417</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7096762369</td>
+<td>24</td>
+<td>423</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7348420609</td>
+<td>24</td>
+<td>438</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7348420609</td>
+<td>25</td>
+<td>219</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7474249729</td>
+<td>23</td>
+<td>891</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7566524417</td>
+<td>23</td>
+<td>902</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7717519361</td>
+<td>26</td>
+<td>115</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7717519361</td>
+<td>25</td>
+<td>230</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7717519361</td>
+<td>23</td>
+<td>920</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7818182657</td>
+<td>23</td>
+<td>932</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7843348481</td>
+<td>23</td>
+<td>935</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7918845953</td>
+<td>27</td>
+<td>59</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8170504193</td>
+<td>24</td>
+<td>487</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8220835841</td>
+<td>25</td>
+<td>245</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8220835841</td>
+<td>23</td>
+<td>980</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8279556097</td>
+<td>23</td>
+<td>987</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8858370049</td>
+<td>26</td>
+<td>132</td>
+<td>2</td>
+</tr>
+<tr>
+<td>8858370049</td>
+<td>27</td>
+<td>66</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9177137153</td>
+<td>24</td>
+<td>547</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9227468801</td>
+<td>25</td>
+<td>275</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9865003009</td>
+<td>24</td>
+<td>588</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10267656193</td>
+<td>24</td>
+<td>612</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10267656193</td>
+<td>26</td>
+<td>153</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10267656193</td>
+<td>25</td>
+<td>306</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10619977729</td>
+<td>24</td>
+<td>633</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10871635969</td>
+<td>26</td>
+<td>162</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10871635969</td>
+<td>24</td>
+<td>648</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10871635969</td>
+<td>25</td>
+<td>324</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11123294209</td>
+<td>24</td>
+<td>663</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11173625857</td>
+<td>25</td>
+<td>333</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11173625857</td>
+<td>24</td>
+<td>666</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11341398017</td>
+<td>26</td>
+<td>169</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11341398017</td>
+<td>25</td>
+<td>338</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11693719553</td>
+<td>24</td>
+<td>697</td>
+<td>2</td>
+</tr>
+<tr>
+<td>12297699329</td>
+<td>24</td>
+<td>733</td>
+<td>2</td>
+</tr>
+<tr>
+<td>12348030977</td>
+<td>27</td>
+<td>92</td>
+<td>2</td>
+</tr>
+<tr>
+<td>12348030977</td>
+<td>25</td>
+<td>368</td>
+<td>2</td>
+</tr>
+<tr>
+<td>12348030977</td>
+<td>26</td>
+<td>184</td>
+<td>2</td>
+</tr>
+<tr>
+<td>13186891777</td>
+<td>25</td>
+<td>393</td>
+<td>2</td>
+</tr>
+<tr>
+<td>13757317121</td>
+<td>26</td>
+<td>205</td>
+<td>2</td>
+</tr>
+<tr>
+<td>13857980417</td>
+<td>25</td>
+<td>413</td>
+<td>2</td>
+</tr>
+<tr>
+<td>13857980417</td>
+<td>24</td>
+<td>826</td>
+<td>2</td>
+</tr>
+<tr>
+<td>14042529793</td>
+<td>24</td>
+<td>837</td>
+<td>2</td>
+</tr>
+<tr>
+<td>14092861441</td>
+<td>26</td>
+<td>210</td>
+<td>2</td>
+</tr>
+<tr>
+<td>14092861441</td>
+<td>27</td>
+<td>105</td>
+<td>2</td>
+</tr>
+<tr>
+<td>14092861441</td>
+<td>24</td>
+<td>840</td>
+<td>2</td>
+</tr>
+<tr>
+<td>15065939969</td>
+<td>24</td>
+<td>898</td>
+<td>2</td>
+</tr>
+<tr>
+<td>15065939969</td>
+<td>25</td>
+<td>449</td>
+<td>2</td>
+</tr>
+<tr>
+<td>15619588097</td>
+<td>24</td>
+<td>931</td>
+<td>2</td>
+</tr>
+<tr>
+<td>15653142529</td>
+<td>24</td>
+<td>933</td>
+<td>2</td>
+</tr>
+<tr>
+<td>15854469121</td>
+<td>24</td>
+<td>945</td>
+<td>2</td>
+</tr>
+<tr>
+<td>16475226113</td>
+<td>24</td>
+<td>982</td>
+<td>2</td>
+</tr>
+<tr>
+<td>16575889409</td>
+<td>24</td>
+<td>988</td>
+<td>2</td>
+</tr>
+<tr>
+<td>16626221057</td>
+<td>24</td>
+<td>991</td>
+<td>2</td>
+</tr>
+<tr>
+<td>17314086913</td>
+<td>26</td>
+<td>258</td>
+<td>2</td>
+</tr>
+<tr>
+<td>17314086913</td>
+<td>25</td>
+<td>516</td>
+<td>2</td>
+</tr>
+<tr>
+<td>17314086913</td>
+<td>27</td>
+<td>129</td>
+<td>2</td>
+</tr>
+<tr>
+<td>18387828737</td>
+<td>26</td>
+<td>274</td>
+<td>2</td>
+</tr>
+<tr>
+<td>19998441473</td>
+<td>26</td>
+<td>298</td>
+<td>2</td>
+</tr>
+<tr>
+<td>19998441473</td>
+<td>25</td>
+<td>596</td>
+<td>2</td>
+</tr>
+<tr>
+<td>20501757953</td>
+<td>25</td>
+<td>611</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<h2 id="三模数NTT"><a href="#三模数NTT" class="headerlink" title="三模数NTT"></a>三模数NTT</h2><p>对于模数不符合要求的，可以用这三个质数分别NTT，用中国剩余定理合并（要求答案小于它们的积），一般来说可以应付系数不超过 $10^{23}$ 的情况</p>
+<p>然鹅，拆系数FFT跑得比它快……</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E8%AE%BA-%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数论,数学</a>
+              <a href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 多项式</a>
+              <a href="/tags/%E5%BF%AB%E9%80%9F%E6%95%B0%E8%AE%BA%E5%8F%98%E6%8D%A2-NTT/" rel="tag"><i class="fa fa-tag"></i> 快速数论变换,NTT</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/24/%E6%96%87%E7%AB%A0%E5%AF%86%E7%A0%81/" rel="prev" title="文章密码">
+      <i class="fa fa-chevron-left"></i> 文章密码
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/27/%E5%A4%9A%E9%A1%B9%E5%BC%8F/" rel="next" title="多项式">
+      多项式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%95%B0%E8%AE%BA%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">快速数论变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%A0%B9"><span class="nav-number">1.1.</span> <span class="nav-text">原根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%B4%A8%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">关于质数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%A8%A1%E6%95%B0NTT"><span class="nav-number">1.4.</span> <span class="nav-text">三模数NTT</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Dyd"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Dyd</p>
+  <div class="site-description" itemprop="description">一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">107</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Dyd-true" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Dyd-true" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2741501882@qq.com" title="E-Mail → mailto:2741501882@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sighttp.qq.com/msgrd?v=1&uin=2741501882" title="QQ → https:&#x2F;&#x2F;sighttp.qq.com&#x2F;msgrd?v&#x3D;1&amp;uin&#x3D;2741501882" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/141393" title="LuoGu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;141393" rel="noopener" target="_blank"><i class=" fa-fw"></i>LuoGu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      some of my mates
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.pigaunt.top/" title="https:&#x2F;&#x2F;www.pigaunt.top" rel="noopener" target="_blank">PigAunt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hewo233.blog.luogu.org/" title="https:&#x2F;&#x2F;hewo233.blog.luogu.org" rel="noopener" target="_blank">Hewo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wiki.pigaunt.top/" title="https:&#x2F;&#x2F;wiki.pigaunt.top" rel="noopener" target="_blank">PekingOpera</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io" rel="noopener" target="_blank">lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io" rel="noopener" target="_blank">RuSun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dyd</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">356k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">5:24</span>
+</div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "The site has running for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

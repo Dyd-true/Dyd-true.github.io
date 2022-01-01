@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/72t9f57x.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/rc07p4no.png">
 <meta property="article:published_time" content="2021-11-22T08:22:22.000Z">
-<meta property="article:modified_time" content="2021-12-24T14:19:32.591Z">
+<meta property="article:modified_time" content="2021-12-26T06:24:33.383Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="快速傅里叶变换,FFT">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-24 22:19:32" itemprop="dateModified" datetime="2021-12-24T22:19:32+08:00">2021-12-24</time>
+                <time title="Modified: 2021-12-26 14:24:33" itemprop="dateModified" datetime="2021-12-26T14:24:33+08:00">2021-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,7 +279,7 @@
 
 <h1 id="快速傅里叶变换"><a href="#快速傅里叶变换" class="headerlink" title="快速傅里叶变换"></a>快速傅里叶变换</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>快速傅里叶变换（FFT）是一种快速求解两个多项式的乘积（或者称之为两个函数的卷积，但注意，这个卷积不是狄拉克雷卷积）的方法</p>
 <p>例如已知<br>$$<br>\begin{align}<br>A(x)=a_0+a_1x+a_2x^2+…+a_nx^n\\<br>B(x)=b_0+b_1x+b_2x^2+…+b_nx^n<br>\end{align}<br>$$<br>求 $A*B$ </p>
-<p>如果直接计算，复杂度显然为 $O(\sqrt{n})$ ，而FFT可以在 $O(n\log{n})$ 的时间求出答案</p>
+<p>如果直接计算，复杂度显然为 $O(n^2)$ ，而FFT可以在 $O(n\log{n})$ 的时间求出答案</p>
 <h2 id="前置知识：复数"><a href="#前置知识：复数" class="headerlink" title="前置知识：复数"></a>前置知识：复数</h2><p>任意一个复数可以表示为 $a+bi$ 的形式，其中 $a$ 被称为<strong>实部</strong>， $b$ 被称为<strong>虚部</strong>， $i=\sqrt{-1}$ 是<strong>虚数单位</strong></p>
 <p>类似于实数可以对应到数轴上，复数可以对应到坐标轴上 </p>
 <p><img src="https://cdn.luogu.com.cn/upload/image_hosting/k3uo7b61.png" alt="复数"></p>
@@ -319,7 +319,7 @@
 <p>我们只需要快速求出 $A’(\omega_{n+1}^{0})\sim A’(\omega_{n+1}^{-n})$ ——这正好就是快速傅里叶正变换！</p>
 <h2 id="递归化迭代"><a href="#递归化迭代" class="headerlink" title="递归化迭代"></a>递归化迭代</h2><p>由于用递归实现FFT常数过大，我们考虑用迭代的方式实现FFT（其实常数也挺大的），观察下面的图：</p>
 <p><img src="https://cdn.luogu.com.cn/upload/image_hosting/rc07p4no.png" alt="迭代"></p>
-<p>计算每一个数时都要用到下方被横线连着的几个数，找找规律<del>找的到个鬼</del>，我们发现下面的每一项都是上面的数的二进制翻转，如 $1=(001)_2$ 对应最下方的 $4=(100)_2$ ，$6=(110)_2$ 对应最下方的 $3=(011)<em>2$ ，不妨设 $i$ 二进制翻转后为 $r_i$ ，则有 $r_i=(r</em>{\frac{i}{2}}&gt;&gt;1){\Large|}(i&amp;1)&lt;&lt;(bit-1)$ </p>
+<p>计算每一个数时都要用到下方被横线连着的几个数，找找规律<del>找的到个鬼</del>，我们发现下面的每一项都是上面的数的二进制翻转，如 $1=(001)_2$ 对应最下方的 $4=(100)_2$ ，$6=(110)_2$ 对应最下方的 $3=(011)<em>2$ ，不妨设 $i$ 二进制翻转后为 $r_i$ ，则有：<br>$$<br>i = (r</em>{\frac{i}{2}} &gt;&gt; 1) {\Large|} (i &amp; 1) &lt;&lt; (bit - 1)<br>$$</p>
 <p>为了好算，我们保证项数为 $2$ 的整次幂（不足就补）</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3803">模板</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3000000</span>+<span class="number">5</span>; <span class="comment">//注意N要大于二倍n </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI=<span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Complex</span>&#123;</span> <span class="comment">//定义复数 </span></span><br><span class="line">	<span class="keyword">double</span> a,b;</span><br><span class="line">	<span class="function">Complex <span class="title">make_C</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> _a,<span class="keyword">const</span> <span class="keyword">double</span> _b)</span><span class="keyword">const</span></span>&#123;</span><br><span class="line">		Complex res;</span><br><span class="line">		res.a=_a,res.b=_b;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">	Complex <span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp;<span class="keyword">_t</span>)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">make_C</span>(a+<span class="keyword">_t</span>.a,b+<span class="keyword">_t</span>.b);</span><br><span class="line">	&#125;</span><br><span class="line">	Complex <span class="keyword">operator</span>-(<span class="keyword">const</span> Complex &amp;<span class="keyword">_t</span>)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">make_C</span>(a-<span class="keyword">_t</span>.a,b-<span class="keyword">_t</span>.b);</span><br><span class="line">	&#125;</span><br><span class="line">	Complex <span class="keyword">operator</span>*(<span class="keyword">const</span> Complex &amp;<span class="keyword">_t</span>)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">make_C</span>(a*<span class="keyword">_t</span>.a-b*<span class="keyword">_t</span>.b,a*<span class="keyword">_t</span>.b+b*<span class="keyword">_t</span>.a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a[N],b[N];</span><br><span class="line"><span class="keyword">int</span> r[N],bit,tot;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fft</span><span class="params">(Complex x[],<span class="keyword">int</span> inv)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tot;++i)</span><br><span class="line">		<span class="keyword">if</span>(i&lt;r[i]) <span class="built_in">swap</span>(x[i],x[r[i]]);</span><br><span class="line">	Complex w1,wk,a1,a2;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> mid=<span class="number">1</span>;mid&lt;tot;mid&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">		w1=w1.<span class="built_in">make_C</span>(<span class="built_in">cos</span>(PI/mid),inv*<span class="built_in">sin</span>(PI/mid)); ; <span class="comment">//由于cos正负相同,不必乘inv </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tot;i+=(mid&lt;&lt;<span class="number">1</span>))&#123;</span><br><span class="line">			wk=wk.<span class="built_in">make_C</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;mid;++j,wk=wk*w1)&#123;</span><br><span class="line">				a1=x[i+j],a2=wk*x[i+j+mid];</span><br><span class="line">				x[i+j]=a1+a2,x[i+j+mid]=a1-a2;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,m; <span class="comment">//建议将n,m定义为局部变量,防止与tot混淆 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;a[i].a);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;b[i].a);</span><br><span class="line">	<span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;bit)&lt;n+m+<span class="number">1</span>) ++bit;</span><br><span class="line">	tot=<span class="number">1</span>&lt;&lt;bit;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tot;++i) r[i]=(r[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(bit<span class="number">-1</span>)); </span><br><span class="line">	<span class="built_in">fft</span>(a,<span class="number">1</span>),<span class="built_in">fft</span>(b,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tot;++i) a[i]=a[i]*b[i];</span><br><span class="line">	<span class="built_in">fft</span>(a,<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n+m;++i) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,(<span class="keyword">int</span>)(a[i].a/tot+<span class="number">0.5</span>)); <span class="comment">//加0.5来四舍五入 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -435,7 +435,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -448,7 +448,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-count">107</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -526,8 +526,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -537,13 +537,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">306k</span>
+    <span title="Symbols count total">356k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:38</span>
+    <span title="Reading time total">5:24</span>
 </div>
 
 <div>
