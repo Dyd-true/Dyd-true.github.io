@@ -28,7 +28,7 @@
 <meta property="og:description" content="数学的恶魔">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-22T08:25:37.000Z">
-<meta property="article:modified_time" content="2021-12-24T14:20:48.878Z">
+<meta property="article:modified_time" content="2022-01-02T10:41:00.595Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="莫比乌斯反演">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-24 22:20:48" itemprop="dateModified" datetime="2021-12-24T22:20:48+08:00">2021-12-24</time>
+                <time title="Modified: 2022-01-02 18:41:00" itemprop="dateModified" datetime="2022-01-02T18:41:00+08:00">2022-01-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -331,7 +331,7 @@
 <p>对于 $k$ 次卷积，还可以快速幂优化</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HanShu</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> f[N];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inint</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) f[i]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    HanShu <span class="keyword">operator</span>*(<span class="keyword">const</span> HanShu <span class="keyword">_t</span>)&#123;</span><br><span class="line">	    HanShu h;</span><br><span class="line">		h.<span class="built_in">inint</span>();</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j*i&lt;=n;++j) h.f[i*j]=(h.f[i*j]+f[i]*<span class="keyword">_t</span>.f[j]%P)%P;</span><br><span class="line">	    <span class="keyword">return</span> h;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">void</span> <span class="keyword">operator</span>=(<span class="keyword">const</span> HanShu <span class="keyword">_t</span>)&#123;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) f[i]=<span class="keyword">_t</span>.f[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">HanShu <span class="title">H_qpow</span><span class="params">(HanShu x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    HanShu res;</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">_t</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(y)&#123;</span><br><span class="line">    	<span class="keyword">if</span>(y&amp;<span class="number">1</span>)&#123;</span><br><span class="line">    		++<span class="keyword">_t</span>;</span><br><span class="line">    		<span class="keyword">if</span>(<span class="keyword">_t</span>==<span class="number">1</span>) res=x;</span><br><span class="line">    		<span class="keyword">else</span> res=res*x;</span><br><span class="line">    	&#125;</span><br><span class="line">    	x=x*x;</span><br><span class="line">    	y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="前置知识：莫比乌斯函数"><a href="#前置知识：莫比乌斯函数" class="headerlink" title="前置知识：莫比乌斯函数"></a>前置知识：莫比乌斯函数</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>设正整数 $N$ 分解质因数为 $N=p_1^{c_1}p_2^{c_2}…p_m^{c_m}$ ，定义函数<br>$$<br>\mu(N)=\left{\begin{matrix}<br> 0&amp;\exists i\in[1,m],c_i&gt;1\<br> 1&amp;m\equiv0(mod\ 2),\forall i\in[1,m],c_i=1\<br>-1&amp;m\equiv1(mod\ 2),\forall i\in[1,m],c_i=1<br>\end{matrix}\right.<br>$$<br>我们称 $\mu$ 为莫比乌斯（ $M\ddot{o}bius$ ）函数。</p>
+<h2 id="前置知识：莫比乌斯函数"><a href="#前置知识：莫比乌斯函数" class="headerlink" title="前置知识：莫比乌斯函数"></a>前置知识：莫比乌斯函数</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>设正整数 $N$ 分解质因数为 $N=p_1^{c_1}p_2^{c_2}…p_m^{c_m}$ ，定义函数<br>$$<br>\mu(N)=<br>\begin{cases}<br> 0&amp;\exists i\in[1,m],c_i&gt;1\\<br> 1&amp;m\equiv0(mod\ 2),\forall i\in[1,m],c_i=1\\<br>-1&amp;m\equiv1(mod\ 2),\forall i\in[1,m],c_i=1<br>\end{cases}<br>$$<br>我们称 $\mu$ 为莫比乌斯（ $M\ddot{o}bius$ ）函数。</p>
 <h3 id="性质和结论"><a href="#性质和结论" class="headerlink" title="性质和结论"></a>性质和结论</h3><ul>
 <li><p>莫比乌斯函数是积性函数</p>
 </li>
@@ -527,7 +527,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -540,7 +540,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">109</span>
+        <span class="site-state-item-count">111</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -629,13 +629,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">363k</span>
+    <span title="Symbols count total">379k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">5:30</span>
+    <span title="Reading time total">5:45</span>
 </div>
 
 <div>
