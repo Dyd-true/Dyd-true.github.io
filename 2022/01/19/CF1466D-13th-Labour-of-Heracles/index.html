@@ -28,9 +28,11 @@
 <meta property="og:description" content="希腊神话">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-19T03:03:04.000Z">
-<meta property="article:modified_time" content="2022-01-19T06:21:41.809Z">
+<meta property="article:modified_time" content="2022-01-19T13:02:55.633Z">
 <meta property="article:author" content="Dyd">
+<meta property="article:tag" content="树">
 <meta property="article:tag" content="练习">
+<meta property="article:tag" content="贪心">
 <meta property="article:tag" content="CF">
 <meta name="twitter:card" content="summary">
 
@@ -219,7 +221,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-01-19 11:03:04 / Modified: 14:21:41" itemprop="dateCreated datePublished" datetime="2022-01-19T11:03:04+08:00">2022-01-19</time>
+              <time title="Created: 2022-01-19 11:03:04 / Modified: 21:02:55" itemprop="dateCreated datePublished" datetime="2022-01-19T11:03:04+08:00">2022-01-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,7 +246,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>688</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -281,10 +283,14 @@
 </ul>
 <p>现在，对于 $1 \sim n - 1$ 的每一个 $k$ ，要求出该树的最大 $k$ 染色权值</p>
 <p>注意有多组数据， $T \le 10^5$  ，时限 $2.5s$ </p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>有个鬼的思路啊， $T \le 10^5, n \le 2 \times 10^5$ ，读入都挂了吧！</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>有个鬼的思路啊， $T \le 10^5, n \le 10^5$ ，读入都挂了吧！</p>
 <p> 先假设我们读入了，考虑问题</p>
 <p>首先对于一个最大的 $k$ 染色，它的每一个颜色一定只对应一个色块，因为有多个色块的话只取最大，必然会有点的权值被浪费</p>
 <p>再考虑任意两个直接相连的色块，它们一定有且只有一个“割点”，这个点的权值被计算了两次，我们当然是让这个点的权值尽可能的大</p>
+<p>考虑将点排序， $k = 1$ 时答案就是所有的和，每次加 $1$ 后就加一个当前最大点，但一个点只能被加 $deg$ 遍</p>
+<p>然后突然发现，原来题目保证了 $\sum n \le 2 \times 10^5$ ，读入不成问题！真是纸老虎啊</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STC static</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> deg, w;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Node &amp;t) <span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> w == t.w ? deg &gt; t.deg : w &gt; t.w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; ;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    LL ans;</span><br><span class="line">    STC Node a[N];</span><br><span class="line">    <span class="keyword">while</span> (T--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i].w), ans += a[i].w, a[i].deg = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, u, v; i &lt; n; ++i)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v), ++a[u].deg, ++a[v].deg;</span><br><span class="line">        <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>, ans);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>, now = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (!a[now].deg)</span><br><span class="line">                ++now;</span><br><span class="line">            --a[now].deg;</span><br><span class="line">            ans += a[now].w;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; %lld&quot;</span>, ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -295,7 +301,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
+              <a href="/tags/%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 树</a>
               <a href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 练习</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
               <a href="/tags/CF/" rel="tag"><i class="fa fa-tag"></i> CF</a>
           </div>
 
