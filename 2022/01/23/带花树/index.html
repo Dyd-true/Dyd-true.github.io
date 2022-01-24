@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dyd-true.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="莫名想到三十六计：树上开花">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带花树">
+<meta property="og:url" content="https://dyd-true.github.io/2022/01/23/%E5%B8%A6%E8%8A%B1%E6%A0%91/index.html">
+<meta property="og:site_name" content="Dyd&#39;s Blog">
+<meta property="og:description" content="莫名想到三十六计：树上开花">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/01/23/srMLvVyG5lmN8xg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/01/23/oLKIV4Mzj7pceCk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/01/23/sOmTVgnl5w72Mtq.png">
+<meta property="article:published_time" content="2022-01-23T02:40:22.000Z">
+<meta property="article:modified_time" content="2022-01-23T06:40:56.019Z">
+<meta property="article:author" content="Dyd">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/01/23/srMLvVyG5lmN8xg.png">
+
+<link rel="canonical" href="https://dyd-true.github.io/2022/01/23/%E5%B8%A6%E8%8A%B1%E6%A0%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>带花树 | Dyd's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Dyd's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dyd's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">He who has a strong enough why can bear almost any how.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Dyd-true" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://dyd-true.github.io/2022/01/23/%E5%B8%A6%E8%8A%B1%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Dyd">
+      <meta itemprop="description" content="一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dyd's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          带花树
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-01-23 10:40:22 / Modified: 14:40:56" itemprop="dateCreated datePublished" datetime="2022-01-23T10:40:22+08:00">2022-01-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 莫名想到三十六计：树上开花</p>
+<span id="more"></span>
+
+<h1 id="带花树"><a href="#带花树" class="headerlink" title="带花树"></a>带花树</h1><p>Blossom Algorithm</p>
+<h2 id="二分图最大匹配"><a href="#二分图最大匹配" class="headerlink" title="二分图最大匹配"></a>二分图最大匹配</h2><p>一般用匈牙利算法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x], y; i != <span class="number">-1</span>; i = e[i].ne)</span><br><span class="line">        <span class="keyword">if</span> (!vis[y = e[i].ver])</span><br><span class="line">        &#123;</span><br><span class="line">            vis[y] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (!match[y] || <span class="built_in">dfs</span>(match[y]))</span><br><span class="line">            &#123;</span><br><span class="line">                match[y] = x;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="comment">//main里</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n + m; ++j)</span><br><span class="line">        vis[j] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">dfs</span>(i))</span><br><span class="line">        ++ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度是 $O(NM)$ 的</p>
+<p>当然也可以网络流，并且网络流一般比匈牙利快，因为它的期望复杂度为 $O(M\sqrt{N})$ （Galil Zvi在论文Efficient Algorithms for Finding Maximal Matching in Graphs中证明）</p>
+<h2 id="一般图都最大匹配"><a href="#一般图都最大匹配" class="headerlink" title="一般图都最大匹配"></a>一般图都最大匹配</h2><p>考虑一下二分图和一般图的最大区别，就是二分图没有<strong>奇环</strong>，而一般图是可以有的，所以匈牙利算法中的寻找增广路然后路径取反的方法在一般图上就不适用了</p>
+<p>主要还是要解决奇环的问题</p>
+<p>我们发现一个奇环里<strong>至少有一个点不能匹配</strong>，即这个点在环内两边的连边都不是匹配边，也<strong>只有这个点可以向环外连边</strong>，那就干脆把一个奇环缩成一个点（<strong>开花</strong>），路径取反的时候再暴力展开一个个取反，对原图用bfs找一条增广路，这棵节点可能是花的bfs树就称作带花树</p>
+<p>正确性：</p>
+<p>设原图为 $G$ ，缩花后图为 $G’$ ，我们只要证明“ $G$ 存在增广路的充要条件是 $G’$ 存在增广路”</p>
+<p><img src="https://s2.loli.net/2022/01/23/srMLvVyG5lmN8xg.png" alt="看花"></p>
+<p>首先要明确带花树的形态，如图，加粗的是匹配边。黑色是一个花上的边，红色是其它边，可以发现，整个花上只有 $h$ 一个非匹配点（这里的“匹配”是指和花内的点），也就只有它可以向外匹配，所以从环外的边出去有两种情况，顺时针或逆时针</p>
+<p><img src="https://s2.loli.net/2022/01/23/oLKIV4Mzj7pceCk.png" alt="出花"></p>
+<p>可以发现 $G$ 和 $G’$ 的增广路都可以对应</p>
+<h2 id="增广"><a href="#增广" class="headerlink" title="增广"></a>增广</h2><p>带花树的本质还是寻找增广路</p>
+<p>对于每个匹配 $(u \to v)$ 给 $u$ 染绿色， $v$ 染白色</p>
+<p>遍历绿点的出边，如果访问到的点未被染色且未被匹配，那么就找到了一条增广路；如果被匹配了，则将该点染白色，将该点的匹配点染绿色并加入队列中</p>
+<p>如果访问到的点是白点，那么找到了一个偶环，没有影响无需处理；如果访问到的点是绿点，那么找到了一个奇环，在bfs树上找到这两个点的lca即可定位这个奇环，可以用并查集将其缩起来，因为缩起来的环是一个绿点，所以环上的白点都需改成绿点并加入到队列中，这个缩奇环的操作就是开花</p>
+<h2 id="开花"><a href="#开花" class="headerlink" title="开花"></a>开花</h2><p>还是对于每个匹配 $(u \to v)$ 给 $u$ 染绿色， $v$ 染白色，花外点表示为红色（它们也可能染了绿/白色），不妨就叫它们 $u$ 型点和 $v$ 型点（这仅是一种不严格的颜色命名，想表达的意思仅仅是“我们的增广从一个 $u$ 型点开始”），那么不难发现，花的根（ $C$ ）一定是 $u$ 型点（这样才有奇环的矛盾）</p>
+<p><img src="https://s2.loli.net/2022/01/23/sOmTVgnl5w72Mtq.png" alt="hh"></p>
+<p>那么遇到奇环时，一定是存在两个同类型点产生冲突（如 $I, J$ ），带花树算法的处理方法是：将花缩成一点，该点作为u型点向花外遍历，在修改増广路的时候再将花展开（这只是一种理解方式，实现时并不真正进行缩展，而是用并查集模拟缩花的过程，用反向 <code>pre</code> 保证花内部増广路的正确）</p>
+<p>首先，我们考虑用一个并查集维护花根之间的关系（因为可能出现花套花的情况），即将花内所有分花根合并到新出现的总花根上（即一直维护一个“极大”的花）</p>
+<p>然后处理花内部的増广路关系，这是带花树算法的精髓：</p>
+<ol>
+<li><p>在产生冲突前，奇数环上所有 $u$ 型点都已进行了从环内向环外的遍历</p>
+</li>
+<li><p>产生冲突后，我们分别以冲突的两点为新的出发点（当然是 $u$ 型） ，向对方方向继续染色増广</p>
+<p>可以发现，对方方向上原本的 $v$ 型点，可以作为出点向花外遍历，而这条増广路是从<strong>花内距花根较远</strong>的一条路延伸来的</p>
+</li>
+<li><p>考虑如何记录这条较远的非常规路径。我们知道，在匈牙利算法中，对于每一对匹配中的被匹配点（ $v$ 型点），我们都会有一个 <code>match</code> 指向其前驱匹配节点（ $u$ 型点）（即图中的红色边），也就是说仅有 $v$ 型点具有 <code>pre</code> ；</p>
+<p>然而在花中，所有点可以作为 $u$ 型点向外遍历，也就没有了严格的 $u, v$ 区分，因此无论 $u, v$ 染色情况如何，我们为花中所有匹配对之间建立相互的 <code>pre</code> ，具体实现见下（注意由于原本已有部分 <code>pre</code> ，即红色边，我们要根据特殊性质去建立剩余的 <code>pre</code> ，即蓝色边）</p>
+<p>特别注意，如果到了u为根节点，就不要再反向建立 <code>pre</code> 了，因为它所在匹配对并不完全属于花！</p>
+</li>
+</ol>
+<p>这样，无论以哪个点作为 $u$ 向环外遍历，我们在花内部都能得到正确的増广路</p>
+<h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><p>可以发现，通过缩环减少一个点的复杂度为均摊 $O(\log n)$ ，因为使用了并查集。找到一条增广路最坏情况下需要遍历整张图，复杂度为 $O(n + m)$ ，总共就是 $O(n(n \log n + m))$ ，大概就是 $O(nm)$ </p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6113">一般图最大匹配</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STC static</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e3</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> ne, ver;</span><br><span class="line">&#125; e[N * N];</span><br><span class="line"><span class="keyword">int</span> h[N], idx = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> match[N], col[N], pre[N];</span><br><span class="line"><span class="keyword">int</span> fa[N];</span><br><span class="line">queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    match[x] = y, match[y] = x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = &#123;h[x], y&#125;, h[x] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dadd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!match[x] &amp;&amp; !match[y])</span><br><span class="line">        <span class="built_in">link</span>(x, y), ++ans;</span><br><span class="line">    <span class="built_in">add</span>(x, y), <span class="built_in">add</span>(y, x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rev</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x)</span><br><span class="line">        <span class="comment">//奇妙的是,这里可以写成x[pre][match]</span></span><br><span class="line">        <span class="built_in">rev</span>(match[pre[x]]), <span class="built_in">link</span>(x, pre[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x == fa[x] ? x : fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    STC <span class="keyword">int</span> dfn[N], cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    dfn是一个标记数组,一边打标即一边上跳，第一个重复点就是花根</span></span><br><span class="line"><span class="comment">	花根一定是一个绿点,所以可以隔点上跳</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (++cnt; ;x = pre[match[x]], <span class="built_in">swap</span>(x, y))</span><br><span class="line">        <span class="keyword">if</span> (dfn[x = <span class="built_in">find</span>(x)] == cnt)</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (x)</span><br><span class="line">            dfn[x] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">blossom</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> w)</span> <span class="comment">//缩奇环(开花)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (; <span class="built_in">find</span>(x) != w; x = pre[y])</span><br><span class="line">    &#123;</span><br><span class="line">        pre[x] = y, y = match[x];</span><br><span class="line">        <span class="keyword">if</span> (col[y] == <span class="number">2</span>)</span><br><span class="line">            col[y] = <span class="number">1</span>, q.<span class="built_in">push</span>(y);</span><br><span class="line">        <span class="comment">//这里一定要判一下</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">find</span>(x) == x)</span><br><span class="line">            fa[x] = w;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">find</span>(y) == y)</span><br><span class="line">            fa[y] = w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">aug</span><span class="params">(<span class="keyword">int</span> x)</span> <span class="comment">//带花树</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((ans + <span class="number">1</span>) * <span class="number">2</span> &gt; n)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        fa[i] = i, col[i] = pre[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>())</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span> (q.<span class="built_in">push</span>(x), col[x] = <span class="number">1</span>; !q.<span class="built_in">empty</span>(); q.<span class="built_in">pop</span>())</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> u = q.<span class="built_in">front</span>(), i = h[u], v, w; i != <span class="number">-1</span>; i = e[i].ne)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">find</span>(u) == <span class="built_in">find</span>(v = e[i].ver) || col[v] == <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (!col[v])</span><br><span class="line">            &#123;</span><br><span class="line">                col[v] = <span class="number">2</span>, pre[v] = u;</span><br><span class="line">                <span class="keyword">if</span> (!match[v])</span><br><span class="line">                    <span class="keyword">return</span> <span class="built_in">rev</span>(v), <span class="number">1</span>;</span><br><span class="line">                col[match[v]] = <span class="number">1</span>, q.<span class="built_in">push</span>(match[v]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="comment">//缩环两个方向各一次拼起来</span></span><br><span class="line">                <span class="built_in">blossom</span>(u, v, w = <span class="built_in">lca</span>(u, v)), <span class="built_in">blossom</span>(v, u, w);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        h[i] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> x, y; m--; <span class="built_in">dadd</span>(x, y))</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x, &amp;y);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        ans += (!match[i] &amp;&amp; <span class="built_in">aug</span>(i));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, match[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="随机匹配法"><a href="#随机匹配法" class="headerlink" title="随机匹配法"></a>随机匹配法</h2><p>还有一组和智慧法类似的东西，由luogu上<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/28313"><strong>皎月半洒花</strong></a>巨佬提出</p>
+<p>思路就是随机匹配</p>
+<p>发现匹配本质上就是在找增广路，但直接枚举每个点找增广路会有问题，对于一张二分图，一条增广路要么是一条奇链、要么是一条奇链套一个偶环，偶环上总可以完备匹配，所以绕偶数步走到原点并不改变下一条边的匹配状态；但是奇环则未必，如果经过一个奇环，就必然会存在冲突的情况</p>
+<p>所以随机匹配的思想就是，不找环，只找长度为奇数的简单路，这样做相当于强制断环为链，正确性难以保证</p>
+<p>但是考虑如果多做几次，错误率就会大大下降，于是考虑多做几次这样的匹配</p>
+<p>注意到这样做很容易被卡掉，只需要多几个奇环顺便构造一下加边顺序就可以了，所以就可以每次走的时候将边随机一下即可</p>
+<p>最后附上花巨的一句话（<del>听不懂但是好装B啊</del>）：“题是众生一般题，水是天下一样水”</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STC static</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DRG default_random_engine</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DB double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e3</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> n, ans;</span><br><span class="line"><span class="keyword">int</span> match[N], vis[N];</span><br><span class="line"><span class="comment">//clock_t 就是 long</span></span><br><span class="line"><span class="keyword">clock_t</span> st;</span><br><span class="line">DRG drg&#123;<span class="number">20051221</span>&#125;;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; e[N];</span><br><span class="line"><span class="function">DB <span class="title">when</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (DB)(<span class="built_in">clock</span>() - st) / CLOCKS_PER_SEC;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[x].<span class="built_in">push_back</span>(y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dadd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">add</span>(x, y), <span class="built_in">add</span>(y, x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    match[x] = y, match[y] = x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">shuffle</span>(e[x].<span class="built_in">begin</span>(), e[x].<span class="built_in">end</span>(), drg);</span><br><span class="line">    vis[x] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> y : e[x])</span><br><span class="line">        <span class="keyword">if</span> (!match[y])</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">link</span>(x, y), vis[y] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> y : e[x])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> z = match[y];</span><br><span class="line">        <span class="keyword">if</span> (vis[z])</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">link</span>(x, y), match[z] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">work</span>(z))</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">link</span>(y, z), match[x] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> x, y; m--; <span class="built_in">dadd</span>(x, y))</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x, &amp;y);</span><br><span class="line">    st = <span class="built_in">clock</span>();</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">when</span>() &lt; <span class="number">0.9</span>)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">if</span> (!match[i])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">fill</span>(vis + <span class="number">1</span>, vis + <span class="number">1</span> + n, <span class="number">0</span>);</span><br><span class="line">                ans += <span class="built_in">work</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, match[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是一般的出题人，也就认了，但是这个总有毒瘤搞不清立场，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/discuss/316114">帮出题人造hack</a>，对此广大网友评价为：“卡 随 机 的 艺 术”</p>
+<p>但有什么办法呢，人家是大佬（<del>反正我带花树过了</del>）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/23/%E5%B9%B3%E9%9D%A2%E6%9C%80%E8%BF%91%E7%82%B9%E5%AF%B9/" rel="prev" title="平面最近点对">
+      <i class="fa fa-chevron-left"></i> 平面最近点对
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/23/%E5%9C%86%E6%96%B9%E6%A0%91/" rel="next" title="圆方树">
+      圆方树 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%A6%E8%8A%B1%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">带花树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="nav-number">1.1.</span> <span class="nav-text">二分图最大匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%9B%BE%E9%83%BD%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="nav-number">1.2.</span> <span class="nav-text">一般图都最大匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%B9%BF"><span class="nav-number">1.3.</span> <span class="nav-text">增广</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E8%8A%B1"><span class="nav-number">1.4.</span> <span class="nav-text">开花</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4"><span class="nav-number">1.5.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8C%B9%E9%85%8D%E6%B3%95"><span class="nav-number">1.7.</span> <span class="nav-text">随机匹配法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Dyd"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Dyd</p>
+  <div class="site-description" itemprop="description">一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Dyd-true" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Dyd-true" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2741501882@qq.com" title="E-Mail → mailto:2741501882@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sighttp.qq.com/msgrd?v=1&uin=2741501882" title="QQ → https:&#x2F;&#x2F;sighttp.qq.com&#x2F;msgrd?v&#x3D;1&amp;uin&#x3D;2741501882" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/141393" title="LuoGu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;141393" rel="noopener" target="_blank"><i class=" fa-fw"></i>LuoGu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      some of my mates
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.pigaunt.top/" title="https:&#x2F;&#x2F;www.pigaunt.top" rel="noopener" target="_blank">PigAunt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hewo233.blog.luogu.org/" title="https:&#x2F;&#x2F;hewo233.blog.luogu.org" rel="noopener" target="_blank">Hewo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wiki.pigaunt.top/" title="https:&#x2F;&#x2F;wiki.pigaunt.top" rel="noopener" target="_blank">PekingOpera</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io" rel="noopener" target="_blank">lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io" rel="noopener" target="_blank">RuSun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dyd</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">458k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">6:56</span>
+</div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "The site has running for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
