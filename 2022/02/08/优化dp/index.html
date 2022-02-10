@@ -28,7 +28,7 @@
 <meta property="og:description" content="然而我 dp 废的一比（梅开二度）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-08T02:18:27.000Z">
-<meta property="article:modified_time" content="2022-02-09T06:41:41.587Z">
+<meta property="article:modified_time" content="2022-02-10T11:29:46.802Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="dp">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-02-09 14:41:41" itemprop="dateModified" datetime="2022-02-09T14:41:41+08:00">2022-02-09</time>
+                <time title="Modified: 2022-02-10 19:29:46" itemprop="dateModified" datetime="2022-02-10T19:29:46+08:00">2022-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -280,13 +280,13 @@
 <h1 id="倍增优化"><a href="#倍增优化" class="headerlink" title="倍增优化"></a>倍增优化</h1><p>倍增是一种很优美的思想，大部分动态规划的都是采用阶段的线性增长，而在有些题中，可以考虑倍增增长（类似 ST 表的预处理），而这种优化常常会把 $2^k$ 中的 $k$ 记入<strong>状态</strong>中，类似区间 dp ，关于 $k$ 的循环往往在外层</p>
 <p>而倍增优化的 dp 往往是这类问题的第一部分（也是最难的部分），通过 dp 我们得到若干与 $2$ 的整次幂相关的状态；在第二部分，我们会用这些状态<strong>“拼凑”</strong>（一般基于二进制拆分）出最后答案</p>
 <h2 id="例一"><a href="#例一" class="headerlink" title="例一"></a>例一</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1081">开车旅行</a></p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给定 $n \le 10^5$ 个不同的数 $\mid h_i \mid \le 10^9$ ，记 $d(i, j) = \mid h_i - h_j \mid$ ，两种操作<strong>轮流进行</strong>，设当前在 $i$ ，第一种会找到满足 $j &gt; i$ 且使  $d(i, j)$ 取<strong>次小值</strong>（相等则认为 $h_j$ 小的小，下同）的 $j$ ，并以 $d(i, j)$ 的代价到达 $j$ ；第二种会找到满足 $j &gt; i$ 且使  $d(i, j)$ 取<strong>最小值</strong>的 $j$ ，并以 $d(i, j)$ 的代价到达 $j$ ，但无论如何，总代价不能大于 $X \le 10^9$ ，当操作无法进行下去时就结束，现在有两个问题：</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给定 $n \le 10^5$ 个不同的数 $\mid h_i \mid \le 10^9$ ，记 $dis(i, j) = \mid h_i - h_j \mid$ ，两种操作<strong>轮流进行</strong>，设当前在 $i$ ，第一种会找到满足 $j &gt; i$ 且使  $dis(i, j)$ 取<strong>次小值</strong>（相等则认为 $h_j$ 小的小，下同）的 $j$ ，并以 $dis(i, j)$ 的代价到达 $j$ ；第二种会找到满足 $j &gt; i$ 且使  $dis(i, j)$ 取<strong>最小值</strong>的 $j$ ，并以 $dis(i, j)$ 的代价到达 $j$ ，但无论如何，总代价不能大于 $X \le 10^9$ ，当操作无法进行下去时就结束，现在有两个问题：</p>
 <ol>
 <li>对于给定的 $X= X_0$ ，求从那个数出发，操作一耗费的代价与操作二耗费的代价比值最小，若有多个答案，输出 $h_i$ 最大的</li>
 <li>给出 $m \le 10^5$ 次询问，每次给定 $X = X_i$ 和出发点 $st_i$ ，分别求两种操作耗费的代价</li>
 </ol>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>首先预处理出从每个 $i$ 出发，两种操作会到达的点，记为 $g[0/1, i]$ ，用一个 <code>set</code> 倒序扫描即可</p>
-<p>本题信息有三个：位置、操作次数、代价，如果直接以其为状态，复杂度过高，注意到操作是轮流进行的，考虑倍增优化，设 $d[0/1, i, j, 0/1]$ 表示“对于操作一/二，从 $j$ 出发先做操作一/二，操作 $2^i$ 次后的代价”，初始化和转移比较明显：<br>$$<br>\begin{aligned}<br>&amp; &amp; d[0, 0, j, 0] = d(j, g[0, i]), d[0, 0, j, 1] = 0 \\<br>&amp; if (i = 1) &amp; d[0, 1, j, k] = d[0, 0, j, k] + d[0, 0, x, k \oplus 1] \\<br>&amp; else &amp; d[0, i, j, k] = d[0, i - 1, j, k] + d[0, i - 1, x, k] \\<br>\end{aligned}<br>$$<br>这里一定要单独考虑 $i = 1$ 的情况，因为只有 $2^0 = 1$ 是奇数， $d[1]$ 类似</p>
+<p>本题信息有三个：位置、操作次数、代价，如果直接以其为状态，复杂度过高，注意到操作是轮流进行的，考虑倍增优化，设 $d[0/1, i, j, 0/1]$ 表示“对于操作一/二，从 $j$ 出发先做操作一/二，操作 $2^i$ 次后的代价”，初始化和转移比较明显：<br>$$<br>\begin{aligned}<br>&amp; &amp; d[0, 0, j, 0] = dis(j, g[0, i]), d[0, 0, j, 1] = 0 \\<br>&amp; if (i = 1) &amp; d[0, 1, j, k] = d[0, 0, j, k] + d[0, 0, x, k \oplus 1] \\<br>&amp; else &amp; d[0, i, j, k] = d[0, i - 1, j, k] + d[0, i - 1, x, k] \\<br>\end{aligned}<br>$$<br>这里一定要单独考虑 $i = 1$ 的情况，因为只有 $2^0 = 1$ 是奇数， $d[1]$ 类似</p>
 <p>不难发现状态数是 $O(2 * \log n * n * 2) = O(4 n \log n)$ （这里先把常数留一下），所以留给转移的时间最多是 $O(\log n)$ ，而转移的关键在于上面方程中的 $x$ ，它的含义是“前面那步走到的城市”，如在 $i \ne 1$ 时， $x$ 指“从 $j$ 出发先做操作 $k$ ，进行 $2^{i - 1}$ 次操作到达的城市”，这个东西可以 dp 预处理，具体地，设 <code>f[i, j, 0/1]</code> 表示“从 $j$ 出发先做操作一/二，进行 $2^{i}$ 次操作到达的城市”，初始化和转移如下：<br>$$<br>\begin{aligned}<br>&amp; &amp; f[0, j, 0] = g[0, j], f[0, j, 1] = g[1, j] \\<br>&amp; if (i = 1) &amp; f[1, j, k] = f[0, f[0, j, k], k \oplus 1] \\<br>&amp; else &amp; f[i, j, k] = f[i - 1, f[i - 1, j, k], k] \\<br>\end{aligned}<br>$$<br>预处理时间明显 $O(n \log n)$ ，然后 $d$ 的转移可以做到 $O(1)$ </p>
 <p>于是我们在 $O(n \log n)$ 的时间内完成了计算所有操作次数为 $2^i$ 形式的信息，现在，对于问题二，类似 lca 倒序枚举 $i$ 移动即可，时间为 $O(\log n)$ ，而对于问题一，直接枚举起点转化成问题二即可，故总的时间为 $O(n \log n + 4 n \log n + n \log n + m \log n) = O(n \log n)$ 常数在 $10$ 左右，完全可以过</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>马蜂毒牛（ <del>dp 码风重拳出击，数据结构唯唯诺诺</del>）</p>
@@ -380,7 +380,10 @@
     <a href="/2022/02/08/luoguP7519-%E7%9C%81%E9%80%89%E8%81%94%E8%80%83-2021-A-B-%E5%8D%B7-%E6%BB%9A%E6%A6%9C/" rel="prev" title="luoguP7519 [省选联考 2021 A/B 卷] 滚榜">
       <i class="fa fa-chevron-left"></i> luoguP7519 [省选联考 2021 A/B 卷] 滚榜
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/02/09/%E4%BC%98%E5%8C%96dp2/" rel="next" title="优化dp2">
+      优化dp2 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -455,7 +458,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -557,13 +560,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">549k</span>
+    <span title="Symbols count total">560k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">8:19</span>
+    <span title="Reading time total">8:29</span>
 </div>
 
 <div>
