@@ -28,7 +28,7 @@
 <meta property="og:description" content="然而我 dp 废的一比（梅开二度）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-08T02:18:27.000Z">
-<meta property="article:modified_time" content="2022-02-10T11:29:46.802Z">
+<meta property="article:modified_time" content="2022-02-10T14:09:48.397Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="dp">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-02-10 19:29:46" itemprop="dateModified" datetime="2022-02-10T19:29:46+08:00">2022-02-10</time>
+                <time title="Modified: 2022-02-10 22:09:48" itemprop="dateModified" datetime="2022-02-10T22:09:48+08:00">2022-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -354,6 +354,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PIL pair<span class="meta-string">&lt;int, LL&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e4</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, C;</span><br><span class="line">LL f[N];</span><br><span class="line">PIL q[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;n, &amp;m, &amp;C);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, v, w, d, u; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;v, &amp;w, &amp;d), u = <span class="number">0</span>; u &lt; v; ++u)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>, r = <span class="number">0</span>, p = <span class="number">0</span>, j; (j = p * v + u) &lt;= C; ++p)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (; l &lt;= r &amp;&amp; f[j] - w * p &gt; q[r].se; --r);</span><br><span class="line">                q[++r] = &#123;p, f[j] - w * p&#125;;</span><br><span class="line">                <span class="keyword">for</span> (; l &lt;= r &amp;&amp; q[l].fi &lt; p - d; ++l); <span class="comment">//其实这里if也行,因为每次只有一个数出队</span></span><br><span class="line">                f[j] = q[l].se + w * p;</span><br><span class="line">            &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, a, b, c, j; i &lt;= m; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c), j = C; j; --j)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= j; ++k) f[j] = <span class="built_in">max</span>(f[j], f[j - k] + (LL)(a * k + b) * k + c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, f[C]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h1><p>没想到这么长，打算分成三篇写，会挂链接的</p>
+<p><a href="https://dyd-true.github.io/2022/02/09/%E4%BC%98%E5%8C%96dp2/#more">优化dp2</a></p>
 
     </div>
 
@@ -560,13 +561,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">560k</span>
+    <span title="Symbols count total">563k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">8:29</span>
+    <span title="Reading time total">8:32</span>
 </div>
 
 <div>

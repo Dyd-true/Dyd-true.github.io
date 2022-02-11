@@ -28,7 +28,7 @@
 <meta property="og:description" content="然而感觉并无卵用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-10T06:53:03.000Z">
-<meta property="article:modified_time" content="2022-02-10T14:06:51.965Z">
+<meta property="article:modified_time" content="2022-02-11T05:37:07.292Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="其它">
@@ -218,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-02-10 14:53:03 / Modified: 22:06:51" itemprop="dateCreated datePublished" datetime="2022-02-10T14:53:03+08:00">2022-02-10</time>
+              <time title="Created: 2022-02-10 14:53:03" itemprop="dateCreated datePublished" datetime="2022-02-10T14:53:03+08:00">2022-02-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-11 13:37:07" itemprop="dateModified" datetime="2022-02-11T13:37:07+08:00">2022-02-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -245,7 +251,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.1k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -286,7 +292,10 @@
 <p>这里补充一个等比数列求和公式（设公比为 $q$ ）： $(1 - q)(1 + q + q^2 + … + q^n) = 1 - q^{n + 1}$ </p>
 <h2 id="极限的线性可加性"><a href="#极限的线性可加性" class="headerlink" title="极限的线性可加性"></a>极限的线性可加性</h2><p>设 $a_n \to a, b_m \to b$ ，则 $\lim \limits _{n \to + \infty} (\alpha a_n + \beta b_n) = \alpha a + \beta b$ </p>
 <p>证明：<br>$$<br>\begin{aligned}<br>&amp; \mid \alpha a _n + \beta b _n  - (\alpha a + \beta b) \mid \\<br>\le &amp; \mid \alpha \mid \mid a _n - a \mid + \mid \beta \mid \mid b _n - b \mid \\<br>&amp; = \mid \alpha \mid \epsilon ‘ + \mid \beta \mid \epsilon ‘<br>\end{aligned}<br>$$</p>
-<h2 id="夹逼定理"><a href="#夹逼定理" class="headerlink" title="夹逼定理"></a>夹逼定理</h2><p>设 $a_n \le b_n \le c_n$ ，且 $\lim \limits _{n \to + \infty} a_n = \lim \limits _{n \to + \infty} c_n$ ，则 $\lim \limits _{n \to + \infty} a_n = \lim \limits _{n \to + \infty} b_n$ </p>
+<p>现在，对于任意的 $\epsilon &gt; 0$ ，一定可得 $\epsilon ‘ = \frac{\epsilon}{\mid \alpha \mid + \mid \beta \mid}$ ，它对应的 $N$ ，使得 $\forall n &gt; N$ ， $\mid \alpha a _n + \beta b _n  - (\alpha a + \beta b) \mid &lt; \epsilon$ </p>
+<p>QED</p>
+<h2 id="夹逼定理"><a href="#夹逼定理" class="headerlink" title="夹逼定理"></a>夹逼定理</h2><p>设 $a_n \le b_n \le c_n$ ，且 $\lim \limits _{n \to + \infty} a_n = \lim \limits _{n \to + \infty} c_n = t$ ，则 $\lim \limits _{n \to + \infty} b_n = t$ </p>
+<p>证明：<br>$$<br>\begin{aligned}<br>有:<br>&amp; \mid a_n - t \mid &lt; \epsilon \\<br>即:<br>&amp; t - \epsilon &lt; a_n &lt; t + \epsilon \\<br>同理:<br>&amp; t - \epsilon &lt; c_n &lt; t + \epsilon \\<br>又因为:<br>&amp; a_n \le b_n \le c_n \\<br>得:<br>&amp; t - \epsilon &lt; b_n &lt; t + \epsilon \\<br>即:<br>&amp; \mid b_n - t \mid &lt; \epsilon \\<br>\end{aligned}<br>$$<br>QED</p>
 
     </div>
 
@@ -488,13 +497,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">560k</span>
+    <span title="Symbols count total">563k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">8:29</span>
+    <span title="Reading time total">8:32</span>
 </div>
 
 <div>
