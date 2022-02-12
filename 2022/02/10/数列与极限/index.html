@@ -28,7 +28,7 @@
 <meta property="og:description" content="然而感觉并无卵用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-10T06:53:03.000Z">
-<meta property="article:modified_time" content="2022-02-11T05:37:07.292Z">
+<meta property="article:modified_time" content="2022-02-12T02:19:54.641Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="其它">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-02-11 13:37:07" itemprop="dateModified" datetime="2022-02-11T13:37:07+08:00">2022-02-11</time>
+                <time title="Modified: 2022-02-12 10:19:54" itemprop="dateModified" datetime="2022-02-12T10:19:54+08:00">2022-02-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,14 +251,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.5k</span>
+              <span>7.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>7 mins.</span>
             </span>
 
         </div>
@@ -274,28 +274,65 @@
 <span id="more"></span>
 
 <h1 id="数列与极限"><a href="#数列与极限" class="headerlink" title="数列与极限"></a>数列与极限</h1><p>稍微学了一下数学，感觉数学过于严谨了</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>一些定义</p>
 <h2 id="数列"><a href="#数列" class="headerlink" title="数列"></a>数列</h2><p>定义一种从自然数（有时候是正整数）到实数（有时候是其它域）的映射 $f : \mathbb{N} \to \mathbb{R}$ ，我们称它为一个<strong>数列</strong>，一般的，设 $a_n = f(n)$ ，则该数列可记为 $\{a_n\}_{n = 0}^{+ \infty}$ </p>
 <p>定义一个数列 $f : \mathbb{N} \to \mathbb{R}$ 的<strong>子数列</strong>为一个数列 $g : L \to \mathbb{R}$ 满足 $L \subseteq  \mathbb{N} \wedge \forall n \in L , g(n) = f(n) \wedge \mid L \mid = + \infty$ </p>
-<h2 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h2><p>对于一个数列 $\{a_n\}_{n = 1}^{+ \infty}$ ，若 $\exists \delta \in R, s.t. \forall \epsilon &gt; 0, \exists N &gt; 0 \wedge N \in \mathbb{N}^+, s.t. \forall n &gt; N , \mid a_n - \delta \mid &lt; \epsilon$ ，我们就称 $\delta$ 为数列的<strong>极限</strong>，记作 $\lim\limits _{n \to + \infty} a_n = \delta$ ，或者 $a_n \to \delta(n \to + \infty)$ ，有时候括号内的可以省略（上面的 $s.t$ 指 “使得”）</p>
+<h2 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h2><p>对于一个数列 $\{a_n\}_{n = 1}^{+ \infty}$ ，若 $\exists a \in R, s.t. \forall \epsilon &gt; 0, \exists N &gt; 0 \wedge N \in \mathbb{N}^+, s.t. \forall n &gt; N , \mid a_n - a \mid &lt; \epsilon$ ，我们就称 $a$ 为数列的<strong>极限</strong>，记作 $\lim\limits _{n \to + \infty} a_n = a$ ，或者 $a_n \to a(n \to + \infty)$ ，有时候括号内的可以省略（上面的 $s.t$ 指 “使得”）</p>
 <p>对于一个数列，如果它存在极限，我们就称这个数列<strong>收敛</strong>，否则就称其<strong>发散</strong></p>
-<h2 id="极限的唯一性"><a href="#极限的唯一性" class="headerlink" title="极限的唯一性"></a>极限的唯一性</h2><p>下面证明极限的唯一性，即：若 $a_n \to b, a_n \to c$ 则 $b = c$ </p>
-<p>有：<br>$$<br>\begin{aligned}<br>\forall \epsilon &gt; 0, \exists N_b &gt; 0, s.t. \forall n &gt; N_b, \mid a_n - b \mid &lt; \epsilon \\<br>\forall \epsilon &gt; 0, \exists N_c &gt; 0, s.t. \forall n &gt; N_c, \mid a_n - c \mid &lt; \epsilon \\<br>\end{aligned}<br>$$<br> 记 $N = \max(N_b, N_c)$ 有：<br>$$<br>\forall n &gt; N, \mid a_n - c \mid + \mid a_n - b \mid &lt; 2 \epsilon<br>$$<br>由三角不等式 $\mid a \mid - \mid b \mid \le \mid a \pm b \mid \le \mid a \mid + \mid b \mid$ 得：<br>$$<br>\mid b - c \mid &lt; 2 \epsilon<br>$$<br>由于 $\epsilon$ 可以无限小，故有 $b = c$ </p>
-<p>QED</p>
-<h2 id="子数列的极限"><a href="#子数列的极限" class="headerlink" title="子数列的极限"></a>子数列的极限</h2><p>对于一个数列  $\{a_n\}<em>{n = 1}^{+ \infty}$ 的子数列  $\{a</em>{n_k}\}<em>{k = 1}^{+ \infty}$ ，若 $a_n \to \delta$ ，则 $a</em>{n_k} \to \delta$ </p>
-<p>证明：</p>
-<p>对于所有 $k$ ，有 $n_k \ge k$ ，又因为 $\forall \epsilon &gt; 0, \exists N &gt; 0, s.t. \forall n &gt; N, \mid a_n - b \mid &lt; \epsilon$</p>
-<p>故 $\forall \epsilon &gt; 0$ ，取 $K = N$ ，有 $\forall k &gt; K, n_k \ge k &gt; K = N$ ，故 $\mid a_{n_k} - b \mid &lt; \epsilon$ ，即 $a_{n_k} \to \delta$ </p>
-<p>QED</p>
+<h2 id="柯西列"><a href="#柯西列" class="headerlink" title="柯西列"></a>柯西列</h2><p>对于数列 $\{a_n\} _{n = 1}^{+ \infty}$ ，若 $\forall \epsilon &gt; 0, \exists N &gt; 0, s.t. \forall n, m &gt; N, \mid a_n - a_m \mid &lt; \epsilon$ ，我们即称 $\{a_n\} _{n = 1}^{+ \infty}$ 为<strong>柯西列</strong></p>
+<h2 id="界"><a href="#界" class="headerlink" title="界"></a>界</h2><p>对于一个<strong>数集</strong> $S$ ，若 $\exists M \in \mathbb{R}^+, s.t. \forall a_n \in S, \mid a_n \mid \le M$ ，我们就称 $S$ <strong>有界</strong>，其中 $M$  为<strong>上界</strong>， $-M$ 为<strong>下界</strong></p>
+<p>对于一个有上界的数集 $S$ 我们成使得 $a_n \le M$ 的最小 $M$ 为 $S$ 的<strong>上确界</strong>，记作 $sup(S)$ ；类似的，对于一个有下界的数集 $S$ 我们成使得 $a_n \ge M$ 的最大 $M$ 为 $S$ 的<strong>下确界</strong>，记作 $inf(S)$ ，<strong>可以证明</strong>，一个非空有上下界数集必有上下确界（<strong>确界原理</strong>）</p>
+<h2 id="无穷大量"><a href="#无穷大量" class="headerlink" title="无穷大量"></a>无穷大量</h2><p>对于一个数列 $\{a_n\} _{n = 1}^{+ \infty}$ ，若 $\forall M, \exists N &gt; 0, s.t. \forall n &gt; N, \mid a_n \mid &gt; M$ ，则称 $\{a_n\} _{n = 1}^{+ \infty}$ 为<strong>无穷大量</strong>（注意，这里无穷大量是一个<strong>发散的数列</strong>，且可能向 $+ \infty$ 发散也可能向 $- \infty$ 发散也可能同时向二者发散）</p>
+<h2 id="无穷小量"><a href="#无穷小量" class="headerlink" title="无穷小量"></a>无穷小量</h2><p>对于一个数列 $\{a_n\} _{n = 1}^{+ \infty}$ ，若 $\lim \limits _{n \to + \infty} a_n = 0$ ，则称 $\{a_n\} _{n = 1}^{+ \infty}$ 为<strong>无穷小量</strong></p>
+<p>不难发现，若 $\{a_n\} _{n = 1}^{+ \infty}$ 为无穷小量，则 $\{\frac{1}{a_n}\} _{n = 1}^{+ \infty}$  为无穷大量，反之亦然</p>
 <h2 id="级数"><a href="#级数" class="headerlink" title="级数"></a>级数</h2><p><strong>级数</strong>是指将数列的项依次用加号连接起来的函数，用 IOer 的话来说就是数列的前缀和，即对于数列 $\{s _n\} _{n = 1}^{+ \infty}$ ，有 $s _n = \sum _{i = 1}^n a _i$ </p>
 <h2 id="数列的和"><a href="#数列的和" class="headerlink" title="数列的和"></a>数列的和</h2><p>对于数列 $\{a _n\} _{n = 1}^{+ \infty}$ ，它的和 $\sum _{n = 1}^{+ \infty} a _n$ 有意义，当且仅当它的级数数列  $\{s _n\} _{n = 1}^{+ \infty}$ 收敛</p>
 <p>正确性显然</p>
 <p>这里补充一个等比数列求和公式（设公比为 $q$ ）： $(1 - q)(1 + q + q^2 + … + q^n) = 1 - q^{n + 1}$ </p>
-<h2 id="极限的线性可加性"><a href="#极限的线性可加性" class="headerlink" title="极限的线性可加性"></a>极限的线性可加性</h2><p>设 $a_n \to a, b_m \to b$ ，则 $\lim \limits _{n \to + \infty} (\alpha a_n + \beta b_n) = \alpha a + \beta b$ </p>
+<h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h2 id="收敛数列"><a href="#收敛数列" class="headerlink" title="收敛数列"></a>收敛数列</h2><h3 id="迫敛性（夹逼定理）"><a href="#迫敛性（夹逼定理）" class="headerlink" title="迫敛性（夹逼定理）"></a>迫敛性（夹逼定理）</h3><p>设 $a_n \le b_n \le c_n$ ，且 $\lim \limits _{n \to + \infty} a_n = \lim \limits _{n \to + \infty} c_n = t$ ，则 $\lim \limits _{n \to + \infty} b_n = t$ </p>
+<p>证明：<br>$$<br>\begin{aligned}<br>有:<br>&amp; \mid a_n - t \mid &lt; \epsilon \\<br>即:<br>&amp; t - \epsilon &lt; a_n &lt; t + \epsilon \\<br>同理:<br>&amp; t - \epsilon &lt; c_n &lt; t + \epsilon \\<br>又因为:<br>&amp; a_n \le b_n \le c_n \\<br>得:<br>&amp; t - \epsilon &lt; b_n &lt; t + \epsilon \\<br>即:<br>&amp; \mid b_n - t \mid &lt; \epsilon \\<br>\end{aligned}<br>$$<br>QED</p>
+<h3 id="有界性"><a href="#有界性" class="headerlink" title="有界性"></a>有界性</h3><p>收敛的数列一定有界</p>
+<p>证明：</p>
+<p>任取一个 $\epsilon &gt; 0$ ，一定存在 $N &gt; 0$ 使得 $\forall n &gt; N$ 有 $\mid a_n - a \mid &lt; \epsilon$ （收敛的定义），则 $\forall n &gt; N, \mid a_n \mid &lt; \mid a \mid + \epsilon$  ，又因为 $n \le N$ 的 $a_n$ 只有有限个，记它们的最大值为 $A = \max_{1 \le i \le N} (a_i)$ ，则对于任意 $n$ 有 $\mid a_n \mid \le \max(\mid A \mid, \mid a \mid + \epsilon)$ ，即 $\{a _n\} _{n = 1}^{+ \infty}$ 有界</p>
+<p>QED</p>
+<h3 id="单调有界定理"><a href="#单调有界定理" class="headerlink" title="单调有界定理"></a>单调有界定理</h3><p>若一个数列单调且有界，则这个数列收敛，且收敛到它的确界</p>
+<p>注意只有“一个数列有界”是无法推得“这个数列收敛”的</p>
+<h3 id="柯西收敛准则"><a href="#柯西收敛准则" class="headerlink" title="柯西收敛准则"></a>柯西收敛准则</h3><p>一个数列收敛的<strong>充要条件</strong>为这个数列是柯西列</p>
+<p>必要性显然，充分性不好证明，其实，柯西收敛准则、单调有界定理和确界原理是互相等价的，它们也都等价于<strong>实数的完备性</strong></p>
+<h2 id="极限-1"><a href="#极限-1" class="headerlink" title="极限"></a>极限</h2><h3 id="极限的唯一性"><a href="#极限的唯一性" class="headerlink" title="极限的唯一性"></a>极限的唯一性</h3><p>下面证明极限的唯一性，即：若 $a_n \to b, a_n \to c$ 则 $b = c$ </p>
+<p>有：<br>$$<br>\begin{aligned}<br>\forall \epsilon &gt; 0, \exists N_b &gt; 0, s.t. \forall n &gt; N_b, \mid a_n - b \mid &lt; \epsilon \\<br>\forall \epsilon &gt; 0, \exists N_c &gt; 0, s.t. \forall n &gt; N_c, \mid a_n - c \mid &lt; \epsilon \\<br>\end{aligned}<br>$$<br> 记 $N = \max(N_b, N_c)$ 有：<br>$$<br>\forall n &gt; N, \mid a_n - c \mid + \mid a_n - b \mid &lt; 2 \epsilon<br>$$<br>由三角不等式 $\mid a \mid - \mid b \mid \le \mid a \pm b \mid \le \mid a \mid + \mid b \mid$ 得：<br>$$<br>\mid b - c \mid &lt; 2 \epsilon<br>$$<br>由于 $\epsilon$ 可以无限小，故有 $b = c$ </p>
+<p>QED</p>
+<h3 id="子数列的极限"><a href="#子数列的极限" class="headerlink" title="子数列的极限"></a>子数列的极限</h3><p>对于一个数列 $\{a_n\}<em>{n = 1}^{+ \infty}$ 的子数列  $\{a</em>{n_k}\}<em>{k = 1}^{+ \infty}$ ，若 $a_n \to a$ ，则 $a</em>{n_k} \to a$ </p>
+<p>证明：</p>
+<p>对于所有 $k$ ，有 $n_k \ge k$ ，又因为 $\forall \epsilon &gt; 0, \exists N &gt; 0, s.t. \forall n &gt; N, \mid a_n - b \mid &lt; \epsilon$</p>
+<p>故 $\forall \epsilon &gt; 0$ ，取 $K = N$ ，有 $\forall k &gt; K, n_k \ge k &gt; K = N$ ，故 $\mid a_{n_k} - b \mid &lt; \epsilon$ ，即 $a_{n_k} \to a$ </p>
+<p>QED</p>
+<h3 id="极限的线性可加性"><a href="#极限的线性可加性" class="headerlink" title="极限的线性可加性"></a>极限的线性可加性</h3><p>设 $a_n \to a, b_m \to b$ ，则 $\lim \limits _{n \to + \infty} (\alpha a_n + \beta b_n) = \alpha a + \beta b$ </p>
 <p>证明：<br>$$<br>\begin{aligned}<br>&amp; \mid \alpha a _n + \beta b _n  - (\alpha a + \beta b) \mid \\<br>\le &amp; \mid \alpha \mid \mid a _n - a \mid + \mid \beta \mid \mid b _n - b \mid \\<br>&amp; = \mid \alpha \mid \epsilon ‘ + \mid \beta \mid \epsilon ‘<br>\end{aligned}<br>$$</p>
 <p>现在，对于任意的 $\epsilon &gt; 0$ ，一定可得 $\epsilon ‘ = \frac{\epsilon}{\mid \alpha \mid + \mid \beta \mid}$ ，它对应的 $N$ ，使得 $\forall n &gt; N$ ， $\mid \alpha a _n + \beta b _n  - (\alpha a + \beta b) \mid &lt; \epsilon$ </p>
 <p>QED</p>
-<h2 id="夹逼定理"><a href="#夹逼定理" class="headerlink" title="夹逼定理"></a>夹逼定理</h2><p>设 $a_n \le b_n \le c_n$ ，且 $\lim \limits _{n \to + \infty} a_n = \lim \limits _{n \to + \infty} c_n = t$ ，则 $\lim \limits _{n \to + \infty} b_n = t$ </p>
-<p>证明：<br>$$<br>\begin{aligned}<br>有:<br>&amp; \mid a_n - t \mid &lt; \epsilon \\<br>即:<br>&amp; t - \epsilon &lt; a_n &lt; t + \epsilon \\<br>同理:<br>&amp; t - \epsilon &lt; c_n &lt; t + \epsilon \\<br>又因为:<br>&amp; a_n \le b_n \le c_n \\<br>得:<br>&amp; t - \epsilon &lt; b_n &lt; t + \epsilon \\<br>即:<br>&amp; \mid b_n - t \mid &lt; \epsilon \\<br>\end{aligned}<br>$$<br>QED</p>
+<h3 id="极限的可乘性"><a href="#极限的可乘性" class="headerlink" title="极限的可乘性"></a>极限的可乘性</h3><p>设 $a_n \to a, b_m \to b$ ，则 $\lim \limits _{n \to + \infty} (a_n b_n) = a b$ </p>
+<p>证明：</p>
+<p>因为 $a _n \to a, b _n \to b$ ，则 $\{b _n\} _{n = 1}^{+ \infty} $ 一定有界设 $\mid b _n \mid \le B$<br>$$<br>\begin{aligned}<br>&amp; \mid a _n b _n - a b \mid \\<br>= &amp; \mid a _n b _n - a b _n + a b _n - a b \mid \\<br>\le &amp; \mid a _n b _n - a b _n \mid + \mid a b _n - a b \mid \\<br>= &amp; \mid b _n \mid \mid a _n - a \mid + \mid a \mid \mid b _n - b \mid \\<br>\le &amp; B \epsilon + \mid a \mid \epsilon<br>\end{aligned}<br>$$<br>QED</p>
+<h1 id="典例"><a href="#典例" class="headerlink" title="典例"></a>典例</h1><h2 id="T1：求证-lim-limits-n-to-infty-1-frac-1-n-n-存在"><a href="#T1：求证-lim-limits-n-to-infty-1-frac-1-n-n-存在" class="headerlink" title="T1：求证 $\lim \limits _{n \to + \infty} (1 + \frac{1}{n})^n$ 存在"></a>T1：求证 $\lim \limits _{n \to + \infty} (1 + \frac{1}{n})^n$ 存在</h2><p>首先证明 $\{(1 + \frac{1}{n})^n \} _{n = 1}^{+ \infty}$ 有上界：<br>$$<br>\begin{aligned}<br>(1 + \frac{1}{n})^n<br>&amp; = \sum _{k = 0}^n \binom{n}{k} (\frac{1}{n})^k \\<br>&amp; = 1 + n * \frac{1}{n} + \frac{n (n - 1)}{2!} * \frac{1}{n^2} + … + \frac{n (n - 1) (n - 2) … 1}{n!} * \frac{1}{n^n} \\<br>&amp; = 1 + 1 + \frac{1}{2!}(\frac{n - 1}{n}) + … + \frac{1}{n!}(\frac{(n - 1)(n - 2) … 1}{n^{n - 1}}) \\<br>&amp; = 1 + 1 + \frac{1}{2!}(\frac{n - 1}{n}) + … + \frac{1}{n!}(\frac{n - 1}{n} * \frac{n - 2}{n} * … * \frac{1}{n}) \\<br>\end{aligned}<br>$$<br>由于 $\frac{n - 1}{n}, \frac{n - 2}{n} … \frac{1}{n} &lt; 1$ ，我们有：<br>$$<br>\begin{aligned}<br>(1 + \frac{1}{n})^n<br>&amp; = 1 + 1 + \frac{1}{2!}(\frac{n - 1}{n}) + … + \frac{1}{n!}(\frac{(n - 1)(n - 2) … 1}{n^{n - 1}}) \\<br>&amp; &lt; 2 + \frac{1}{2!} + \frac{1}{3!} + … + \frac{1}{n!} \\<br>\end{aligned}<br>$$<br>又因为 $\frac{1}{2!} \le \frac{1}{2}, \frac{1}{3!} \le \frac{1}{2^2} … \frac{1}{n!} \le \frac{1}{2^{n - 1}}$ ，故：<br>$$<br>\begin{aligned}<br>(1 + \frac{1}{n})^n<br>&amp; &lt; 2 + \frac{1}{2!} + \frac{1}{3!} + … + \frac{1}{n!} \\<br>&amp; \le 2 + \frac{1}{2} + … + \frac{1}{2^{n - 1}} \\<br>&amp; = 3 - \frac{1}{2^{n - 1}} \\<br>&amp; &lt; 3<br>\end{aligned}<br>$$<br>综上， $\{(1 + \frac{1}{n})^n\} _{n = 1}^{+ \infty}$ 的上界存在</p>
+<p>然后我们对 $n + 1$ 同上变换，有：<br>$$<br>\begin{aligned}<br>(1 + \frac{1}{n + 1})^{n + 1}<br>&amp; = 1 + 1 + \frac{1}{2!}(\frac{n}{n + 1}) + … + \frac{1}{n!}(\frac{n}{n + 1} * \frac{n - 1}{n + 1} * … * \frac{2}{n + 1}) +  \frac{1}{(n + 1)!}(\frac{n}{n + 1} * \frac{n - 1}{n + 1} * … * \frac{2}{n + 1} * \frac{1}{n + 1})\\<br>\end{aligned}<br>$$<br>不难发现， $n + 1$ 比 $n$ 多一项 $\frac{1}{(n + 1)!}(\frac{n}{n + 1} * \frac{n - 1}{n + 1} * … * \frac{2}{n + 1} * \frac{1}{n + 1}) &gt; 0$ 而其它项逐项对比，有 $\frac{n}{n + 1} \ge \frac{n - 1}{n}, \frac{n - 1}{n + 1} \ge \frac{n - 2}{n} … \frac{2}{n + 1} \ge \frac{1}{n}$ ，故有：<br>$$<br>(1 + \frac{1}{n + 1})^{n + 1} &gt; (1 + \frac{1}{n})^{n}<br>$$<br>因此， $\{(1 + \frac{1}{n})^n\} _{n = 1}^{+ \infty}$ 单调递增且存在下界 $ = (1 + \frac{1}{1})^1 = 2$ </p>
+<p>由单调有界定理， $\{(1 + \frac{1}{n})^n\} _{n = 1}^{+ \infty}$ 收敛，则 $\lim \limits _{n \to + \infty} (1 + \frac{1}{n})^n$ </p>
+<p>QED</p>
+<p>其实 $\lim \limits _{n \to + \infty} (1 + \frac{1}{n})^n = e$ ，这就是自然常数的定义</p>
+<h2 id="T2：求证-lim-limits-x-to-0-frac-sin-x-x-1"><a href="#T2：求证-lim-limits-x-to-0-frac-sin-x-x-1" class="headerlink" title="T2：求证 $\lim \limits _{x \to 0} \frac{\sin x}{x} = 1$"></a>T2：求证 $\lim \limits _{x \to 0} \frac{\sin x}{x} = 1$</h2><p> 首先， $x \in [0, \frac{\pi}{2}]$ 时，有 $\sin x &lt; x &lt; \tan x$ （由三角函数线可证），故 $1 &lt; \frac{x}{\sin x} &lt; \frac{1}{\cos x}$ ，即 $1 &gt; \frac{\sin x}{x} &gt; \cos x$ </p>
+<p>又因为 $\lim \limits _{x \to 0} \cos x = 1$ ，由迫敛性可知 $\lim \limits _{x \to 0} \frac{\sin x}{x} = 1$ </p>
+<p>QED</p>
+<h2 id="T3：求-lim-limits-n-to-infty-sqrt-n-n"><a href="#T3：求-lim-limits-n-to-infty-sqrt-n-n" class="headerlink" title="T3：求 $\lim \limits _{n \to + \infty} \sqrt[n]{n}$"></a>T3：求 $\lim \limits _{n \to + \infty} \sqrt[n]{n}$</h2><p>解：</p>
+<p>因为 $\sqrt[n]{n} \ge 1$ 设 $\sqrt[n]{n} = 1 + r_n, r _n \ge 0$ ，有：<br>$$<br>\begin{aligned}<br>n<br>&amp; = (1 + r _n)^n \\<br>&amp; = \sum _{k = 0}^n \binom{n}{k} r _n^k \\<br>&amp; \ge \binom{n}{2} r _n^2 \\<br>&amp; = \frac{n (n - 1)}{2} r _n^2<br>\end{aligned}<br>$$<br>则有 $0 \le r _n \le \sqrt{\frac{2}{n - 1}}$ </p>
+<p>又因为 $\sqrt{\frac{2}{n - 1}} \to 0$ ，由迫敛性可得 $r_n \to 0$ </p>
+<p>由极限的线性可加性， $\lim \limits _{n \to + \infty} \sqrt[n]{n} = 1$  </p>
+<h2 id="T4：求-lim-limits-n-to-infty-frac-b-l-n-l-b-l-1-n-l-1-…-b-1-n-b-0-a-m-n-m-a-m-1-n-m-1-…-a-1-n-a-0"><a href="#T4：求-lim-limits-n-to-infty-frac-b-l-n-l-b-l-1-n-l-1-…-b-1-n-b-0-a-m-n-m-a-m-1-n-m-1-…-a-1-n-a-0" class="headerlink" title="T4：求 $\lim \limits _{n \to + \infty} \frac{b _l n^l + b _{l - 1} n^{l - 1} + … + b _1 n + b _0}{a _m n^m + a _{m - 1} n^{m - 1} + … + a _1 n + a _0}$"></a>T4：求 $\lim \limits _{n \to + \infty} \frac{b _l n^l + b _{l - 1} n^{l - 1} + … + b _1 n + b _0}{a _m n^m + a _{m - 1} n^{m - 1} + … + a _1 n + a _0}$</h2><p>解 ：</p>
+<p>分类讨论：</p>
+<h3 id="1）-l-lt-m-时"><a href="#1）-l-lt-m-时" class="headerlink" title="1） $l &lt; m$ 时"></a>1） $l &lt; m$ 时</h3><p>$$<br>\begin{aligned}<br>原式<br>&amp; = \frac{b _l + b _{l - 1} n^{- 1} + … + b _1 n^{1 - l} + b _0 n^{-l}}{a _m n^{m - l} + a _{m - 1} n^{m - l - 1} + … + a_k n^0 + … + a _1 n^{1 - l} + a _0 n^{-l}}<br>\end{aligned}<br>$$</p>
+<p>又因为当 $k &lt; 0$ 时 $n^k \to 0$ ，由极限的线性可加性和可乘性，有：<br>$$<br>\begin{aligned}<br>&amp;\lim _{n \to + \infty} \frac{b _l n^l + b _{l - 1} n^{l - 1} + … + b _1 n + b _0}{a _m n^m + a _{m - 1} n^{m - 1} + … + a _1 n + a _0} \\<br>= &amp; \lim _{n \to + \infty} \frac{b _l + 0 + … + 0}{a _m n^{m - l} + a _{m - 1} n^{m - l - 1} + … + a _{k + 1} n + 1 + 0 + … + 0} \\<br>= &amp; \lim _{n \to + \infty} \frac{b _l}{a _m n^{m - l} + a _{m - 1} n^{m - l - 1} + … + a _{k + 1} n + 1} \\<br>= &amp; 0<br>\end{aligned}<br>$$<br>故 $l &lt; m$ 时， $\lim \limits _{n \to + \infty} \frac{b _l n^l + b _{l - 1} n^{l - 1} + … + b _1 n + b _0}{a _m n^m + a _{m - 1} n^{m - 1} + … + a _1 n + a _0} = 0$ </p>
+<h3 id="2）-l-gt-m-时"><a href="#2）-l-gt-m-时" class="headerlink" title="2） $l &gt; m$ 时"></a>2） $l &gt; m$ 时</h3><p>由 $1)$ 可知，原式的倒数极限为 $0$ 即为无穷小量，那么原式为无穷大量</p>
+<h3 id="3）-l-m-时"><a href="#3）-l-m-时" class="headerlink" title="3） $l = m$ 时"></a>3） $l = m$ 时</h3><p>$$<br>\begin{aligned}<br>原式<br>&amp; = \frac{b _l + b _{l - 1} n^{- 1} + … + b _1 n^{1 - l} + b _0 n^{-l}}{a _m + a _{m - 1} n^{-1} + … + a _1 n^{1 - l} + a _0 n^{-l}}<br>\end{aligned}<br>$$</p>
+<p>类似于 $1)$ ，有：<br>$$<br>\begin{aligned}<br>&amp;\lim _{n \to + \infty} \frac{b _l n^l + b _{l - 1} n^{l - 1} + … + b _1 n + b _0}{a _m n^m + a _{m - 1} n^{m - 1} + … + a _1 n + a _0} \\<br>= &amp; \lim _{n \to + \infty} \frac{b _l + 0 + … + 0}{a _m + 0 + … + 0} \\<br>= &amp; \lim _{n \to + \infty} \frac{b _l}{a _m} \\<br>= &amp; \frac{b _l}{a _m}<br>\end{aligned}<br>$$<br>故 $l = m$ 时， $\lim \limits _{n \to + \infty} \frac{b _l n^l + b _{l - 1} n^{l - 1} + … + b _1 n + b _0}{a _m n^m + a _{m - 1} n^{m - 1} + … + a _1 n + a _0} = \frac{b _l}{a _m} $ </p>
 
     </div>
 
@@ -379,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%88%97%E4%B8%8E%E6%9E%81%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">数列与极限</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%88%97"><span class="nav-number">1.1.</span> <span class="nav-text">数列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E9%99%90"><span class="nav-number">1.2.</span> <span class="nav-text">极限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E5%94%AF%E4%B8%80%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">极限的唯一性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90"><span class="nav-number">1.4.</span> <span class="nav-text">子数列的极限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A7%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">级数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%88%97%E7%9A%84%E5%92%8C"><span class="nav-number">1.6.</span> <span class="nav-text">数列的和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%8A%A0%E6%80%A7"><span class="nav-number">1.7.</span> <span class="nav-text">极限的线性可加性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B9%E9%80%BC%E5%AE%9A%E7%90%86"><span class="nav-number">1.8.</span> <span class="nav-text">夹逼定理</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%88%97%E4%B8%8E%E6%9E%81%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">数列与极限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%88%97"><span class="nav-number">2.1.</span> <span class="nav-text">数列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E9%99%90"><span class="nav-number">2.2.</span> <span class="nav-text">极限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%AF%E8%A5%BF%E5%88%97"><span class="nav-number">2.3.</span> <span class="nav-text">柯西列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%95%8C"><span class="nav-number">2.4.</span> <span class="nav-text">界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%A9%B7%E5%A4%A7%E9%87%8F"><span class="nav-number">2.5.</span> <span class="nav-text">无穷大量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%A9%B7%E5%B0%8F%E9%87%8F"><span class="nav-number">2.6.</span> <span class="nav-text">无穷小量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A7%E6%95%B0"><span class="nav-number">2.7.</span> <span class="nav-text">级数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%88%97%E7%9A%84%E5%92%8C"><span class="nav-number">2.8.</span> <span class="nav-text">数列的和</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">3.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E6%95%9B%E6%95%B0%E5%88%97"><span class="nav-number">3.1.</span> <span class="nav-text">收敛数列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AB%E6%95%9B%E6%80%A7%EF%BC%88%E5%A4%B9%E9%80%BC%E5%AE%9A%E7%90%86%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">迫敛性（夹逼定理）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%95%8C%E6%80%A7"><span class="nav-number">3.1.2.</span> <span class="nav-text">有界性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E6%9C%89%E7%95%8C%E5%AE%9A%E7%90%86"><span class="nav-number">3.1.3.</span> <span class="nav-text">单调有界定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%AF%E8%A5%BF%E6%94%B6%E6%95%9B%E5%87%86%E5%88%99"><span class="nav-number">3.1.4.</span> <span class="nav-text">柯西收敛准则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E9%99%90-1"><span class="nav-number">3.2.</span> <span class="nav-text">极限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E5%94%AF%E4%B8%80%E6%80%A7"><span class="nav-number">3.2.1.</span> <span class="nav-text">极限的唯一性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90"><span class="nav-number">3.2.2.</span> <span class="nav-text">子数列的极限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%8A%A0%E6%80%A7"><span class="nav-number">3.2.3.</span> <span class="nav-text">极限的线性可加性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E5%8F%AF%E4%B9%98%E6%80%A7"><span class="nav-number">3.2.4.</span> <span class="nav-text">极限的可乘性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B8%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">典例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#T1%EF%BC%9A%E6%B1%82%E8%AF%81-lim-limits-n-to-infty-1-frac-1-n-n-%E5%AD%98%E5%9C%A8"><span class="nav-number">4.1.</span> <span class="nav-text">T1：求证 $\lim \limits _{n \to + \infty} (1 + \frac{1}{n})^n$ 存在</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T2%EF%BC%9A%E6%B1%82%E8%AF%81-lim-limits-x-to-0-frac-sin-x-x-1"><span class="nav-number">4.2.</span> <span class="nav-text">T2：求证 $\lim \limits _{x \to 0} \frac{\sin x}{x} &#x3D; 1$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T3%EF%BC%9A%E6%B1%82-lim-limits-n-to-infty-sqrt-n-n"><span class="nav-number">4.3.</span> <span class="nav-text">T3：求 $\lim \limits _{n \to + \infty} \sqrt[n]{n}$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T4%EF%BC%9A%E6%B1%82-lim-limits-n-to-infty-frac-b-l-n-l-b-l-1-n-l-1-%E2%80%A6-b-1-n-b-0-a-m-n-m-a-m-1-n-m-1-%E2%80%A6-a-1-n-a-0"><span class="nav-number">4.4.</span> <span class="nav-text">T4：求 $\lim \limits _{n \to + \infty} \frac{b _l n^l + b _{l - 1} n^{l - 1} + … + b _1 n + b _0}{a _m n^m + a _{m - 1} n^{m - 1} + … + a _1 n + a _0}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89-l-lt-m-%E6%97%B6"><span class="nav-number">4.4.1.</span> <span class="nav-text">1） $l &lt; m$ 时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89-l-gt-m-%E6%97%B6"><span class="nav-number">4.4.2.</span> <span class="nav-text">2） $l &gt; m$ 时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%89-l-m-%E6%97%B6"><span class="nav-number">4.4.3.</span> <span class="nav-text">3） $l &#x3D; m$ 时</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -395,7 +432,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -497,13 +534,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">563k</span>
+    <span title="Symbols count total">559k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">8:32</span>
+    <span title="Reading time total">8:29</span>
 </div>
 
 <div>
