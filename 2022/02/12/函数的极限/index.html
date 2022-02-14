@@ -28,7 +28,7 @@
 <meta property="og:description" content="突然感觉数列的极限有用了（用来“证明略”）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-12T13:03:14.000Z">
-<meta property="article:modified_time" content="2022-02-12T14:05:49.981Z">
+<meta property="article:modified_time" content="2022-02-13T13:56:12.111Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="其它">
@@ -218,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-02-12 21:03:14 / Modified: 22:05:49" itemprop="dateCreated datePublished" datetime="2022-02-12T21:03:14+08:00">2022-02-12</time>
+              <time title="Created: 2022-02-12 21:03:14" itemprop="dateCreated datePublished" datetime="2022-02-12T21:03:14+08:00">2022-02-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-13 21:56:12" itemprop="dateModified" datetime="2022-02-13T21:56:12+08:00">2022-02-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -245,14 +251,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.7k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -277,13 +283,40 @@
 <p>注意到函数 $x$ 可负，故对于一个<strong>连续</strong>函数 $f(x)$ ，若 $\exists a \in R, s.t. \forall \epsilon &gt; 0, \exists M, s.t. \forall x &lt; M , \mid f(x) - a \mid &lt; \epsilon$ ，我们也称 $a$ 为<strong>函数 $f(x)$ 的极限</strong>，记作 $\lim \limits _{x \to - \infty} f(x) = a$ </p>
 <p>如果 $a$ 两个都满足，可记作 $\lim \limits _{x \to \infty} f(x) = a$ </p>
 <p>对于一个<strong>连续</strong>函数 $f(x)$ ，若它在 $\mathring{U}(x _0, M)$ 上有定义，且 $\exists a \in R, s.t. \forall \epsilon &gt; 0, \exists \delta, s.t. \forall x \in \mathring{U}(x _0, \delta), \mid f(x) - a \mid &lt; \epsilon$ ，我们就称 $a$ 为<strong>函数 $f(x)$ 的点极限</strong>，记作 $\lim \limits _{x \to x _0} f(x) = a$ </p>
-<p>对于一个<strong>连续</strong>函数 $f(x)$ ，若它在 $\mathring{U} _- (x _0, M)$ 上有定义，且 $\exists a \in R, s.t. \forall \epsilon &gt; 0, \exists \delta, s.t. \forall x \in \mathring{U} _- (x _0, \delta), \mid f(x) - a \mid &lt; \epsilon$ ，我们就称 $a$ 为<strong>函数 $f(x)$ 的左极限</strong>，记作 $\lim \limits _{x \to {x _0} _-} f(x) = a$ </p>
-<p>对于一个<strong>连续</strong>函数 $f(x)$ ，若它在 $\mathring{U} _+ (x _0, M)$ 上有定义，且 $\exists a \in R, s.t. \forall \epsilon &gt; 0, \exists \delta, s.t. \forall x \in \mathring{U} _+ (x _0, \delta), \mid f(x) - a \mid &lt; \epsilon$ ，我们就称 $a$ 为<strong>函数 $f(x)$ 的右极限</strong>，记作 $\lim \limits _{x \to {x _0} _+} f(x) = a$ </p>
-<p>函数的左极限和右极限统称为<strong>侧边极限</strong></p>
-<p>明显， $\lim \limits _{x \to {x _0} _+} f(x) = a$ 且 $\lim \limits _{x \to {x _0} _-} f(x) = a$ 与 $\lim \limits _{x \to x _0} f(x) = a$ 互为充要条件</p>
+<p>对于一个<strong>连续</strong>函数 $f(x)$ ，若它在 $\mathring{U} _- (x _0, M)$ 上有定义，且 $\exists a \in R, s.t. \forall \epsilon &gt; 0, \exists \delta, s.t. \forall x \in \mathring{U} _- (x _0, \delta), \mid f(x) - a \mid &lt; \epsilon$ ，我们就称 $a$ 为<strong>函数 $f(x)$ 的左极限</strong>，记作 $\lim \limits _{x \to {x _0}^-} f(x) = a$ </p>
+<p>对于一个<strong>连续</strong>函数 $f(x)$ ，若它在 $\mathring{U} _+ (x _0, M)$ 上有定义，且 $\exists a \in R, s.t. \forall \epsilon &gt; 0, \exists \delta, s.t. \forall x \in \mathring{U} _+ (x _0, \delta), \mid f(x) - a \mid &lt; \epsilon$ ，我们就称 $a$ 为<strong>函数 $f(x)$ 的右极限</strong>，记作 $\lim \limits _{x \to {x _0}^+} f(x) = a$ </p>
+<p>函数的左极限和右极限统称为<strong>单侧极限</strong></p>
+<p>明显， $\lim \limits _{x \to {x _0}^+} f(x) = a$ 且 $\lim \limits _{x \to {x _0}^-} f(x) = a$ 与 $\lim \limits _{x \to x _0} f(x) = a$ 互为充要条件</p>
+<h2 id="连续函数"><a href="#连续函数" class="headerlink" title="连续函数"></a>连续函数</h2><p>以下认为自变量都在定义域内</p>
+<p>若 $\lim \limits _{x \to x _0} f(x) = f(x _0)$ 我们就称 <strong>$f(x)$ 在点 $x$ 处连续</strong></p>
+<p>若 $\forall x_0 \in (l, r)$ ，$f(x)$ 在 $x _0$ 处都连续，我们就称 $f(x)$ <strong>在区间 $(l, r)$ 连续</strong></p>
 <h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h2 id="唯一性"><a href="#唯一性" class="headerlink" title="唯一性"></a>唯一性</h2><p>若 $f(x) \to a(x \to r)$ 且 $f(x) \to b (x \to r)$ ，则 $a = b$ </p>
 <p>证明类似数列极限，这里略</p>
-<h2 id="局部有界"><a href="#局部有界" class="headerlink" title="局部有界"></a>局部有界</h2><h2 id="局部保号"><a href="#局部保号" class="headerlink" title="局部保号"></a>局部保号</h2><h2 id="迫敛性"><a href="#迫敛性" class="headerlink" title="迫敛性"></a>迫敛性</h2>
+<h2 id="局部有界"><a href="#局部有界" class="headerlink" title="局部有界"></a>局部有界</h2><p>若 $f(x) \to a(x \to x _0)$ 则 $\exists \delta &gt; 0, M &gt; 0, s.t. \forall x \in \mathring{U}(x_0, \delta), \mid f(x) \mid \le M$  </p>
+<p>点连续/区间连续同样有局部有界性</p>
+<p>证明略</p>
+<h2 id="局部保号"><a href="#局部保号" class="headerlink" title="局部保号"></a>局部保号</h2><p>若 $f(x) \to a(x \to x _0)$  且 $a &lt; a’$ 则 $\exists \delta &gt; 0, s.t. \forall x \in \mathring{U}(x_0, \delta), f(x) &lt; a’$  </p>
+<p>点连续/区间连续同样有局部保号性</p>
+<p>证明略</p>
+<h2 id="迫敛性"><a href="#迫敛性" class="headerlink" title="迫敛性"></a>迫敛性</h2><p>若 $f(x) \to a(x \to x_0)$ ， $g(x) \to a (x \to x_0)$ ，且有 $\exists \delta &gt; 0, s.t. \forall x \in \mathring{U}(x_0, \delta), f(x) \le h(x) \le g(x)$ 则 $h(x) \to a(x \to x_0)$ </p>
+<p>点连续/区间连续同样有迫敛性，即</p>
+<p>若 $f(x), g(x)$ 在点 $x _0$ 处连续，且有 $f(x_0) = g(x _0)$ ， $f(x) \le h(x) \le g(x)$ ，则 $h(x)$ 在 $x_0$ 处连续 </p>
+<p>证明略</p>
+<h2 id="局部保不等式"><a href="#局部保不等式" class="headerlink" title="局部保不等式"></a>局部保不等式</h2><p>若 $f(x) \to a(x \to x_0)$ ， $g(x) \to b (x \to x_0)$ ，且有 $\exists \delta &gt; 0, s.t. \forall x \in \mathring{U}(x_0, \delta), f(x) &lt;  g(x)$ 则 $a &lt; b$  </p>
+<p>点连续/区间连续同样有局部不等式性</p>
+<p>证明：</p>
+<p>反设 $a &gt; b$ ，则有 $a &gt; \frac{a + b}{2} &gt; b$ </p>
+<p>由局部保号， $\forall x \in \mathring{U}(x_0, \delta_1), f(x) &gt; \frac{a + b}{2}$ ，  $\forall x \in \mathring{U}(x_0, \delta_2), g(x) &lt; \frac{a + b}{2}$ </p>
+<p>故 $\forall x \in \mathring{U}(x_0, \delta_1) \land \mathring{U}(x_0, \delta_2), f(x) &gt; \frac{a + b}{2} &gt; g(x)$ 与题设矛盾</p>
+<p>QED</p>
+<h2 id="极限的四则运算"><a href="#极限的四则运算" class="headerlink" title="极限的四则运算"></a>极限的四则运算</h2><p>设下面的取值都落在定义域内：</p>
+<p>若 $f(x) \to a(x \to x_0)$ ， $g(x) \to b (x \to x_0)$ ，且 $h(x) = f(x) \odot g(x)$ （  $\odot$ 代表 $+, - , \times, \div$ ，若为 $\div$ 则保证 $g(x) \ne 0$ ） ，则 $h(x) \to a \odot b (x \to x_0)$ </p>
+<p>点连续/区间连续同理</p>
+<p>证明太长且类似于数列，就略了</p>
+<h2 id="归结定理（海涅定理）"><a href="#归结定理（海涅定理）" class="headerlink" title="归结定理（海涅定理）"></a>归结定理（海涅定理）</h2><p> $f(x) \to a(x \to x_0)$ 的充要条件是：对于任意的数列 $\{x _n\} _{n = 1}^{+ \infty}$ ，满足 $x _n \to x _0$ 有数列 $\{f(x _n)\} _{n = 1}^{+ \infty}$ 的极限为 $a$ </p>
+<p>证明较繁琐，这里略</p>
+<h2 id="区间有界"><a href="#区间有界" class="headerlink" title="区间有界"></a>区间有界</h2><p>若 $f(x)$ 在 $[l, r]$ 连续，则 $f(x)$ 在 $[l, r]$ 上有界</p>
+
     </div>
 
     
@@ -366,7 +399,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">函数的极限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%BB%E5%9F%9F"><span class="nav-number">2.1.</span> <span class="nav-text">邻域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E9%99%90-1"><span class="nav-number">2.2.</span> <span class="nav-text">函数的极限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">3.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">唯一性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%9C%89%E7%95%8C"><span class="nav-number">3.2.</span> <span class="nav-text">局部有界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E4%BF%9D%E5%8F%B7"><span class="nav-number">3.3.</span> <span class="nav-text">局部保号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AB%E6%95%9B%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text">迫敛性</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">函数的极限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%BB%E5%9F%9F"><span class="nav-number">2.1.</span> <span class="nav-text">邻域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E9%99%90-1"><span class="nav-number">2.2.</span> <span class="nav-text">函数的极限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">连续函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">3.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">唯一性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%9C%89%E7%95%8C"><span class="nav-number">3.2.</span> <span class="nav-text">局部有界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E4%BF%9D%E5%8F%B7"><span class="nav-number">3.3.</span> <span class="nav-text">局部保号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AB%E6%95%9B%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text">迫敛性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E4%BF%9D%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="nav-number">3.5.</span> <span class="nav-text">局部保不等式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97"><span class="nav-number">3.6.</span> <span class="nav-text">极限的四则运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E7%BB%93%E5%AE%9A%E7%90%86%EF%BC%88%E6%B5%B7%E6%B6%85%E5%AE%9A%E7%90%86%EF%BC%89"><span class="nav-number">3.7.</span> <span class="nav-text">归结定理（海涅定理）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E6%9C%89%E7%95%8C"><span class="nav-number">3.8.</span> <span class="nav-text">区间有界</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -395,7 +428,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-count">126</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -484,13 +517,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">566k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">8:34</span>
+    <span title="Reading time total">8:46</span>
 </div>
 
 <div>
