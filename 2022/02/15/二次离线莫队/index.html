@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dyd-true.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="但是我莫队都不是很会欸~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二次离线莫队">
+<meta property="og:url" content="https://dyd-true.github.io/2022/02/15/%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF%E8%8E%AB%E9%98%9F/index.html">
+<meta property="og:site_name" content="Dyd&#39;s Blog">
+<meta property="og:description" content="但是我莫队都不是很会欸~">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-15T08:12:45.000Z">
+<meta property="article:modified_time" content="2022-02-16T10:17:02.816Z">
+<meta property="article:author" content="Dyd">
+<meta property="article:tag" content="莫队">
+<meta property="article:tag" content="二次离线">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://dyd-true.github.io/2022/02/15/%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF%E8%8E%AB%E9%98%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>二次离线莫队 | Dyd's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Dyd's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dyd's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">He who has a strong enough why can bear almost any how.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Dyd-true" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://dyd-true.github.io/2022/02/15/%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF%E8%8E%AB%E9%98%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Dyd">
+      <meta itemprop="description" content="一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dyd's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          二次离线莫队
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-15 16:12:45" itemprop="dateCreated datePublished" datetime="2022-02-15T16:12:45+08:00">2022-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-16 18:17:02" itemprop="dateModified" datetime="2022-02-16T18:17:02+08:00">2022-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 但是我莫队都不是很会欸~</p>
+<span id="more"></span>
+
+<h1 id="二次离线莫队"><a href="#二次离线莫队" class="headerlink" title="二次离线莫队"></a>二次离线莫队</h1><p>顾名思义，就是在原来就离线的莫队上再套一个离线</p>
+<p>由 lxl 大佬发明（ lxl 是多爱根号算法啊）</p>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>莫队都知道吧？众所周知，莫队的时间是 $O(n \sqrt{n})$ 对吧？</p>
+<p>不对！ $O(n \sqrt{n})$ 是在双指针移动跟新答案为 $O(1)$ 的情况下，实际是 $O(n \sqrt{n} \times O(双指针移动跟新答案))$ ，典型的情况是，一个数的贡献为区间内小于它的数的个数（也就是说，一次跟新涉及到一个区间/很多个数），此时每添加/删除一个数的时间就……</p>
+<p>那怎么办呢？我们把莫队指针每次移动当成询问，既然在线（即每次移动立刻跟新）是难以保证时间的，那我们就离线解决（这就是第二次离线），一般用扫描线处理，假设 $O(双指针移动跟新答案) = O(k)$ 那么普通莫队的时间为 $O(n k \sqrt{n})$ ，而二次离线的时间复杂度为 $O(nk + n \sqrt{n})$ （其实时间和二次离线后选择的数据结构有关，但一般这都不是瓶颈）</p>
+<p>但有前提：移动指针对答案的影响可用前缀写成差分的形式</p>
+<h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><p>设函数 $f(x, [l, r])$ 表示“ $x$ 对区间 $[l, r]$ ”的贡献，这个东西不好搞，我们考虑到 $f(x, [l, r]) = f(x, [1, r]) - f(x, [1, l - 1])$ （这里假设了 $f$ 可以差分，一般题目应该都可以，不行的话……那反正蒟蒻我就不会了），那么我们可以把每次移动指针转化为一个数对一个前缀的贡献</p>
+<p>设当前状态为 $[l, r]$ ，我们分类讨论：</p>
+<ol>
+<li>右端右移，即 $[l, r] \to [l, r + k]$ ，答案改变量为 $\sum _{i = r + 1}^{r + k} f(i, [1, i - 1]) - f(i, [1, l - 1])$ </li>
+<li>右端左移，即 $[l, r] \to [l, r - k]$ ，答案改变量为 $\sum _{i = r - k + 1}^{r} -(f(i, [1, i - 1]) - f(i, [1, l - 1]))$ </li>
+<li>左端左移， 即 $[l, r] \to [l - k, r]$ ，答案改变量为 $\sum _{i = l - k}^{l - 1} f(i, [1, r]) - f(i, [1, i])$ </li>
+<li>左端右移， 即 $[l, r] \to [l + k, r]$ ，答案改变量为 $\sum _{i = l}^{l + k - 1} -(f(i, [1, r]) - f(i, [1, i]))$ </li>
+</ol>
+<p>看起来感觉还是不能直接算（时间复杂度过高）</p>
+<p>我们分开看，第一类， $f(i, [1, i])$ 和 $f(i, [1, i - 1])$ 都是只关于 $i$ 的式子，可以直接预处理</p>
+<p>第二类 $f(i, [1, r])$ 和 $f(i, [1, l - 1])$ 不太好搞，考虑打懒标记，给每个数开一个 <code>vector</code> ，若 $x$ 在数 $k$ 的 <code>vector</code> 里，就代表我们要求 $f(x, [1, k])$ </p>
+<p>由于莫队修改都是连续的，不必真的存一个个的数，而可以存三元组 $(l, r, id)$ 表示“ $\forall x \in [l, r]$ 都要求 $f(x, [1, k])$ 而 $id$ 同时记录符号”</p>
+<p>现在来分析时间复杂度，预处理 $f(i, [1, i])$ 和 $f(i, [1, i - 1])$ 是 $O(nk)$ 的，另外可以把它们做一个前缀和，这样询问这一部分总贡献就可以 $O(1)$ 了（卡常技巧一定要记！）</p>
+<p>另一部分我们先扫一般每个数，用时 $O(n)$ ，当扫到 $[1, i]$ 时，就去把点 $i$ 里面记录的询问全部计算了，由于莫队指针移动次数是 $O(n \sqrt{n})$ 的，所以查询次数是 $O(n \sqrt{n})$ ，我们用某种数据结构维护它，这个数据结构要修改 $O(n)$ 次，询问 $O(n \sqrt{n})$ 次，我们使用一种修改较慢但查询较快的数据结构，可以做到 $O(np + nq\sqrt{n})$ ，其中 $p, q$ 是修改和查询的时间，在大部分题中 $p \le \sqrt{n}$ ， $q$ 约为 $1$ </p>
+<p>综上，二次离线部分时间复杂度为 $O(nk + n\sqrt{n})$ ，加上前面莫队的 $O(n \sqrt{n})$ ，时间复杂度为 $O(nk + n\sqrt{n})$ </p>
+<p>最后注意 $f(x, [l, r])$ 不是答案！是变化量！所以最后要前缀和一下</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4887">【模板】莫队二次离线（第十四分块(前体)）</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给定长度为 $n \le 10^5$ 的序列 $a_i &lt; 16384(2^{14})$ ， $m \le 10^5$ 次寻问区间 $[l, r]$ ，查询 $l \le i &lt; j \le r$ 且满足 $a_i \oplus a_j$ 在二进制下恰有 $k &lt; 16384$ 个 $1$ 的二元组 $(i, j)$ 有多少对（这里 $k$ 是一开始就固定的，每次询问都一样）</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>二次离线的板子（从题目就看出来了），考虑二次离线部分：</p>
+<p>考虑预处理 $f(i, [1, i - 1])$ ，另外一个同理，具体地，扫描一遍数列，枚举二进制下有 $k$ 个 $1$ 的数（卡常可以预处理），对于每个 $i$ ，查一下 $cnt[i \oplus x]$ （ $x$ 二进制下有 $k$ 个 $1$ ）即可</p>
+<p>对于第二类，我们就用一个数组 $t[z]$ 表示当前前缀中的数异或 $z$ 后得到的数恰好有 $k$ 个 $1$ 的数的个数，同样直接查，修改和查询都是 $O(1)$ 的</p>
+<p>然后……就结束了！ lxl 这题不卡常，我爱 lxl ！</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STC static</span></span><br><span class="line"><span class="keyword">using</span> LL = <span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span> + <span class="number">5</span>, V = (<span class="number">1</span> &lt;&lt; <span class="number">14</span>), B = <span class="number">320</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Ques</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l, r, id;</span><br><span class="line">    LL ans;</span><br><span class="line">&#125; q[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tuple</span>&#123;</span> <span class="keyword">int</span> l, r, id; &#125;;</span><br><span class="line">std::vector&lt;Tuple&gt; tag[N];</span><br><span class="line">std::vector&lt;<span class="keyword">int</span>&gt; xk; <span class="comment">//有k个1的数</span></span><br><span class="line"><span class="keyword">int</span> n, m, k, bid[N], a[N]; <span class="comment">//bid:块号加</span></span><br><span class="line">LL ans[N], f[<span class="number">2</span>][N]; <span class="comment">//f:存第1类,第二类不存,直接</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prev</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; ++i) <span class="keyword">if</span> (__builtin_popcount(i) == k) xk.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) bid[i] = (i - <span class="number">1</span>) / B + <span class="number">1</span>;</span><br><span class="line">    std::<span class="built_in">sort</span>(q + <span class="number">1</span>, q + m + <span class="number">1</span>, [&amp;](Ques a, Ques b)&#123; <span class="keyword">return</span> bid[a.l] == bid[b.l] ? a.r &lt; b.r : a.l &lt; b.l; &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_tag</span><span class="params">()</span> <span class="comment">//模拟莫队,给第2类打标记</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, il = q[<span class="number">1</span>].r + <span class="number">1</span>, ir = q[<span class="number">1</span>].r, l, r; i &lt;= m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        l = q[i].l, r = q[i].r;</span><br><span class="line">        <span class="keyword">if</span> (il &gt; l) tag[ir].<span class="built_in">push_back</span>(&#123;l, il - <span class="number">1</span>, i&#125;);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (il &lt; l) tag[ir].<span class="built_in">push_back</span>(&#123;il, l - <span class="number">1</span>, -i&#125;);</span><br><span class="line">		il = l; <span class="comment">//这里注意il变了</span></span><br><span class="line">        <span class="keyword">if</span> (ir &lt; r) tag[il - <span class="number">1</span>].<span class="built_in">push_back</span>(&#123;ir + <span class="number">1</span>, r, -i&#125;);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ir &gt; r) tag[il - <span class="number">1</span>].<span class="built_in">push_back</span>(&#123;r + <span class="number">1</span>, ir, i&#125;);</span><br><span class="line">		ir = r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">offline</span><span class="params">()</span> <span class="comment">//二次离线求第1、2类</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    STC <span class="keyword">int</span> t[V];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        f[<span class="number">0</span>][i] = f[<span class="number">0</span>][i - <span class="number">1</span>] + t[a[i]]; <span class="comment">//这里顺便就前缀和了</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x : xk) ++t[x ^ a[i]];</span><br><span class="line">        f[<span class="number">1</span>][i] = f[<span class="number">1</span>][i - <span class="number">1</span>] + t[a[i]];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> tg : tag[i]) <span class="comment">//求第二类</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = tg.l, k = tg.id &lt; <span class="number">0</span> ? <span class="number">-1</span> : <span class="number">1</span>; j &lt;= tg.r; ++j) q[tg.id * k].ans += t[a[j]] * k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modui</span><span class="params">()</span> <span class="comment">//真的莫队</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, il = q[<span class="number">1</span>].r + <span class="number">1</span>, ir = q[<span class="number">1</span>].r, l, r; i &lt;= m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        l = q[i].l, r = q[i].r;</span><br><span class="line">        <span class="keyword">if</span> (il != l) q[i].ans += f[<span class="number">1</span>][l - <span class="number">1</span>] - f[<span class="number">1</span>][il - <span class="number">1</span>];</span><br><span class="line">		il = l;</span><br><span class="line">        <span class="keyword">if</span> (ir != r) q[i].ans += f[<span class="number">0</span>][r] - f[<span class="number">0</span>][ir];</span><br><span class="line">		ir = r;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; ++i) q[i].ans += q[i - <span class="number">1</span>].ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) ans[q[i].id] = q[i].ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;q[i].l, &amp;q[i].r), q[i].id = i;</span><br><span class="line">    <span class="built_in">prev</span>(), <span class="built_in">add_tag</span>(), <span class="built_in">offline</span>(), <span class="built_in">modui</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>luogu AC $400$ 祭（然鹅只有 <strong>rusun</strong> 巨佬 AC 数的一半）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%8E%AB%E9%98%9F/" rel="tag"><i class="fa fa-tag"></i> 莫队</a>
+              <a href="/tags/%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/" rel="tag"><i class="fa fa-tag"></i> 二次离线</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/15/luoguP3648-APIO2014-%E5%BA%8F%E5%88%97%E5%88%86%E5%89%B2/" rel="prev" title="luoguP3648 [APIO2014]序列分割">
+      <i class="fa fa-chevron-left"></i> luoguP3648 [APIO2014]序列分割
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF%E8%8E%AB%E9%98%9F"><span class="nav-number">1.</span> <span class="nav-text">二次离线莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E6%83%B3"><span class="nav-number">1.2.</span> <span class="nav-text">思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.3.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.3.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%9F%E8%AF%9D"><span class="nav-number">1.4.</span> <span class="nav-text">废话</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Dyd"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Dyd</p>
+  <div class="site-description" itemprop="description">一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Dyd-true" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Dyd-true" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2741501882@qq.com" title="E-Mail → mailto:2741501882@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sighttp.qq.com/msgrd?v=1&uin=2741501882" title="QQ → https:&#x2F;&#x2F;sighttp.qq.com&#x2F;msgrd?v&#x3D;1&amp;uin&#x3D;2741501882" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/141393" title="LuoGu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;141393" rel="noopener" target="_blank"><i class=" fa-fw"></i>LuoGu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      some of my mates
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.pigaunt.top/" title="https:&#x2F;&#x2F;www.pigaunt.top" rel="noopener" target="_blank">PigAunt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hewo233.blog.luogu.org/" title="https:&#x2F;&#x2F;hewo233.blog.luogu.org" rel="noopener" target="_blank">Hewo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wiki.pigaunt.top/" title="https:&#x2F;&#x2F;wiki.pigaunt.top" rel="noopener" target="_blank">PekingOpera</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io" rel="noopener" target="_blank">lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io" rel="noopener" target="_blank">RuSun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dyd</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">587k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">8:54</span>
+</div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "The site has running for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
