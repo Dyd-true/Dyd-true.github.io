@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dyd-true.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="啊对对对……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="luoguP2304 [NOI2015] 小园丁与老司机">
+<meta property="og:url" content="https://dyd-true.github.io/2022/02/27/luoguP2304-NOI2015-%E5%B0%8F%E5%9B%AD%E4%B8%81%E4%B8%8E%E8%80%81%E5%8F%B8%E6%9C%BA/index.html">
+<meta property="og:site_name" content="Dyd&#39;s Blog">
+<meta property="og:description" content="啊对对对……">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/02/27/CGdcZ2ORIwn6bJg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/02/27/iyvkt5QFEP1bnHx.png">
+<meta property="article:published_time" content="2022-02-27T07:11:15.000Z">
+<meta property="article:modified_time" content="2022-03-04T08:56:02.987Z">
+<meta property="article:author" content="Dyd">
+<meta property="article:tag" content="练习">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="网络流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/02/27/CGdcZ2ORIwn6bJg.png">
+
+<link rel="canonical" href="https://dyd-true.github.io/2022/02/27/luoguP2304-NOI2015-%E5%B0%8F%E5%9B%AD%E4%B8%81%E4%B8%8E%E8%80%81%E5%8F%B8%E6%9C%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>luoguP2304 [NOI2015] 小园丁与老司机 | Dyd's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Dyd's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dyd's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">He who has a strong enough why can bear almost any how.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Dyd-true" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://dyd-true.github.io/2022/02/27/luoguP2304-NOI2015-%E5%B0%8F%E5%9B%AD%E4%B8%81%E4%B8%8E%E8%80%81%E5%8F%B8%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Dyd">
+      <meta itemprop="description" content="一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dyd's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          luoguP2304 [NOI2015] 小园丁与老司机
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-27 15:11:15" itemprop="dateCreated datePublished" datetime="2022-02-27T15:11:15+08:00">2022-02-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-04 16:56:02" itemprop="dateModified" datetime="2022-03-04T16:56:02+08:00">2022-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">练习</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 啊对对对……</p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2304">小园丁与老司机</a></p>
+<h2 id="老司机的时间"><a href="#老司机的时间" class="headerlink" title="老司机的时间"></a>老司机的时间</h2><p>关于最长路，显然 dp ，我们发现是没有向下的，而且数据也提示我们把 $y_i$ 作为 dp 的阶段，令 <code>d[i]</code> 表示到点 $(x_i, y_i)$ 的最长长度，明显， $d[i]$ 由 $(x_i, y_i)$ 左、右、左下、右下和正下方的点转移，由于以 $y_i$ 为阶段，左下、右下和正下方的点是已知的（可以预处理出每个点向上转移到那里），但左右的点可以互相转移，顺序未知，考虑高斯消元，但高斯他这次不靠谱了，因为方程里有个 $\max$ ，那……我们就只好枚举每层（ $y_i$ 相等的点为一层）的 dp 顺序，这不爆炸？</p>
+<p><del>看题解</del> 发现，我们走的一定是一段连续的区间，如图，若我们从点 $A$ 进入该层，从点 $B$ 离开，会发现射线 $BA$ 上的点我们都可达，而 $B$ 另一侧的点都不可达（这是因为只能去往<strong>最近的未到过的点</strong>，如果我们取了 $B$ 另一侧的点，说明我们一定到过了 $B$ ，那就不可能再回到 $B$ 了）</p>
+<p><img src="https://s2.loli.net/2022/02/27/CGdcZ2ORIwn6bJg.png" alt="dp"></p>
+<p>所以，我们对每一层，把该层的点按 $x_i$ 升序排序，然后处理出前/后缀？这样确实可以 dp 了，设 $d[i]$ 表示“以点 $(x_i, y_i)$ 作为它所在层的出点（即上图的点 $B$ ）的最长路长度”，计算时先枚举层数（可以把点排序来做到按层数转移），把本层从下面转移的全都转移了，再考虑本层的情况，但，难打的和……一样</p>
+<p>我们再 <del>瞟一眼题解</del> 思考一下，发现可以拆点，把射线向左/右分开，更具体地，我们把一个点分成三个：左、右、上，分别代表从这个点向左走、向右走、向上走（都是必须走），如图：</p>
+<p><img src="https://s2.loli.net/2022/02/27/iyvkt5QFEP1bnHx.png" alt="拆点"></p>
+<p>黑色是向上点（你会发现所有点最后都走到一个黑色点，因为只有黑色点会连出向上一层的边）；红色是左向，蓝色是右向；所有横向走的边权都为 $1$ ，代表每走一次就多取了一个点；纵向的边权为 $0$ ，代表同一个点的不同状态</p>
+<p>以上上幅图的 $A$ 进 $B$ 出为例，设 $A$ 是 $4$ 号点， $B$ 是 $2$ 号点，我们从 $A$ 到 $B$ 的路径就是 $下层 \to 红3 \to 红2 \to 黑2 \to 上层$ ，这里我们会发现 $4$ 号点及右边的 $5$ 号点没算，所以我们把 $红3$ 的入边的权值设为 $3$ （因为只要从 $红4$ 入，就意味着<strong>必须从左边某个点出</strong>，所以不连 $4$ ，直接连向 $3$ ，那么 $4, 5$ 号是必定可达的）</p>
+<p>这里有一个要注意的地方，从起点开始就可以横着走到 $(x, 0)$ ，所以 dp 的起点是原点的 $红、蓝、黑$ 三个点</p>
+<p>用以上方法，我们可以建出一个点数为 $3n$ 的 DAG ，直接在上面 dp 即可，比预处前/后缀简单（但也没简单多少，这道题就跟……一样），还有一个问题是要求方案（园丁的题也要用），记录来向即可</p>
+<h2 id="小园丁的时间"><a href="#小园丁的时间" class="headerlink" title="小园丁的时间"></a>小园丁的时间</h2><p>我们把向上的黑点记作 $U$ ，向左、右的分别记作 $L, R$ ，明显，不合法的边是最长路上从 $U$ 型点上出发的所有边</p>
+<p>我们新建一张图，初始只有 $n$ 个点，我们把所有可以在最长路上的边加入图中，上界为 $+ \infty$ ，下界为 $1$ ；然后从源点向每个点连边、从每个点向汇点连边，都是上界为 $+ \infty$ ，下界为 $0$ 的边，跑一遍源汇上下界最小流即可</p>
+<p>这图有个特殊性质：一定有解，所以可以直接把可行流的部分省略（因为一定可行），只跑最小流</p>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>打了好久，第一次交， TLE + WA $45 pts$ 呃呃呃，发现有一部分 WA 好像是网络流建图的问题，我把 <code>dad(i, T, -ve[i])</code> 打错为 <code>dad(i, T, ve[i])</code> ，好吧，我就承认我是个伞兵好吗</p>
+<p>改了以后是 TLE + WA $75 pts$ ，WA 好像是 dp 挂了，先不管，搞搞 TLE，发现时间复杂度为 $O(Dinic)$ ，尝试改为 HLPP ，结果 RE ，然后尝试吸氧 + Dinic，也 RE ，怀疑是建图挂了</p>
+<p>决定先把那个 WA 搞了，（<del>臭不要脸的交空代码骗数据</del>）发现 WA 的点是最长路很长（接近 $N$ ）且最优路线不唯一的点，感觉是太长了 dp 挂掉了，仔细一想，我用 <code>vector</code> 记录了所有的方案，中间一条边会被记录多次，那谁知道空间怎么样了，于是考虑只记录一条来向用于回答第老司机，其它的最长路用在反向图上 dfs 解决，另外，边一定要开足够大！</p>
+<p>然后……TLE $75 pts$ ，我觉得网络流不该 fake ，应该还是老司机的问题，于是下了一组数据，发现我建图的 dfs 没判重！每个点被重复到达了很多次，感觉自己被老司机算计的明明白白</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STC static</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> L(x) (x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> R(x) (x + n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> U(x) (x + 2 * n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(x, y) memset(x, y, sizeof x)</span></span><br><span class="line"><span class="keyword">using</span> PII = std::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">5e4</span> + <span class="number">100</span>, INF = <span class="number">0x3f3f3f3f</span>, M = <span class="number">5e6</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> n, to[N][<span class="number">5</span>];</span><br><span class="line">PII a[N]; <span class="comment">//(fi,se)=(x,y)</span></span><br><span class="line"><span class="keyword">namespace</span> DP</span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span> <span class="keyword">int</span> ne, ver, w; &#125; e[M], eb[M]; <span class="comment">//边开足够大</span></span><br><span class="line">    <span class="keyword">int</span> h[N * <span class="number">3</span>], idx = <span class="number">0</span>, hb[N * <span class="number">3</span>], idb = <span class="number">0</span>, nn, d[N * <span class="number">3</span>], ans = -INF, from[N * <span class="number">3</span>], vis[N * <span class="number">3</span>];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span>&#123; e[idx] = &#123;h[x], y, z&#125;, h[x] = idx++, eb[idb] = &#123;hb[y], x, z&#125;, hb[y] = idb++; &#125;</span><br><span class="line">    std::vector&lt;PII&gt; longway;</span><br><span class="line">    <span class="function">PII <span class="title">get</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x &lt;= n ? <span class="built_in">PII</span>(x, <span class="number">0</span>) : (x &lt;= <span class="number">2</span> * n ? <span class="built_in">PII</span>(x - n, <span class="number">1</span>) : <span class="built_in">PII</span>(x - <span class="number">2</span> * n, <span class="number">2</span>)); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">get_to</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">using</span> Three = std::pair&lt;PII, <span class="keyword">int</span>&gt;;</span><br><span class="line">        std::vector&lt;Three&gt; b; <span class="comment">//桶,(fi,se.fi, se.se)=(bid,val,id)</span></span><br><span class="line">        b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(&#123;-INF, -INF&#125;, -INF));</span><br><span class="line">        <span class="comment">//向上</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(a[i], i));</span><br><span class="line">        std::<span class="built_in">sort</span>(b.<span class="built_in">begin</span>(), b.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) <span class="keyword">if</span> (b[i + <span class="number">1</span>].fi.fi == b[i].fi.fi) to[b[i].se][<span class="number">0</span>] = b[i + <span class="number">1</span>].se;</span><br><span class="line">        b.<span class="built_in">clear</span>(), b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(&#123;-INF, -INF&#125;, -INF));</span><br><span class="line">        <span class="comment">//左上</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(&#123;a[i].fi + a[i].se, a[i].se&#125;, i));</span><br><span class="line">        std::<span class="built_in">sort</span>(b.<span class="built_in">begin</span>(), b.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) <span class="keyword">if</span> (b[i + <span class="number">1</span>].fi.fi == b[i].fi.fi) to[b[i].se][<span class="number">1</span>] = b[i + <span class="number">1</span>].se;</span><br><span class="line">        b.<span class="built_in">clear</span>(), b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(&#123;-INF, -INF&#125;, -INF));</span><br><span class="line">        <span class="comment">//右上</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(&#123;a[i].se - a[i].fi, a[i].se&#125;, i));</span><br><span class="line">        std::<span class="built_in">sort</span>(b.<span class="built_in">begin</span>(), b.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) <span class="keyword">if</span> (b[i + <span class="number">1</span>].fi.fi == b[i].fi.fi) to[b[i].se][<span class="number">2</span>] = b[i + <span class="number">1</span>].se;</span><br><span class="line">        b.<span class="built_in">clear</span>(), b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(&#123;-INF, -INF&#125;, -INF));</span><br><span class="line">        <span class="comment">//向右和向左</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) b.<span class="built_in">push_back</span>(<span class="built_in">Three</span>(&#123;a[i].se, a[i].fi&#125;, i));</span><br><span class="line">        std::<span class="built_in">sort</span>(b.<span class="built_in">begin</span>(), b.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) <span class="keyword">if</span> (b[i + <span class="number">1</span>].fi.fi == b[i].fi.fi) to[b[i].se][<span class="number">3</span>] = b[i + <span class="number">1</span>].se, to[b[i + <span class="number">1</span>].se][<span class="number">4</span>] = b[i].se;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        STC <span class="keyword">int</span> t[N][<span class="number">2</span>]; <span class="comment">//辅助计算上行边的权值</span></span><br><span class="line">        <span class="built_in">mem</span>(h, <span class="number">-1</span>), <span class="built_in">mem</span>(hb, <span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">get_to</span>(); <span class="comment">//找到每个点能到那个点</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">add</span>(<span class="built_in">R</span>(i), <span class="built_in">U</span>(i), <span class="number">0</span>), <span class="built_in">add</span>(<span class="built_in">L</span>(i), <span class="built_in">U</span>(i), <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">if</span> (to[i][<span class="number">3</span>]) <span class="built_in">add</span>(<span class="built_in">R</span>(i), <span class="built_in">R</span>(to[i][<span class="number">3</span>]), <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">for</span> (<span class="keyword">int</span> j = i, k = <span class="number">1</span>; j; j = to[j][<span class="number">4</span>], ++k) t[j][<span class="number">0</span>] = k; <span class="comment">//右端点向左</span></span><br><span class="line">            <span class="keyword">if</span> (to[i][<span class="number">4</span>]) <span class="built_in">add</span>(<span class="built_in">L</span>(i), <span class="built_in">L</span>(to[i][<span class="number">4</span>]), <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">for</span> (<span class="keyword">int</span> j = i, k = <span class="number">1</span>; j; j = to[j][<span class="number">3</span>], ++k) t[j][<span class="number">1</span>] = k; <span class="comment">//左端点向右</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">2</span>; ++j) <span class="keyword">if</span> (to[i][j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (to[to[i][j]][<span class="number">3</span>]) <span class="built_in">add</span>(<span class="built_in">U</span>(i), <span class="built_in">R</span>(to[to[i][j]][<span class="number">3</span>]), t[to[i][j]][<span class="number">1</span>] + <span class="number">1</span>); <span class="comment">//注意下标不要混</span></span><br><span class="line">                <span class="keyword">if</span> (to[to[i][j]][<span class="number">4</span>]) <span class="built_in">add</span>(<span class="built_in">U</span>(i), <span class="built_in">L</span>(to[to[i][j]][<span class="number">4</span>]), t[to[i][j]][<span class="number">0</span>] + <span class="number">1</span>);</span><br><span class="line">                <span class="built_in">add</span>(<span class="built_in">U</span>(i), <span class="built_in">U</span>(to[i][j]), <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">topu</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        STC <span class="keyword">int</span> du[N * <span class="number">3</span>];</span><br><span class="line">        std::queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="built_in">mem</span>(d, <span class="number">0xcf</span>); <span class="comment">//是-INF</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; idx; ++i) ++du[e[i].ver];</span><br><span class="line">        du[<span class="built_in">U</span>(n)] = d[<span class="built_in">U</span>(n)] = du[<span class="built_in">R</span>(n)] = d[<span class="built_in">R</span>(n)] = du[<span class="built_in">L</span>(n)] = d[<span class="built_in">L</span>(n)] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nn; ++i) <span class="keyword">if</span> (!du[i]) q.<span class="built_in">push</span>(i);</span><br><span class="line">        <span class="keyword">while</span> (!q.<span class="built_in">empty</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x], y; ~i; i = e[i].ne)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (d[y = e[i].ver] &lt; d[x] + e[i].w)</span><br><span class="line">                &#123;</span><br><span class="line">                    d[y] = d[x] + e[i].w;</span><br><span class="line">                    from[y] = x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> ((--du[y]) == <span class="number">0</span>) q.<span class="built_in">push</span>(y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        nn = n * <span class="number">3</span>;</span><br><span class="line">        <span class="built_in">build</span>(), <span class="built_in">topu</span>();</span><br><span class="line">        <span class="comment">//回答前两个询问</span></span><br><span class="line">        STC <span class="keyword">int</span> stk[N], top = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) ans = std::<span class="built_in">max</span>(ans, d[<span class="built_in">U</span>(i)]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">1</span>, y; x &lt;= n; ++x) <span class="keyword">if</span> (d[<span class="built_in">U</span>(x)] == ans)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (x = <span class="built_in">U</span>(x), stk[++top] = x; from[x]; stk[++top] = x) x = from[x]; </span><br><span class="line">            <span class="keyword">for</span> (PII t = <span class="built_in">get</span>(stk[top--]), lt; top;)</span><br><span class="line">            &#123;</span><br><span class="line">                lt = t, t = <span class="built_in">get</span>(stk[top--]);</span><br><span class="line">                <span class="keyword">if</span> (lt.se == t.se) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, t.fi);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (t.se == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (y = to[t.fi][<span class="number">3</span>]; y; y = to[y][<span class="number">3</span>]) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, y);</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, t.fi);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (t.se == <span class="number">1</span>) </span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (y = to[t.fi][<span class="number">4</span>]; y; y = to[y][<span class="number">4</span>]) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, y);</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, t.fi);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//下面的函数找出最长路,Dinic建边用</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = hb[y], x; ~i; i = eb[i].ne) <span class="keyword">if</span> (d[x = eb[i].ver] + eb[i].w == d[y])</span><br><span class="line">        &#123;</span><br><span class="line">            PII ty = <span class="built_in">get</span>(y), tx = <span class="built_in">get</span>(x);</span><br><span class="line">            <span class="keyword">if</span> (tx.se == <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>, tt; j &lt;= <span class="number">2</span>; ++j) <span class="keyword">if</span> (tt = to[tx.fi][j])</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (ty.fi == to[tt][<span class="number">3</span>] &amp;&amp; ty.se == <span class="number">1</span>) longway.<span class="built_in">push_back</span>(&#123;tx.fi, tt&#125;);</span><br><span class="line">                    <span class="keyword">if</span> (ty.fi == to[tt][<span class="number">4</span>] &amp;&amp; ty.se == <span class="number">0</span>) longway.<span class="built_in">push_back</span>(&#123;tx.fi, tt&#125;);</span><br><span class="line">                    <span class="keyword">if</span> (ty.fi == tt &amp;&amp; ty.se == <span class="number">2</span>) longway.<span class="built_in">push_back</span>(&#123;tx.fi, tt&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span> (vis[x]) <span class="keyword">continue</span>; <span class="comment">//不加会TLE</span></span><br><span class="line">            vis[x] = <span class="literal">true</span>, <span class="built_in">dfs</span>(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">find</span><span class="params">()</span></span>&#123; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="keyword">if</span> (d[<span class="built_in">U</span>(i)] == ans &amp;&amp; (vis[<span class="built_in">U</span>(i)] = <span class="literal">true</span>)) <span class="built_in">dfs</span>(<span class="built_in">U</span>(i)); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Dinic</span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span><span class="keyword">int</span> ne, ver, w; &#125; e[M]; <span class="comment">//我也不知道边开多大</span></span><br><span class="line">    <span class="keyword">int</span> h[N], idx = <span class="number">0</span>, S, T, ans, cur[N], dep[N];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span>&#123; e[idx] = &#123;h[x], y, z&#125;, h[x] = idx++; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dad</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span>&#123; <span class="built_in">add</span>(x, y, z), <span class="built_in">add</span>(y, x, <span class="number">0</span>); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">using</span> DP::longway;</span><br><span class="line">        DP::<span class="built_in">find</span>(); <span class="comment">//找到最长路</span></span><br><span class="line">        STC <span class="keyword">int</span> ve[N];</span><br><span class="line">        <span class="built_in">mem</span>(h, <span class="number">-1</span>);</span><br><span class="line">        S = n + <span class="number">1</span>, T = S + <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">sort</span>(longway.<span class="built_in">begin</span>(), longway.<span class="built_in">end</span>());</span><br><span class="line">        longway.<span class="built_in">erase</span>(std::<span class="built_in">unique</span>(longway.<span class="built_in">begin</span>(), longway.<span class="built_in">end</span>()), longway.<span class="built_in">end</span>()); <span class="comment">//去重边</span></span><br><span class="line">        <span class="keyword">for</span> (PII lw : longway) <span class="built_in">dad</span>(lw.fi, lw.se, INF), --ve[lw.fi], ++ve[lw.se];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">if</span> (ve[i] &gt; <span class="number">0</span>) <span class="built_in">dad</span>(S, i, ve[i]), ans += ve[i]; <span class="comment">//一定有解</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (ve[i] &lt; <span class="number">0</span>) <span class="built_in">dad</span>(i, T, -ve[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">mem</span>(dep, <span class="number">-1</span>);</span><br><span class="line">        std::queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (q.<span class="built_in">push</span>(S), dep[S] = <span class="number">0</span>, cur[S] = h[S]; !q.<span class="built_in">empty</span>(); )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x], y; ~i; i = e[i].ne) <span class="keyword">if</span> (dep[y = e[i].ver] == <span class="number">-1</span> &amp;&amp; e[i].w)</span><br><span class="line">            &#123;</span><br><span class="line">                cur[y] = h[y], dep[y] = dep[x] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (y == T) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                q.<span class="built_in">push</span>(y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> lim)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x == T) <span class="keyword">return</span> lim;</span><br><span class="line">        <span class="keyword">int</span> flow = <span class="number">0</span>, t, y;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cur[x]; ~i &amp;&amp; flow &lt; lim; i = e[i].ne)</span><br><span class="line">        &#123;</span><br><span class="line">            cur[x] = i;</span><br><span class="line">            <span class="keyword">if</span> (dep[y = e[i].ver] == dep[x] + <span class="number">1</span> &amp;&amp; e[i].w)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (!(t = <span class="built_in">find</span>(y, std::<span class="built_in">min</span>(e[i].w, lim - flow)))) dep[y] = <span class="number">-1</span>;</span><br><span class="line">                e[i].w -= t, e[i ^ <span class="number">1</span>].w += t, flow += t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flow;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>, flow;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">bfs</span>()) <span class="keyword">while</span> (flow = <span class="built_in">find</span>(S, INF)) res += flow;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123; <span class="built_in">build</span>(), <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans - <span class="built_in">dinic</span>()); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n), a[++n] = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;; <span class="comment">//把原点也看作一棵树</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;a[i].fi, &amp;a[i].se);</span><br><span class="line">    DP::<span class="built_in">work</span>(), Dinic::<span class="built_in">work</span>(); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 练习</a>
+              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag"><i class="fa fa-tag"></i> 网络流</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/24/luoguP4768-NOI2018-%E5%BD%92%E7%A8%8B/" rel="prev" title="luoguP4768 [NOI2018] 归程">
+      <i class="fa fa-chevron-left"></i> luoguP4768 [NOI2018] 归程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/04/luoguP4003-%E6%97%A0%E9%99%90%E4%B9%8B%E7%8E%AF/" rel="next" title="luoguP4003 无限之环">
+      luoguP4003 无限之环 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%81%E5%8F%B8%E6%9C%BA%E7%9A%84%E6%97%B6%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">老司机的时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E5%9B%AD%E4%B8%81%E7%9A%84%E6%97%B6%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">小园丁的时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95"><span class="nav-number">3.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Dyd"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Dyd</p>
+  <div class="site-description" itemprop="description">一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">132</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Dyd-true" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Dyd-true" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2741501882@qq.com" title="E-Mail → mailto:2741501882@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sighttp.qq.com/msgrd?v=1&uin=2741501882" title="QQ → https:&#x2F;&#x2F;sighttp.qq.com&#x2F;msgrd?v&#x3D;1&amp;uin&#x3D;2741501882" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/141393" title="LuoGu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;141393" rel="noopener" target="_blank"><i class=" fa-fw"></i>LuoGu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      some of my mates
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.pigaunt.top/" title="https:&#x2F;&#x2F;www.pigaunt.top" rel="noopener" target="_blank">PigAunt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hewo233.blog.luogu.org/" title="https:&#x2F;&#x2F;hewo233.blog.luogu.org" rel="noopener" target="_blank">Hewo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wiki.pigaunt.top/" title="https:&#x2F;&#x2F;wiki.pigaunt.top" rel="noopener" target="_blank">PekingOpera</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io" rel="noopener" target="_blank">lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io" rel="noopener" target="_blank">RuSun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dyd</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">626k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">9:29</span>
+</div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "The site has running for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
