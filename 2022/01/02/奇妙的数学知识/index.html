@@ -28,10 +28,10 @@
 <meta property="og:description" content="奇奇怪怪">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-02T01:32:02.000Z">
-<meta property="article:modified_time" content="2022-01-21T09:20:09.578Z">
+<meta property="article:modified_time" content="2022-05-15T11:32:07.297Z">
 <meta property="article:author" content="Dyd">
-<meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="图论">
+<meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="其它">
 <meta name="twitter:card" content="summary">
 
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-01-21 17:20:09" itemprop="dateModified" datetime="2022-01-21T17:20:09+08:00">2022-01-21</time>
+                <time title="Modified: 2022-05-15 19:32:07" itemprop="dateModified" datetime="2022-05-15T19:32:07+08:00">2022-05-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -280,6 +280,11 @@
 </li>
 <li><p>自然数次幂求和：<br>$$<br>\begin{aligned}<br>&amp; \sum_{i = 1}^{n} i = \frac{1}{2} n (n + 1) \\<br>&amp; \sum_{i = 1}^{n} i^2 = \frac{1}{6} n (n + 1) (2n + 1) \\<br>&amp; \sum_{i = 1}^{n} i^3 = \frac{1}{4} n^2 (n + 1)^2 \\<br>&amp; \sum_{i = 1}^{n} i^4 = \frac{1}{30} n (n + 1) (2n + 1) (3n^2 + 3n - 1) \\<br>&amp; \sum_{i = 1}^{n} i^5 = \frac{1}{12} n^2 (n + 1)^2 (2n^2 + 2n - 1) \\<br>&amp; \sum_{i = 1}^{n} i^6 = \frac{1}{42} n (n + 1) (2n + 1) (3n^4 + 6n^3 - 3n + 1) \\<br>\end{aligned}<br>$$</p>
 <p>对于自然数 $k$ 次幂求和，明显其结果是一个关于 $n$ 的 $k + 1$ 次多项式，可以待定系数法求解</p>
+</li>
+<li><p>对于 $a^x \equiv 1 \pmod n$ ，有解当且仅当 $\gcd(a, n) = 1$ ，且最小整数解 $x$ 一定满足 $x \mid \varphi(n)$ ；证明可以设 $\varphi(n) = kx + r$  ，发现 $r$ 小于 $x$  且 $a^r \equiv 1 \pmod n$  ，只可能 $r = 0$ </p>
+</li>
+<li><p>错排公式： $D(n) = n! * (1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + … + (-1)^n \frac{1}{n!})$ 或者</p>
+<p> $D(n) = (n - 1)(D(n - 1) + D(n - 2))$ ， $D(0) = 1, D(1) = 0$ </p>
 </li>
 </ul>
 <h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><h3 id="哈密尔顿回路"><a href="#哈密尔顿回路" class="headerlink" title="哈密尔顿回路"></a>哈密尔顿回路</h3><p>定义：</p>
@@ -311,8 +316,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E8%AE%BA-%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数论,数学</a>
               <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA-%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数论,数学</a>
               <a href="/tags/%E5%85%B6%E5%AE%83/" rel="tag"><i class="fa fa-tag"></i> 其它</a>
           </div>
 
@@ -403,7 +408,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-count">156</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -416,7 +421,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">132</span>
+        <span class="site-state-item-count">139</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -505,13 +510,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">626k</span>
+    <span title="Symbols count total">706k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">9:29</span>
+    <span title="Reading time total">10:42</span>
 </div>
 
 <div>

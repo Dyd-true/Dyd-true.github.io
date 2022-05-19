@@ -28,7 +28,7 @@
 <meta property="og:description" content="大步小步">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-22T08:04:04.000Z">
-<meta property="article:modified_time" content="2021-12-24T13:58:37.021Z">
+<meta property="article:modified_time" content="2022-04-03T03:16:10.416Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="数论,数学">
 <meta property="article:tag" content="欧拉定理">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-24 21:58:37" itemprop="dateModified" datetime="2021-12-24T21:58:37+08:00">2021-12-24</time>
+                <time title="Modified: 2022-04-03 11:16:10" itemprop="dateModified" datetime="2022-04-03T11:16:10+08:00">2022-04-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -301,6 +301,7 @@
 <p>代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">50000</span>+<span class="number">5</span>,INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!b)&#123;</span><br><span class="line">		x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> d=<span class="built_in">exgcd</span>(b,a%b,y,x);</span><br><span class="line">	y-=a/b*x;</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsgs</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="number">1</span>%p==b%p) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> k=<span class="built_in">sqrt</span>(p)+<span class="number">1</span>;</span><br><span class="line">	map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;ha;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=b%p;i&lt;k;++i)&#123;</span><br><span class="line">		ha[j]=i;</span><br><span class="line">		j=(LL)j*a%p;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ak=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;++i) ak=(LL)ak*a%p;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=ak;i&lt;=k;++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ha.<span class="built_in">find</span>(j)!=ha.<span class="built_in">end</span>()) <span class="keyword">return</span> i*k-ha[j];</span><br><span class="line">		j=(LL)j*ak%p;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -INF;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exbsgs</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">	b=(b%p+p)%p; <span class="comment">//保证b为正数 </span></span><br><span class="line">	<span class="keyword">if</span>(<span class="number">1</span>%p==b%p) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	<span class="keyword">int</span> d=<span class="built_in">exgcd</span>(a,p,x,y);</span><br><span class="line">	<span class="keyword">if</span>(d&gt;<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b%d) <span class="keyword">return</span> -INF;</span><br><span class="line">		<span class="built_in">exgcd</span>(a/d,p/d,x,y);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">exbsgs</span>(a,(LL)b/d*x%(p/d),p/d)+<span class="number">1</span>; <span class="comment">//注意加1 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">bsgs</span>(a,b,p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a,p,b;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;p,&amp;b),a||p||b)&#123;</span><br><span class="line">		<span class="keyword">int</span> ans=<span class="built_in">exbsgs</span>(a,b,p);</span><br><span class="line">		ans&lt;<span class="number">0</span>?<span class="built_in">printf</span>(<span class="string">&quot;No Solution\n&quot;</span>):<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>ps：据说把那两个 <code>return 0</code> 去掉就可以求次大解</p>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3306">随机数生成器</a></p>
 <p>本题的特判较多，我们慢慢分析</p>
 <p>首先是 $a,b$ 可以等于 $0$ ，先特判掉，保证 $a,b&gt;0$ </p>
@@ -412,7 +413,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-count">156</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -425,7 +426,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">132</span>
+        <span class="site-state-item-count">139</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -514,13 +515,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">626k</span>
+    <span title="Symbols count total">706k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">9:29</span>
+    <span title="Reading time total">10:42</span>
 </div>
 
 <div>
