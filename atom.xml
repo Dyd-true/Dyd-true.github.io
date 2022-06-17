@@ -66,9 +66,9 @@
     
     <category term="test" scheme="https://dyd-true.github.io/tags/test/"/>
     
-    <category term="SAM" scheme="https://dyd-true.github.io/tags/SAM/"/>
-    
     <category term="平衡规划" scheme="https://dyd-true.github.io/tags/%E5%B9%B3%E8%A1%A1%E8%A7%84%E5%88%92/"/>
+    
+    <category term="SAM" scheme="https://dyd-true.github.io/tags/SAM/"/>
     
   </entry>
   
@@ -311,9 +311,9 @@
     
     <category term="数论,数学" scheme="https://dyd-true.github.io/tags/%E6%95%B0%E8%AE%BA-%E6%95%B0%E5%AD%A6/"/>
     
-    <category term="CF" scheme="https://dyd-true.github.io/tags/CF/"/>
-    
     <category term="FWT" scheme="https://dyd-true.github.io/tags/FWT/"/>
+    
+    <category term="CF" scheme="https://dyd-true.github.io/tags/CF/"/>
     
   </entry>
   
