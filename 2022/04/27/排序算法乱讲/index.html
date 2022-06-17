@@ -28,7 +28,7 @@
 <meta property="og:description" content="我也不知道为啥这都要讲">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-27T08:23:04.000Z">
-<meta property="article:modified_time" content="2022-05-03T09:09:05.226Z">
+<meta property="article:modified_time" content="2022-06-16T08:51:53.542Z">
 <meta property="article:author" content="Dyd">
 <meta property="article:tag" content="备讲">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-03 17:09:05" itemprop="dateModified" datetime="2022-05-03T17:09:05+08:00">2022-05-03</time>
+                <time title="Modified: 2022-06-16 16:51:53" itemprop="dateModified" datetime="2022-06-16T16:51:53+08:00">2022-06-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,37 +268,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p> 我也不知道为啥这都要讲</p>
-<span id="more"></span>
-
-<h1 id="排序算法乱讲"><a href="#排序算法乱讲" class="headerlink" title="排序算法乱讲"></a>排序算法乱讲</h1><p>我觉得这东西对小朋友们帮助大点，但还是总结一下吧</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于一种排序算法，我将从<strong>稳定性、时空复杂度、特殊性质</strong>这三个方面来（he）阐（bo）述（ke）</p>
-<p>as we all know ，基于比较的排序算法最优时间复杂度为 $O(n \log n)$ ，所以一般我们不讨论时间复杂度高于这个的算法</p>
-<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><p>典型的以空间换时间，故时间复杂度为 $O(n + V)$ ，其中 $V$ 是值域，空间复杂度为 $O(V)$ ，稳定</p>
-<p>代码咕了</p>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p>桶排的问题在于值域太大就没法，基数排序可以缩小值域，所以一般和计数一起用</p>
-<p>但为了放在限制巨佬们的思维，这里给出更一般的形式：先将每个待处理元素分成 $k$ 个关键字，按优先级升序记做 $v_1, v_2, …, v_k$ ，然后依次用一种<strong>稳定排序方法</strong>以每个关键字排序，注意，这里一定要稳定，时间为 $O(kn + \sum V_i)$ ，其中 $V_i$ 为第 $i$ 个关键字的值域大小</p>
-<p>yxc 打 SA 时讲过基数排序，但其实它更常和计数一起用，基数一般取 $65536$ 或 $256$ ，当然，基数排序是稳定的</p>
-<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><p>yyds</p>
-<p>不必说， STL 的板子非常优秀，且时间<strong>不会退化</strong>，因为有三数取中（防有序）、短段插排（优化时间）、三路聚数（防重复元素）、内省（递归过深就换成堆排）等等优化</p>
-<p>值得一提的是，快排可以用来线性求第 $k$ 大， STL 也有，另外还有 <code>std::stable_sort</code> 和 <code>std::partial_sort</code> </p>
-<p>但很可惜，它是不稳定的</p>
-<h2 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h2><p>分治思想，代码重点在双指针合并，可以同时计算逆序对</p>
-<p>稳定排序， $O(n \log n)$ ，但需要额外空间</p>
-<h2 id="堆排"><a href="#堆排" class="headerlink" title="堆排"></a>堆排</h2><p>我还有什么话说呢？</p>
-<p>把原数列调整成堆，然后直接取，不稳定， $O(n \log n)$ ，空间 $O(n)$ </p>
-<p>但有什么意义啊？</p>
-<h2 id="桶排"><a href="#桶排" class="headerlink" title="桶排"></a>桶排</h2><p>桶排不是计数排序！</p>
-<p>对于给定的元素，开 $m$ 个桶，把每个数按照规则放桶里（规则要保证对于桶之间的顺序可求），桶内元素再排序</p>
-<p>类似于 hash，时间完全取决于冲突的个数</p>
-<h2 id="树形选择"><a href="#树形选择" class="headerlink" title="树形选择"></a>树形选择</h2><p>可以理解成直接在这 $n$ 个数上建线段树，然后根上就是最值，取走最值并把叶子上的点改成 $\infty$ ，然后 push up ，重复</p>
-<p>当然，实现的时候不用建出线段树，只要有树形结构就行，修改直接改叶子，时间不是 $O(\log n)$ 而是 $O(1)$ </p>
-<h2 id="一些例题"><a href="#一些例题" class="headerlink" title="一些例题"></a>一些例题</h2><p>其实它们和排序几乎无关~~~</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1966">火柴排队</a></p>
-<p>关键在正确性的证明，用排序不等式</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4364">IIIDX</a></p>
-<p>LT + 二分，不要想当然</p>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="aa930edd23c7e537aeea00706dfb1584cfa5bc07247a22c1003bd0275f475600">00ecddb57144a23e5ecd6181707bef5311aa65efdb382a196010d129fd18ab48fd51aeddb8eb84a03f33bf7cebec1d3fdd1888ee67248ab4c4ece94ea4325e546b41efcbbb569d9729d531dea6b568e321f14aa0c9bcdbf9c2716570839adcec305f00d2161cb41ebc24e454bd4b7eec9e3bce6979f66a6d595a4774172781c9b34339ef84270a276ffa783bb3ba406473e1ef1962057354a62c4c54d8c27ed90ea5d0d52df99637692fb4cfa57a49b0da2b3ef5ae1acf60dc654bb7b4750451c1e309f944a0fde253184c9d0ce5e99635f0535a0d4f1bb647744163e7ea447bb298e8155f11744416266836dcf542046ee5d202305b1b3a128fc90828adbb7a314dccd377ee061f18cd86e0e23a5fdf90237ee41b71ea7ec401404375f6b03a8aefb93a10b2b1fbeb4ac9c683fe6ca80552db616a69c1c21f07e60ebd7b72f311c4f208c096930054f413061741838842806c8b087d99186dff9c4975fe3f2501ba9058b04eea608e8135b74d806a7b76ab0f8b2e49672b1cdb0c82189e757fb42ba8cc2f310ea7332e25cf8e48eb87e448086537d140bf2077e0431a11402e38b5b3b8658587ac1b4df8c83671f32524ed466660a88fc2280850892dbb3a771af328f292c5c8bd00201e32bc771c14f8bc8b558a5ac38d9d1ecc76c9bd8684338db320be956652f1c4500eed12f479760c036dc049fdb8ceae3aad5ed6110f8e0136b03fa49d94aa4787d6f1e824459260052565cbf646024edd7bcb5e9cad78dff457e4914d65acd68efb25e4322f0d6300b09163625eae95d170a503df5d1a57013607e9eacc652ef41d3da2ef992ebaeca8c310777a6a339216b0218c0e060582ffbd7d27acfa1eb5ac30a077043a4c945374ef8900a699402f9fce91b279820c1ca8cadf9d5461d08852b0d955a22731259393eb14e4e381ec9ec5814f1621194383f55691cfae0b7ba2a46cec3a981c607095f6111978ef809ea9dfa74b850eea232178e81de32c753ae2757aec38afa8cff5ce439f5040258e627d006c1b6d1a59d76f7a8575e0226f7d51fb3b3c0b81d7acfa32fe087fe5915a78df9c3f782b6d888d0f3056c57fe425906af92f22c9ed13770ef4cc89c04cf1812ffd8a1313e6edff2f6c74c0019aade1e1ecd991cffb15a562da5b4ddff0383cd65314c33eb8f9639d6c1d1795fe6c46ca53b153b965c4381bd036a087deecc96116bed85662c556bd165f1c5e17b325e607775adee0a1d41f8597e9e7504f5ab31551ddb235e31bdce63fb658b6b15cb4a391ec9d5ceffd941f6c83e363e37df6ed4f3b8497f3ea16143447cddf87b4e81673fde276f851adb4054543aaaeb0df12f95321122767d6d591645e882b13283f6f44ea0e3a43053ea03beadb4aa586f6c6e9f9e353704e3d1707e052c16bcd9a3066453c45acfdd47571719134e4f3f426e26ec07127e482594f17b1d618c58338c926ceac294ac07c5148831093c45b0166c8c64fd6a1ac21ad67973e44079f5a8165dca31009a3bdb7bde32527e25f19a189e7c1795d23f7fe6d26391c217c58be673713e1f03c558c6941f6b3b2bb1f080d7ab96b20a4fb20782a03910982d1a92dddad0d809e17e5836ffb0ebc5233809770cbdc41fa0f4f423ee8bfa1da53f8833e3bb6ae9c270c1a8a479d9c22c93960e5078fea9263eb007a74ab35f93a583d9d33e7350567e2db8d5841368e4d0de94078c7db78dcfe2db21ecba1f223ec1614355e98a7847dd7e0abf558b69a9758d4de947fc01cb5267474c9eba0e7a931d1a27d8f6dddbc94f709551c0623a71843ca73c0d1cbfe0b2aaae3121332bae4d580dceb15eb4d4884ec0f8d5a56c397437a8a0fe8a94bbcefa82a0e86601dca12b2279c992c7e0e44d4912c8140d9935e521baac5301f1d3ec8c733eabbb1c8a60a502514abcd49a2592e46a45baead4bc78e389b74b57bef85258a013b6b9f5ff6d9c2badcff4eff369a3437d82aeb652804f8849b4277001a811072a62d2b552b448904675a080fc58cd3ec5e1396753094919b5c16ebd75773231f5f61a7faedb3400476d6e4e2ac89dd0a659e6d8880d750d8ff9c221095bbe4cea8c3db427670ccec673160f9de1b12343339107639d9b31148ebb5f89014057a3892061c4d268ab2532be97218051a9f0f3b2629b1456aeec922bb224901ac682a5c3110b9e6b3bbfe541d82431c10dcce438b60d74e0ce3df59db2f4ac964dbd058abb7876529ff6d8a1b691fadf61d44c8dce24c2c0e67886a8bcf0c51efe9b0889faf37d22f0d12efe6823d5f28d1fad2ada54de2ef24665a4d9568f020f42482fa40db2d9eeec5423eda3685a8306d4c48e39de65f10f1c367f4c709018606cf152b3a02e959926189965e4f679f65c8987ef308540ae4c0ca4c9c0689489652b99fdddaa5bb57f38a4f0ed086753a8774a614cbc9de55358350465bc3fda7ed12e834e91e26b22449ea48f11d364a89d572a1f29854ecc8fda6525e7f90fad0b67984e96af24c4632d4ce9cc51f907806208b98cab771e79eb575ef3be1cfce32db6f455bae0be2f84078db447471b41c396bd720c604c8bc4af627838f28e3725faca56f3eb11442637e248f0c7c120d3165bb2673227f4ed17c760db882252dccc38915af8fccac9a36d74d817238803fc5bfed9e4b6889ac3df53e69dd76c65f02c01a1feb3efe84967a249718644c6a9dccf1b00e009ffec58049b70b309a432cf982dd22c74ba8f577b2f0a686b1a819f5a9c34c82ecb60a78aba8dfa1017a6d7acc0f83ac457df6ae906f5a3be9200781f0a9fbae9f996e1e97477ce672872eb118642725c6dcd7e18baa843338a96050dfe14989407f47e3aa2b9e0135162a1e8c1c991a8e25fac885b559d0bac3680ad26825ba93fcec9017249a4f4681269ea548a780a3d54a4caa86ecbe2e3e4af2a1f8ea20787b449b2f35c19a1febdd333b26be090bd09e699e765a879067b866ad69864c74f040437534209e89109589e0907cf7e5160118d832638bf482d0281bc5dbbffccc78e5a8bf57e52397bd87a40bfa6b6cd18ba985fdcd089c55219b3fdb8feb0326239099cfe98b60fcc881c564fd60b08019037467eaefa68ecf190e601ad1b255bc655d5a7550da8b1e12d2f7ef55705962526a024eb968e92b29c7b89686172c2f9a27e83923d3929c866c4dc3946bbc58827ae19c87a70beb3fef4527ad4dc8d83f24ebb13b400e89987674f9a6e8af282b0286fc56fca8deb63e0d0e4126ff593f4cbf2e7e4b17dfca7d1fdb3d37336a5d092b050c2c663fb9a41e412dd21929814282fd6cc5a26aac842263137e37e67a257ae9d89164ca7b86cfc9a0bbc63fa72d3c0e131e0d4914cf3c2b2f3ea57c5ea60c38dd4fab50a7bd9f922d7d57c0678f7e741c5ae2491438149614605f9a6202eb181d73e12c52f7e44b2fb125cd43ac36764f9aeb77621819f285b11a45823e6e21da2a87d2d6c105ac13bd14da3440241381ca9b7c6f6714e013d27c51c28e9e504597127451d28bf1d0b60b59a67df3ad4ff20e2a076c8e5db64f98f72c1d86e5be83da970fc72c7a0d8752c82dce4d623aa4788f012d22089310dc97befb8005506f761600bbd81ee27eaae4f8d6172d6a3c0eb3130b3409b223e8725f0c10866f2166aef39f65ca7457ed7adde8e94914448049680079aee40bd0d2eed2be8096816b03bbdc8b066894f29c962fa6d58e4e25bff91b6fbea044cd7418750261ff92570be7534aa8dff35258b975bf45b7d4a1831b440a0e84f446ba8ad4c1070d76c6913d608291e3db4a6e47abea5822df3c2ed739bd940f85799883a53841f5f7c3b7fd0f46a27a9020dc4be1a64287474ac1c97f4ae6d8401e31ad573b5e6fff9869006a8f1743375f5db8aedb3445b1d1f05346b2a87938f84572dc7b01edca5cb9aedc538ad0874ca56c8de046c6cf36b2074f57acbcd0f43405cb318dfec8a5bcd96d4ae28b1c5a42563970440c37ff806ecb8f64d39ab00c4ffe45fd9b4c307e37a97c0a8a3ecceba63bf00739d6eef4ea26c65baf7adc07654b082e1038ab14e7dd6a773b38170d84a124b717d58b4072d9d74236af197ddfb53abdad365d710b8dbc4cfb383463815c704252d9a5b282550d9142fda55ef7f6f8b3ec903e346fb0a60ca390232a494acdb8c8822ac522a0496afc3fbe5a5db2388f49e143d79957bd230fc1c6636a8031d5621e43883a4911e840dcbf4747e296a44f6cd7873cd405b334ee9bd50e1ae35bc50ff3a94d67be1e5fa457db2706d7718de8786fa3a39a4ac275e4941e7652b367f04ee11afe350b9e266339d6708e4f07a04345d4e7ac525d25f7a8f9edab28be3f6db95707b51b292d3a386b6873f9079bdb30a6f3ad8874cc348567bf9a7a9c243b849324372f9b440712b2c25087dae1b1bc885240c18a77186d61218392d94563f37c4e8121f7ca247a800f042827b206a0fa7dc2ef98418aed161c3a1a789fc5031187d8f0febc2edc41ed3de4c81af63642f1f5aad4460ac97ed4a771901d01d23008c11277b214418236ccb942ad65413a3c40db12d52cc77cf5cf242e3fef2dcd625bbe50ba0bc161409dd29af71ee005da819c0435c32732d538e47a4bcb34bf8dab240218005a0e0e76be9e201d0f4c4a1da522366af165d86f1bc741d490af34f247d75be08c89ad3adbe1002926d56eb2b00813ca56c18c0ef7e6fd89ef03c4e86acacd09166166323d56969d26ab6fb0ca1eb1d853f3ee0ff88460205a0841706a9b9bfa79ce5b2e90261e518ef956a162c7b2005b1832524261284d8918182aaf4ae082c9fccbb30e4f0c4616c2f6e20ec0e34d7df240997ef57d7f262b6b3570222a98cb7de413e2999ee0a2dbeed618ad693df58e5fe203cc9da270f2634d2ad742f657456306b138c60051b166061e3a60f3f070adc1b7862e91a88fd2b130dd82445093f6ad79470a9f1d6b212727ace25264d56e4a22ab275cb436eb68232b698bfc897bc09ce482ba0a4e521557630a1dc4e553b23d6a5c5f83088c1f8f50a1576ccfe7a97be5b76dad0dadedc41a67c20962f0c9c1598e98a8ee6d73050ac673611a3f0bd6eb895582021779317f68bfa4abdff837d7fa937afc63b4c66ceb5a3e53ef867d6723d839a3e1e30b28d52eb47d949d0a1ce1719f6218ebf83364940efd839f1843224bd353a698477f8895189e40f69ce6622f866fc1d19ce111df04e01c7b7cf87a639f1e04a01336d1e836244fc337017bcc8092614b148710f594bd5986dd12ce2003aa12dbfbd2a1470baa151809ed891ab21fb6b29a54fe4d5aeae08aaba3eb7368a080fc26aa4ba82af73ab55466289fb9515ac966dd13d6f942340f3ecea6f117fa828409ccf4503c07be9de22ff79e43e6a8c1472d3b00ce159601c4e6ef21879ed99c0a9a0b49f1f0ad837e1a4d552cb51af6e7f1a3d951a44798fe411a5d0a57a6f060886578251945</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Dydは、パスワードを入力するように求められます</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -382,7 +363,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%B1%E8%AE%B2"><span class="nav-number">1.</span> <span class="nav-text">排序算法乱讲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">1.3.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8E%92"><span class="nav-number">1.4.</span> <span class="nav-text">快排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6"><span class="nav-number">1.5.</span> <span class="nav-text">归并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E6%8E%92"><span class="nav-number">1.6.</span> <span class="nav-text">堆排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%B6%E6%8E%92"><span class="nav-number">1.7.</span> <span class="nav-text">桶排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2%E9%80%89%E6%8B%A9"><span class="nav-number">1.8.</span> <span class="nav-text">树形选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%BE%8B%E9%A2%98"><span class="nav-number">1.9.</span> <span class="nav-text">一些例题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-count">176</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -411,7 +391,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">146</span>
+        <span class="site-state-item-count">151</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -500,13 +480,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">812k</span>
+    <span title="Symbols count total">861k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">12:18</span>
+    <span title="Reading time total">13:03</span>
 </div>
 
 <div>
