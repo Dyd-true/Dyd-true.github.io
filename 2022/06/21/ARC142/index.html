@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dyd-true.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="蒟蒻的第二次 ARC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARC142">
+<meta property="og:url" content="https://dyd-true.github.io/2022/06/21/ARC142/index.html">
+<meta property="og:site_name" content="Dyd&#39;s Blog">
+<meta property="og:description" content="蒟蒻的第二次 ARC">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/PuwqnVyDpEjvcbC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/aDy5X3dJzwQimGP.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/21/FkvQEhLIdJzj2W1.png">
+<meta property="article:published_time" content="2022-06-21T03:56:09.000Z">
+<meta property="article:modified_time" content="2022-06-22T00:42:20.530Z">
+<meta property="article:author" content="Dyd">
+<meta property="article:tag" content="AtCoder">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="test">
+<meta property="article:tag" content="构造">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/21/PuwqnVyDpEjvcbC.png">
+
+<link rel="canonical" href="https://dyd-true.github.io/2022/06/21/ARC142/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>ARC142 | Dyd's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Dyd's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dyd's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">He who has a strong enough why can bear almost any how.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Dyd-true" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://dyd-true.github.io/2022/06/21/ARC142/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Dyd">
+      <meta itemprop="description" content="一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dyd's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ARC142
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-06-21 11:56:09" itemprop="dateCreated datePublished" datetime="2022-06-21T11:56:09+08:00">2022-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-22 08:42:20" itemprop="dateModified" datetime="2022-06-22T08:42:20+08:00">2022-06-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/test/" itemprop="url" rel="index"><span itemprop="name">test</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 蒟蒻的第二次 ARC </p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc142">link</a></p>
+<h2 id="result"><a href="#result" class="headerlink" title="result"></a>result</h2><p><img src="https://s2.loli.net/2022/06/21/PuwqnVyDpEjvcbC.png" alt="res"></p>
+<p>只能说我太弱了（差一点就掉 rating），但有幸和 <strong>tourist</strong> 打同场还是比较开心，发现那些人手速都好快啊，有个人和我做的题一样，但 19:12 就打完了（此时我一道题都还没做）</p>
+<h2 id="During"><a href="#During" class="headerlink" title="During"></a>During</h2><p>一进去， A 题比我想象的难（虽然其实很简单），思路大概就是把这个数和反过来的数分别加 $0$ 直到比 $n$ 大，但几个细节都没想清楚， WA 了三发就去看 B 了</p>
+<p> B 感觉比 A 简单，因为发现只有周围是 $8$ 个全满的才有可能不满足（其它位置周围都是奇数），看样例就发现只要上一行比下一行大，然后本行中一大一小交替即可</p>
+<p>AC 了 B 以后同机房有人过了 A ，他告诉我如果原数 $x$ 反转后 $x’ &lt; x$ 就没有方案，因为原题中那个函数定义的是最小的，我仔细一看好像是的，就判了一下，结果还是 WA ，就一边问一边看 C ，在 C 有个大概思路的时候发现了 A 的问题：我求原数反转求错了！直接改掉过了 A （吃了 $5$ 发罚时我也是醉了）</p>
+<p> C 我的大概思路就是直接问每个点到 $1, 2$ 的距离，如果 $1, 2$ 没有直接相连那答案就是 $\min(dis(u, 1) + dis(u, 2))$ ；如果每个 $u$ 都满足 $\mid dis(u,  1) - dis(u, 2) \mid == 1$ 我就认为 $1, 2$ 直接相连，因为 A 的罚时有点多， 我没多想就交了，一看， WA 一个点！蒙都知道是 $1, 2$ 直接相连判断错了，然后仔细一想，自己 hack 了自己：<img src="https://s2.loli.net/2022/06/21/aDy5X3dJzwQimGP.png" alt="hack"></p>
+<p>上图的情况下我的思路会判断成 $1, 2$ 直接相连，并且发现能 hack 我的情况只有上面那个 $1, 2$ 中间两个点（那两个点上可能还有点），并且由于我上面只问了 $2n - 4$ 次，就直接找到这两个点，然后问它们的距离，如果为 $1$ 就是 hack 的情况，输出 $3$ ，最离谱的是期间因为交互题没 <code>fflush(stdout)</code> TLE 了两发（血亏），不管怎样终于 AC 了</p>
+<p>这里同机房的 l18q 巨佬有个很好的思路： $\mid dis(u, 1) - dis(u, 2) \mid$ 和 $dis(u, 1) + dis(u, 2)$ 中必有一个是 $1, 2$ 之间的距离，所以他也询问 $2n - 4$ 次，统计次数，出现恰好一半的就是答案，但特殊情况有两个，他只考虑到了前者，所以考场上挂的有点多：<img src="https://s2.loli.net/2022/06/21/FkvQEhLIdJzj2W1.png" alt="hack2"></p>
+<p>上面就是两种特殊情况，第一种直接判断如果有点 $dis(u, 1) == dis(u, 2)$ 那答案就是两个相加；第二种有点麻烦，因为统计出来距离为 $1, 2$ 各占一半，解决方法就是随便取两个相对点问一下距离，如果是 $3$ 答案就是 $1$ </p>
+<p>搞完 C 去看了一眼榜， <del>第一不是 tourist 把我惊呆了</del> ，发现大部分人都过了 ABC 在搞 DEF ，感觉搞出一道排名就会很好看 <del>这不废话</del> ，虽然 D 过的人多，但我感觉没看懂题就去看 E ，想了半天决定贪心 + 退火乱搞，几乎卡着时间打（开打的时候只有 $20min$ 了）完改了几次参数没退过去</p>
+<h2 id="After"><a href="#After" class="headerlink" title="After"></a>After</h2><p>隔了一天来改题</p>
+<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><p>认真读了下题，理清了题意，有点后悔考场上去打 E ，但也就一点点，因为这题也好难啊</p>
+<p>首先考虑可以进行无限多次操作，我们考虑一条路径，它的所有顶点中只有一个端点上没有棋子，那么显然这些棋子可以在该路径上一直来回，无限多次的条件就被满足了，但唯一性还没满足，不唯一显然是一个路径上有点走到外面去了，那么该路径有棋子的某个点连向某条路径有棋子的端点（这样那个端点走后就给这个点留出位置）</p>
+<p>于是考虑树形 dp 求出将树划分成若干条上述路径的方案数，显然这就是答案，问题在于状态和转移，我们称有棋子的端点为“占”，无其中的端点为“空”，发现一共有 $5$ 中情况：</p>
+<ul>
+<li>该点所在路径的占在上面，空在该点或其子树内</li>
+<li>该点所在路径的空在上面，占在该点或其子树内</li>
+<li>该点就是占，空在子树内</li>
+<li>该点就是空，占在子树内</li>
+<li>占、空都在子树内</li>
+</ul>
+<p>那么设其为 $d[x, 0/1/2/3/4]$ ，显然转移为 $y$ 是 $x$ 的儿子， $y’, y’’$ 是任意一个 $y$ ：<br>$$<br>\begin{aligned}<br>&amp; d[x, 0] += \prod d[y, 2] \\<br>&amp; d[x, 0] += d[y’, 0] * \prod d[y, 4] \\<br>&amp; d[x, 1] += \prod d[y, 3] \\<br>&amp; d[x, 1] += d[y’, 1] * \prod d[y, 4] \\<br>&amp; d[x, 2] += d[y’, 0] * \prod d[y, 3] \\<br>&amp; d[x, 3] += d[y’, 1] * \prod d[y, 2] \\<br>&amp; d[x, 4] += d[y’, 0] * d[y’, 1] * \prod d[y, 4] \\<br>\end{aligned}<br>$$<br>发现 $1$ 和 $2$ 、 $3$ 和 $4$ 是对称的，放案数相同，把它们放在一起 dp ，注意合并 $1, 2$ 后 $4$ 计算完后要乘二，因为可以交换，另外，写的时候当然不是考虑哪个儿子做 $y’, y’’$ 而是枚举到每个儿子时，讨论它已经选好了 $y’, y’’$ 和选当前儿子做 $y’, y’’$ </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> LL = <span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e5</span> + <span class="number">100</span>, P = <span class="number">998244353</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span> <span class="keyword">int</span> ne, ver; &#125; e[N &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> h[N], idx = <span class="number">0</span>, n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123; e[idx] = &#123;h[x], y&#125;, h[x] = idx++; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">adj</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; x += (x &gt;&gt; <span class="number">31</span>) &amp; P; &#125;</span><br><span class="line"><span class="function">std::array&lt;<span class="keyword">int</span>, 3&gt; <span class="title">dp</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa)</span> <span class="comment">//return ([0/1], [2/3], 4)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::array&lt;<span class="keyword">int</span>, 3&gt; d, f; <span class="comment">//f:d[4]的辅助,d[2/3]的积,d[4]的积</span></span><br><span class="line">    d = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, f = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x], y; ~i; i = e[i].ne) <span class="keyword">if</span> ((y = e[i].ver) != fa)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> dy = <span class="built_in">dp</span>(y, x);</span><br><span class="line">        d[<span class="number">0</span>] = <span class="built_in">LL</span>(d[<span class="number">0</span>]) * dy[<span class="number">2</span>] % P;</span><br><span class="line">        <span class="built_in">adj</span>(d[<span class="number">0</span>] += <span class="built_in">LL</span>(f[<span class="number">2</span>]) * dy[<span class="number">0</span>] % P - P);</span><br><span class="line">        d[<span class="number">1</span>] = <span class="built_in">LL</span>(d[<span class="number">1</span>]) * dy[<span class="number">1</span>] % P;</span><br><span class="line">        <span class="built_in">adj</span>(d[<span class="number">1</span>] += <span class="built_in">LL</span>(f[<span class="number">1</span>]) * dy[<span class="number">0</span>] % P - P);</span><br><span class="line">        d[<span class="number">2</span>] = <span class="built_in">LL</span>(d[<span class="number">2</span>]) * dy[<span class="number">2</span>] % P;</span><br><span class="line">        <span class="built_in">adj</span>(d[<span class="number">2</span>] += <span class="built_in">LL</span>(f[<span class="number">0</span>]) * dy[<span class="number">0</span>] % P - P);</span><br><span class="line">        f[<span class="number">0</span>] = <span class="built_in">LL</span>(f[<span class="number">0</span>]) * dy[<span class="number">2</span>] % P;</span><br><span class="line">        <span class="built_in">adj</span>(f[<span class="number">0</span>] += <span class="built_in">LL</span>(f[<span class="number">2</span>]) * dy[<span class="number">0</span>] % P - P);</span><br><span class="line">        f[<span class="number">1</span>] = <span class="built_in">LL</span>(f[<span class="number">1</span>]) * dy[<span class="number">1</span>] % P;</span><br><span class="line">        f[<span class="number">2</span>] = <span class="built_in">LL</span>(f[<span class="number">2</span>]) * dy[<span class="number">2</span>] % P;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">adj</span>(d[<span class="number">0</span>] += f[<span class="number">1</span>] - P), <span class="built_in">adj</span>(d[<span class="number">2</span>] += d[<span class="number">2</span>] - P);</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    std::<span class="built_in">memset</span>(h + <span class="number">1</span>, <span class="number">-1</span>, n &lt;&lt; <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, u, v; i &lt; n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">        <span class="built_in">add</span>(u, v), <span class="built_in">add</span>(v, u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">auto</span> ans = <span class="built_in">dp</span>(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, (<span class="built_in">LL</span>(ans[<span class="number">1</span>]) * <span class="number">2</span> + ans[<span class="number">2</span>]) % P);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><p>考场上鬼的退火，没搞成，正解似乎是网络流，个人感觉是最难的，因为那个建图好难想 <del>网络流弱鸡一只</del></p>
+<p>首先对于每一对 $x, y$ ，把 $a_x, a_y$ 加至大于等于 $\min(b_x, b_y)$ 显然这是对的，然后，建图如下：</p>
+<ol>
+<li>建立源点、汇点 $S, T$ </li>
+<li>建立 $n$ 个点代表 $x$ 自己</li>
+<li>建立 $n * 100$ 个点 $(y, i)$ 代表 $a_y$ 要 $\ge i$ </li>
+<li>对于所有 $x$ ，连边 $S \to x$ ，权值为 $b_x - a_x$ ，代表 $x$ 要自己打败自己的怪兽</li>
+<li>对于所有询问的 $(x, y)$ ，连边 $x \to (y, b_x -a_y)$ ，权值为 $\infty$ ，代表由 $y$ 打败 $x$ 的怪兽</li>
+<li>对于所有 $(y, i)$ 连边 $(y, i) \to (y, i - 1)$ ，权为 $\infty$ ，代表满足 $(y, i)$ 就满足 $(y, i - 1)$ </li>
+<li>对于所有 $(y, i)$ 连边 $(y, i) \to T$ 权值为 $1$ </li>
+</ol>
+<p>当然，上面所有建立的边、点都是在该怪兽还没被打表的前提下，所以不会有负权边</p>
+<p>考虑时间，记 $A$ 为 $a, b$ 的最大值，最大流量是 $O(nA)$ ，而边数是 $O(n^2 + nA)$ ，所以复杂度是 $O(n^3A + n^2A^2)$ </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100</span> + <span class="number">50</span>, A = <span class="number">100</span> + <span class="number">50</span>, INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, ans = <span class="number">0</span>, a[N], b[N];</span><br><span class="line"><span class="keyword">bool</span> mp[N][N];</span><br><span class="line"><span class="keyword">int</span> S, T, h[N + A * N], idx = <span class="number">0</span>, q[N + A * N], hh, tt, dep[N + A * N], cur[N + A * N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span> <span class="keyword">int</span> ne, ver, w; &#125; e[(N * N + N * A) &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span>&#123; e[idx] = &#123;h[x], y, z&#125;, h[x] = idx++; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dad</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span>&#123; <span class="built_in">add</span>(x, y, z), <span class="built_in">add</span>(y, x, <span class="number">0</span>); &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> i)</span></span>&#123; <span class="keyword">return</span> n + <span class="number">100</span> * (x - <span class="number">1</span>) + i; &#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    hh = tt = <span class="number">1</span>;</span><br><span class="line">    std::<span class="built_in">memset</span>(dep, <span class="number">0</span>, (T + <span class="number">1</span>) * <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));</span><br><span class="line">    q[dep[S] = <span class="number">1</span>] = S, cur[S] = h[S];</span><br><span class="line">    <span class="keyword">while</span> (hh &lt;= tt)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x = q[hh++];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x], y; ~i; i = e[i].ne) <span class="keyword">if</span> (!dep[y = e[i].ver] &amp;&amp; e[i].w)</span><br><span class="line">        &#123;</span><br><span class="line">            dep[y] = dep[x] + <span class="number">1</span>, cur[y] = h[y];</span><br><span class="line">            <span class="keyword">if</span> (y == T) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            q[++tt] = y;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> lim)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == T) <span class="keyword">return</span> lim;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = cur[x], y, t; ~i &amp;&amp; res &lt; lim; i = e[i].ne)</span><br><span class="line">    &#123;</span><br><span class="line">        cur[x] = i;</span><br><span class="line">        <span class="keyword">if</span> (dep[y = e[i].ver] == dep[x] + <span class="number">1</span> &amp;&amp; e[i].w)</span><br><span class="line">        &#123;</span><br><span class="line">            t = <span class="built_in">find</span>(y, std::<span class="built_in">min</span>(e[i].w, lim - res));</span><br><span class="line">            <span class="keyword">if</span> (!t) dep[y] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> e[i].w -= t, e[i ^ <span class="number">1</span>].w += t, res += t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> flow, res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">bfs</span>())</span><br><span class="line">        <span class="keyword">while</span> (flow = <span class="built_in">find</span>(S, INF)) res += flow;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;a[i], &amp;b[i]);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, x, y, z; i &lt;= m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x, &amp;y);</span><br><span class="line">        z = std::<span class="built_in">min</span>(b[x], b[y]);</span><br><span class="line">        <span class="keyword">if</span> (a[x] &lt; z) ans += z - a[x], a[x] = z;</span><br><span class="line">        <span class="keyword">if</span> (a[y] &lt; z) ans += z - a[y], a[y] = z;</span><br><span class="line">        mp[x][y] = mp[y][x] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    S = <span class="built_in">id</span>(n + <span class="number">1</span>, <span class="number">1</span>), T = S + <span class="number">1</span>;</span><br><span class="line">    std::<span class="built_in">memset</span>(h, <span class="number">-1</span>, (T + <span class="number">1</span>) * <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="keyword">if</span> (b[i] &gt; a[i]) <span class="built_in">dad</span>(S, i, b[i] - a[i]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) <span class="keyword">if</span> (mp[i][j] &amp;&amp; b[i] &gt; a[j]) <span class="built_in">dad</span>(i, <span class="built_in">id</span>(j, b[i] - a[j]), INF);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= <span class="number">100</span>; ++j) <span class="built_in">dad</span>(<span class="built_in">id</span>(i, j), <span class="built_in">id</span>(i, j - <span class="number">1</span>), INF);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">100</span>; ++j) <span class="built_in">dad</span>(<span class="built_in">id</span>(i, j), T, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans + <span class="built_in">dinic</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="F"><a href="#F" class="headerlink" title="F"></a>F</h3><p> $O(n^3)$ 的暴力 dp 比较显然，设 $d[i, j, k]$ 表示“前 $i$ 次操作， $X$ 有 $j$ 的魔法值， $Y$ 有 $k$ 的魔法值的最大伤害”，直接 dp 即可</p>
+<p>正解的话，发现设 $X$ 进行了 $C_X$ 次攻击，分别是第 $x_1, x_2, …, x_{C_X}$ 次那么其贡献为 $\sum x_i - \frac{(C_X + 1)C_X}{2}$ ，所以，最后答案是 $\sum x_i + \sum y_i - \frac{(C_X + 1)C_X}{2} - \frac{(C_Y + 1)C_Y}{2}$ ，现在，我们把操作分成 $5$ 类，考虑它们的影响， 对于本个 $i$ ：</p>
+<ol>
+<li> $X, Y$ 的选则已经固定，我们无法改变，直接计算即可</li>
+<li> $X, Y$ 的选则都不固定，且相反： $\sum x_i + \sum y_i$ 一定会 $+i$ ，问题是 $C_X, C_Y$ 谁 $+1$ </li>
+<li> $X, Y$ 的选则都不固定，且相同：要么 $\sum x_i + \sum y_i += 2i$ 且 $C_X, C_Y += 1$ ，要么没有影响</li>
+<li> $X$ 的选则固定了：要么 $\sum x_i + \sum y_i += i$ 且 $C_Y += 1$ ，要么没有影响</li>
+<li> $Y$ 的选则固定了：要么 $\sum x_i + \sum y_i += i$ 且 $C_X += 1$ ，要么没有影响</li>
+</ol>
+<p>直接选显然 sb ，发现当 $1, 2, 3$ 都确定了的时候， $4/5$ 其实可以贪心选，且决策只与 $C_Y/C_X$ 有关，不妨预处理；然后对于 $2$ 枚举有多少个 $C_X + 1$ ，再对于 $3$ 枚举有多少个有影响，最后统计一下答案，总时间 $O(n^2)$ ；需要注意的就是 $1, 4,5$ 中固定的贡献是没有选则必须计算的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">8000</span> + <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n, as, cx1, cy1, ans, cx, cy;</span><br><span class="line">std::vector&lt;<span class="keyword">int</span>&gt; typ[<span class="number">6</span>];</span><br><span class="line"><span class="keyword">int</span> dt3[N], dt4[N], dt5[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> c)</span></span>&#123; <span class="keyword">return</span> (c * (c + <span class="number">1</span>)) &gt;&gt; <span class="number">1</span>; &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calc</span><span class="params">(std::vector&lt;<span class="keyword">int</span>&gt; &amp;tp, <span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>, t = <span class="built_in">get</span>(c + <span class="number">1</span>) - <span class="built_in">get</span>(c);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p : tp)</span><br><span class="line">        <span class="keyword">if</span> (p &gt; t)</span><br><span class="line">        &#123;</span><br><span class="line">            res += p - t;</span><br><span class="line">            ++c, t = <span class="built_in">get</span>(c + <span class="number">1</span>) - <span class="built_in">get</span>(c);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n), as = cx1 = cy1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, a, b, c, d; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c, &amp;d);</span><br><span class="line">        <span class="keyword">if</span> (a == c)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">2</span>) as += i, ++cx1;</span><br><span class="line">            <span class="keyword">if</span> (b != d) typ[<span class="number">4</span>].<span class="built_in">pb</span>(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (b == <span class="number">2</span>) as += i, ++cy1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (b == d)</span><br><span class="line">            &#123;</span><br><span class="line">                typ[<span class="number">5</span>].<span class="built_in">pb</span>(i);</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">2</span>) as += i, ++cy1;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (a == b) typ[<span class="number">3</span>].<span class="built_in">pb</span>(i);</span><br><span class="line">            <span class="keyword">else</span> typ[<span class="number">2</span>].<span class="built_in">pb</span>(i), as += i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">5</span>; ++i) <span class="keyword">if</span> (typ[i].<span class="built_in">size</span>()) std::<span class="built_in">reverse</span>(typ[i].<span class="built_in">begin</span>(), typ[i].<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) dt4[i] = <span class="built_in">calc</span>(typ[<span class="number">4</span>], i);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) dt5[i] = <span class="built_in">calc</span>(typ[<span class="number">5</span>], i);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; typ[<span class="number">3</span>].<span class="built_in">size</span>(); ++i) dt3[i + <span class="number">1</span>] = dt3[i] + (typ[<span class="number">3</span>][i] &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = typ[<span class="number">2</span>].<span class="built_in">size</span>(), t; ~i; --i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = typ[<span class="number">3</span>].<span class="built_in">size</span>(); ~j; --j)</span><br><span class="line">        &#123;</span><br><span class="line">            cx = cx1 + i + j, cy = cy1 + typ[<span class="number">2</span>].<span class="built_in">size</span>() - i + j, t = as + dt3[j];</span><br><span class="line">            t -= <span class="built_in">get</span>(cx) + <span class="built_in">get</span>(cy);</span><br><span class="line">            t += dt4[cy] + dt5[cx];</span><br><span class="line">            ans = std::<span class="built_in">max</span>(ans, t);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/AtCoder/" rel="tag"><i class="fa fa-tag"></i> AtCoder</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/test/" rel="tag"><i class="fa fa-tag"></i> test</a>
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/21/%E6%9D%9C%E6%95%99%E7%AD%9B/" rel="prev" title="杜教筛">
+      <i class="fa fa-chevron-left"></i> 杜教筛
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E8%BE%B9%E5%88%86%E6%B2%BB/" rel="next" title="边分治">
+      边分治 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">1.</span> <span class="nav-text">result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#During"><span class="nav-number">2.</span> <span class="nav-text">During</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#After"><span class="nav-number">3.</span> <span class="nav-text">After</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#D"><span class="nav-number">3.1.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E"><span class="nav-number">3.2.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F"><span class="nav-number">3.3.</span> <span class="nav-text">F</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Dyd"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Dyd</p>
+  <div class="site-description" itemprop="description">一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">184</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">157</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Dyd-true" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Dyd-true" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2741501882@qq.com" title="E-Mail → mailto:2741501882@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sighttp.qq.com/msgrd?v=1&uin=2741501882" title="QQ → https:&#x2F;&#x2F;sighttp.qq.com&#x2F;msgrd?v&#x3D;1&amp;uin&#x3D;2741501882" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/141393" title="LuoGu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;141393" rel="noopener" target="_blank"><i class=" fa-fw"></i>LuoGu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      some of my mates
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.pigaunt.top/" title="https:&#x2F;&#x2F;www.pigaunt.top" rel="noopener" target="_blank">PigAunt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hewo233.blog.luogu.org/" title="https:&#x2F;&#x2F;hewo233.blog.luogu.org" rel="noopener" target="_blank">Hewo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wiki.pigaunt.top/" title="https:&#x2F;&#x2F;wiki.pigaunt.top" rel="noopener" target="_blank">PekingOpera</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io" rel="noopener" target="_blank">lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io" rel="noopener" target="_blank">RuSun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dyd</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">917k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">13:53</span>
+</div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "The site has running for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://dyd-true.github.io/mathjax/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
