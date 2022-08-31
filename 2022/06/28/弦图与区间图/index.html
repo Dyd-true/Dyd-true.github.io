@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dyd-true.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="特殊图上的 NP-Hard 问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="弦图与区间图">
+<meta property="og:url" content="https://dyd-true.github.io/2022/06/28/%E5%BC%A6%E5%9B%BE%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%9B%BE/index.html">
+<meta property="og:site_name" content="Dyd&#39;s Blog">
+<meta property="og:description" content="特殊图上的 NP-Hard 问题">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/06/28/xwtaQMNsdlfEh4q.png">
+<meta property="article:published_time" content="2022-06-28T01:35:04.000Z">
+<meta property="article:modified_time" content="2022-06-28T11:45:22.488Z">
+<meta property="article:author" content="Dyd">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="暴力">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/28/xwtaQMNsdlfEh4q.png">
+
+<link rel="canonical" href="https://dyd-true.github.io/2022/06/28/%E5%BC%A6%E5%9B%BE%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%9B%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>弦图与区间图 | Dyd's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Dyd's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dyd's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">He who has a strong enough why can bear almost any how.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/Dyd-true" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://dyd-true.github.io/2022/06/28/%E5%BC%A6%E5%9B%BE%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Dyd">
+      <meta itemprop="description" content="一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dyd's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          弦图与区间图
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-06-28 09:35:04 / Modified: 19:45:22" itemprop="dateCreated datePublished" datetime="2022-06-28T09:35:04+08:00">2022-06-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 特殊图上的 NP-Hard 问题</p>
+<span id="more"></span>
+
+<h1 id="弦图与区间图"><a href="#弦图与区间图" class="headerlink" title="弦图与区间图"></a>弦图与区间图</h1><p>考试的时候遇到了，就来看看，以下内容除代码外大部分来自 OIWiki 和 CDQ 的讲稿</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>对于图 $G = (V, E)$ </p>
+<ul>
+<li><strong>子图</strong>：若图 $G’ = (V’, E’)$ 满足 $E’ \subseteq E, V’ \subseteq V$ ，则称 $G’$ 为 $G$ 的子图</li>
+<li><strong>导出子图（诱导子图）</strong>：若$G$ 的一个子图 $G’ = (V’, E’)$ 满足 $\forall u, v \in V’, (u, v) \in E’$ 则称 $G’$ 为 $G$ 的一个导出子图</li>
+<li><strong>相邻点</strong>：与 $x$ 直接相连的点为其相邻点， $x$ 的相邻点集记作 $N(x)$ </li>
+<li><strong>团</strong>：图的完全子图</li>
+<li><strong>极大团</strong>：不是其它任何团的子图的团</li>
+<li><strong>最大团</strong>：一个图的所有团中点数最多的一个；其点数记作 $\omega(G)$ </li>
+<li><strong>最小染色</strong>：用最少的颜色给点染色使得所有边连接的两点颜色不同；其颜色数记作 $\chi(G)$ </li>
+<li><strong>最大独立集</strong>：最大的点集使得点集中任意两点都没有边直接相连；该集合的大小记为 $\alpha(G)$ </li>
+<li><strong>最小团覆盖</strong>：用最少的团覆盖所有的点；使用团的数量记为 $\kappa(G)$ </li>
+<li><strong>弦</strong>：连接环中不相邻两点的边</li>
+<li><strong>弦图（三角化图）</strong>：任意长度大于 $3$ 的环都有一个弦的图称为弦图</li>
+<li><strong>点割集</strong>：对于图上两点 $u, v$ ，其点割集是 $V$ 的一个子集且满足删除点割集后 $u, v$ 不联通</li>
+<li><strong>极小点割集</strong>：该点割集的任意一个真子集都不是点割集</li>
+</ul>
+<h2 id="一些引理、定理、推论"><a href="#一些引理、定理、推论" class="headerlink" title="一些引理、定理、推论"></a>一些引理、定理、推论</h2><p><strong>Theorem1</strong> ： $\omega(G) \le \chi(G)$ ：对最大团染色需要 $\omega(G)$ 种颜色</p>
+<p><strong>Theorem2</strong> ： $\alpha(G) \le \kappa(G)$ ：每个团中最多选一个点进入最大独立集</p>
+<p><strong>Lemma1</strong> ： 弦图的任意导出子图一定是弦图：导出子图的环必定来自原图</p>
+<p><strong>Corollary1</strong> ：弦图的任意导出子图一定不可能是一个点数大于 $3$ 的环：同上</p>
+<p><strong>Lemma2</strong> ：图关于 $u, v$ 的点割集将原图分成若干联通块，设包含 $u, v$ 的联通块分别为 $U, V$ ，对于 $u, v$ 的极小点割集中的任意一点 $x$ ，$N(x)$ 中一定包含 $U, V$ 中的点：若不包含，在极小点割集中删去 $x$ 也不会使 $U, V$ 联通</p>
+<p><strong>Theorem3</strong> ：弦图上任意两点间的极小点割集的导出子图一定为一个团：</p>
+<p>若点割集大小 $\le 1$ 显然成立</p>
+<p>否则，任取 $x, y$ 属于点割集，由 Lemma2 知 $N(x)$ 中必有在 $U, V$ 中的点，设其为 $x_1, x_2$ ，类似设 $y_1, y_2$ （注意可能 $x_1 = y_1, x_2 = y_2$ ），由于 $U, V$ 为联通块，则原图上存在一个由 $x_1$ 到 $y_1$ 的最短路， $x_2$ 到 $y_2$ 的最短路，  $x, y$ 构成的环 $x - x_1 \sim y_1 - y - y_2 \sim x_2 - y$ ，注意道这个环大小 $\ge 4$ ，根据弦图的定义，此时该环上一定存在一条弦，若这条弦连接了两个连通块，则点集不是点割集；若这条弦连接了单个连通块内部的两个点或一个连通块内部的一个点和一个点割集上的点，都不满足最短路的性质；所以这条弦只能连接 $x, y$ </p>
+<p>由此，可证弦图中每个极小点割集中的两点都有边直接相连，故引理得证</p>
+<h2 id="判定弦图"><a href="#判定弦图" class="headerlink" title="判定弦图"></a>判定弦图</h2><p>为了判定弦图，我们再引入两个定义：</p>
+<ul>
+<li><strong>单纯点</strong>：若 $N(x) + \{x\}$ 的导出子图为一个团，则称 $x$ 为一个单纯点</li>
+<li><strong>完美消除序列</strong>：令 $n = \mid V \mid$ ，完美消除序列为一个 $1 \sim n$ 的排列 $v_1, v_2, …, v_n$ 满足 $v_i$ 在 $\{v_i, v_{i + 1}, …, v_n\}$ 的导出子图中是单纯点</li>
+</ul>
+<p><strong>Theorem4</strong> ：任何一个弦图都至少有一个单纯点，不是完全图的弦图至少有两个不相邻的单纯点</p>
+<p>考虑数学归纳法，单独考虑每一连通块</p>
+<p>当图与完全图同构时，图上任意一点都是单纯点；当图的点数 $\le 3$ 时，引理成立</p>
+<p>若图的点数 $\le k$ 时成立，现在证明点数 $ = k$ 时成立：若图不为完全图，必有 $(u, v) \notin E$ ，设 $I$ 是 $u, v$ 的极小点割集， $A, B$ 分别是删去 $I$ 后 $u, v$ 所在联通块，因为 $A$ 是原图的导出子图，结合 Lemma1 可知 $A$ 一定是弦图且点数 $&lt; k$ ，所以 $A$ 中至少有一个单纯点，设 $L = A + I$ ，若 $L$ 为完全图， $u$ 为原图的单纯点；否则，同样因为 $L$ 是原图的导出子图，一定是弦图且点数 $&lt; k$ ，所以有两个不相邻的单纯点，由 Theorem4 知 $I$ 是一个团，所以 $A$ 中那个单纯点在原图中也是单纯点；综上 $A$ 中至少包含原图的一个单纯点，同理可得 $B$ 中也包含一个单纯点，由数学归纳法原理，引理得证</p>
+<p><strong>Theorem5</strong> ：一个无向图是弦图的充要条件是它有一个完美消除序列</p>
+<p>充分性：对于点数为 $n$ 的弦图，取其一个单纯点为 $v_n$ ，删去该点，由 Lemma1 知图变成一张点数为 $n - 1$ 的弦图，依次递归下去可得弦图的完美消除序列</p>
+<p>必要性：假设有无向图存在结点数 $&gt; 3$ 的环且拥有完美消除序列，设在完美消除序列中出现的第一个环上的点为 $v$ ，设 $v$ 在环上与 $v_1, v_2$ 相连，则由完美消除序列的性质即单纯点的定义可得 $v_1, v_2$ 直接有边相连，矛盾</p>
+<h2 id="MCS-算法"><a href="#MCS-算法" class="headerlink" title="MCS 算法"></a>MCS 算法</h2><p>直接求完美消除序列显然不行，一般有字典序广度优先搜索算法（ Lexicographic BFS, LexBFS ）和最大势算法（ Maximum Cardinality Search, MCS ），两者都是 $O(n + m)$ 的，这里介绍后者</p>
+<p>MCS 的思想就是倒着从 $n$ 到 $1$ 给节点标号，记录 $label[i]$ 表示第 $i$ 个点和多少个已经标号的点相邻，每次取 $label[i]$ 最大的未标号节点标号</p>
+<p>正确性证明：</p>
+<p>设 $pos(x)$ 表示点 $x$ MCS 算法求得的序列中的位置</p>
+<p><strong>Lemma3</strong> ：任意一个弦图一定不存在一个序列 $v_0, v_1, …, v_k(k \ge 2)$ 满足：</p>
+<ol>
+<li> $v_i, v_j$ 相连当且仅当 $\mid i - j \mid = 1$ </li>
+<li> $pos(v_0) &gt; pos(v_i) (i \in [1, k])$ </li>
+<li>存在 $x \in [1, k - 1]$ ，满足 $pos(v_x) &lt; pos(v_{x + 1}) &lt; … &lt; pos(v_k)$ 且 $pos(v_x) &lt; pos(v_{x - 1}) &lt; … &lt; pos(v_1) &lt; pos(v_k) &lt; pos(v_0)$ </li>
+</ol>
+<p> 由于 $pos(v_1) &lt; pos(v_k) &lt; pos(v_0)$ 且 $v_1, v_0$ 相连， $v_k, v_0$ 不相连，所以必然存在 $y$ 不属于该序列使得 $pos(v_k) &lt; pos(y)$ 且 $v_k, y$ 相连， $v_1, y$ 不相连（这样才能使 $pos(v_1) &lt; pos(v_k)$ ）</p>
+<p>考虑最小的 $j \in [2, k]$ 满足 $v_j, y$ 相连，若 $v_0, y$ 相连，则 $v_0, v_1, …, v_j, x$ 构成一个长度 $\ge 4$ 且无弦的环，于弦图的定义矛盾，所以 $v_0, y$ 不相连</p>
+<p>若 $pos(y) &lt; pos(v_0)$ ，则 $v_0, v_1, …, v_j, y$ 也是一个满足定义的序列；若 $pos(y) &gt; pos(v_0)$ ，则 $y, v_j, …, v_1, v_0$ 也是一个满足性质的序列；无论如何，新序列的 $\min(pos(v_0), pos(v_k))$ 都变大了，这个过程可以无限进行下去，但 $pos()$ 的最大值是有限的 $n$ ，所以矛盾</p>
+<p><strong>Theorem6</strong> ：对于任何一个弦图， MCS 算法求出的序列一定是一个完美消除序列</p>
+<p>考虑任意三个点 $u, v, w$ 满足 $pos(u) &lt; pos(v) &lt; pos(w)$ ，如果 $u, v$ 相连，$u, w$ 相连，且 $v, w$ 不相连的话， $w, u, v$ 构成一个 Lemma3 中的序列，这显然是矛盾的，所以如果 $u, v$ 相连，$u, w$ 相连，则 $v, w$ 必定相连，再加上这是一张弦图，必定存在完美消除序列，则定理得证</p>
+<p>时间复杂度分析：</p>
+<p>拿一个懒惰删除的链表记录 $label[i] = x$ 的点有多少个，每条边扫到的时候会向链表中插入一个点，所以复杂度是 $O(n + m)$ 的</p>
+<h2 id="回归正题：判定弦图"><a href="#回归正题：判定弦图" class="headerlink" title="回归正题：判定弦图"></a>回归正题：判定弦图</h2><p>我们对一个图做了 MCS ，得到一个序列，如何判定这是不是完美消除序列呢？</p>
+<p>直接暴力就算依次判定 $v_i$ 和 $\{v_i, v_{i + 1}, …, v_n\} \cap N(v_i)$ 是否构成团，这是 $O(nm)$ 的，实际上，把 $\{v_i, v_{i + 1}, …, v_n\} \cap N(v_i)$ 从小到大排成 $\{v_{c_1}, v_{c_2}, …, v_{c_k}\}$ ，只要判断 $v_{c_1}$ 与其它点是否直接联通即可，每个点/边只会扫一遍，时间 $O(n + m)$ </p>
+<p>综上，我们用 MCS 算法在 $O(n + m)$ 的时间解决了判定弦图的问题</p>
+<p>而以下讨论均视做已经用 MCS 求出完美消除序列</p>
+<h2 id="弦图的极大团"><a href="#弦图的极大团" class="headerlink" title="弦图的极大团"></a>弦图的极大团</h2><p><strong>Theorem7</strong> ：令 $N’(x)$ 为满足与 $x$ 直接有边相连且在完美消除序列上的位置在 $x$ 之后的点的集合，则弦图的极大团一定可以写作 $\{x\} + N’(x)$ ，其中 $x$ 是该团在完美消除序列中第一次出现；正确性显然</p>
+<p><strong>Corollary2</strong> ：弦图最多有 $n$ 个极大团</p>
+<p>现在求极大团就转换为判定 $\{x\} + N’(x)$ 是否为极大团，对于 $A = \{x\} + N’(x), B = \{y\} + N’(y)$ ，若 $A \subseteq B$ 则 $A$ 不是极大团，那么显然 $pos(y) &lt; pos(x)$ ，设 $ne(v)$ 表示 $N’(v)$ 中 $pos$ 最小的点， $z$ 是满足 $y = z$ 时 $A \subseteq B$ 的最后一个点，那么 $ne(z) = x$ （否则 $y = ne(z)$ 时仍然有 $A \subseteq B$ ），而且 $A \subseteq B$ 当且仅当 $\mid A \mid + 1 \le \mid B \mid$ </p>
+<p>那么只需对于每个 $x$ ，判断是否存在一个 $y$ ，满足 $ne(x) = y$ 且 $\mid A \mid + 1 \le \mid B \mid$ 即可， $O(n + m)$ </p>
+<h2 id="弦图的最大团-最小染色"><a href="#弦图的最大团-最小染色" class="headerlink" title="弦图的最大团/最小染色"></a>弦图的最大团/最小染色</h2><p>最大团比极大团好做的多，枚举每个点，取 $\{x\} + N’(x)$ 最大的即可， $O(n)$ </p>
+<p>由 Theorem1 得最小染色数大于最大团大小，下面给出构造方案：按完美消除序列从后往前依次给每个点染色，给每个点染上可以染的最小颜色，这样构造的最小染色数就是最大团大小</p>
+<h2 id="弦图的最大独立集-最小团覆盖"><a href="#弦图的最大独立集-最小团覆盖" class="headerlink" title="弦图的最大独立集/最小团覆盖"></a>弦图的最大独立集/最小团覆盖</h2><p>最大独立集：完美消除序列从前往后，贪心选择所有没有与已经选择的点有直接连边的点</p>
+<p>最小团覆盖：上面所求的最大独立集中每个元素 $x$ 对应的团 $\{x\} + N’(x)$ 即为最小团覆盖中的一个团，这样构造出的最小团覆盖就等于最大独立集大小，由 Theorem2 可知其最小</p>
+<h2 id="MCS-算法的代码实现"><a href="#MCS-算法的代码实现" class="headerlink" title="MCS 算法的代码实现"></a>MCS 算法的代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> MCS</span><br><span class="line">&#123;</span><br><span class="line">	std::vector&lt;<span class="keyword">int</span>&gt; cnt[N];</span><br><span class="line">	<span class="keyword">bool</span> vis[N];</span><br><span class="line">	<span class="keyword">int</span> pos[N], label[N], order[N], ne[N], N_[N];</span><br><span class="line">	<span class="keyword">int</span> stk[N], top;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) cnt[i].<span class="built_in">clear</span>();</span><br><span class="line">		std::<span class="built_in">memset</span>(vis, <span class="literal">false</span>, (n + <span class="number">1</span>) * <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">bool</span>));</span><br><span class="line">		std::<span class="built_in">memset</span>(pos, <span class="number">0</span>, (n + <span class="number">1</span>) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">		std::<span class="built_in">memset</span>(label, <span class="number">0</span>, (n + <span class="number">1</span>) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">		std::<span class="built_in">memset</span>(order, <span class="number">0</span>, (n + <span class="number">1</span>) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">mcs</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) cnt[<span class="number">0</span>].<span class="built_in">pb</span>(i);</span><br><span class="line">		<span class="keyword">int</span> mxct = <span class="number">0</span>, x = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = n; i; --i)</span><br><span class="line">		&#123;</span><br><span class="line">			x = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span> (mxct &gt;= <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = cnt[mxct].<span class="built_in">size</span>() - <span class="number">1</span>; ~j; --j)</span><br><span class="line">					<span class="keyword">if</span> (vis[cnt[mxct][j]]) cnt[mxct].<span class="built_in">pop_back</span>();</span><br><span class="line">					<span class="keyword">else</span>&#123; x = cnt[mxct][j]; <span class="keyword">break</span>; &#125;</span><br><span class="line">				<span class="keyword">if</span> (!x) --mxct;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			vis[x] = <span class="literal">true</span>;</span><br><span class="line">			order[i] = x, pos[x] = i;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = h[x], y; ~j; j = e[j].ne) <span class="keyword">if</span> (!vis[y = e[j].ver])</span><br><span class="line">			&#123;</span><br><span class="line">				cnt[++label[y]].<span class="built_in">pb</span>(y);</span><br><span class="line">				mxct = std::<span class="built_in">max</span>(mxct, label[y]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">()</span> <span class="comment">//判断是否是弦图</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		std::<span class="built_in">memset</span>(vis, <span class="literal">false</span>, (n + <span class="number">1</span>) * <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">bool</span>));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = n, ct; i; --i)</span><br><span class="line">		&#123;</span><br><span class="line">			top = <span class="number">0</span>, ct = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = h[order[i]]; ~j; j = e[j].ne) <span class="keyword">if</span> (pos[e[j].ver] &gt; i)</span><br><span class="line">			&#123;</span><br><span class="line">				vis[stk[++top] = e[j].ver] = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">if</span> (pos[stk[top]] &lt; pos[stk[<span class="number">1</span>]]) std::<span class="built_in">swap</span>(stk[top], stk[<span class="number">1</span>]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = h[stk[<span class="number">1</span>]], y; ~j; j = e[j].ne) <span class="keyword">if</span> (vis[y = e[j].ver] &amp;&amp; y != stk[<span class="number">1</span>]) ++ct;</span><br><span class="line">			<span class="keyword">if</span> (top &amp;&amp; ct != top) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">while</span> (top) vis[stk[top--]] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> _max_clique() <span class="comment">//极大团个数</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, x; i &lt;= n; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			top = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = h[order[i]], y; ~j; j = e[j].ne) <span class="keyword">if</span> (pos[y = e[j].ver] &gt; i)</span><br><span class="line">			&#123;</span><br><span class="line">				stk[++top] = y;</span><br><span class="line">				<span class="keyword">if</span> (pos[stk[top]] &lt; pos[stk[<span class="number">1</span>]]) std::<span class="built_in">swap</span>(stk[top], stk[<span class="number">1</span>]);</span><br><span class="line">			&#125;</span><br><span class="line">			ne[order[i]] = stk[<span class="number">1</span>];</span><br><span class="line">			N_[order[i]] = top;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (!vis[order[i]]) ++res;</span><br><span class="line">			<span class="keyword">if</span> (N_[order[i]] &gt;= N_[ne[order[i]]] + <span class="number">1</span>) vis[ne[order[i]]] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">max_clique</span><span class="params">()</span> <span class="comment">//最大团/最小着色</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) res = std::<span class="built_in">max</span>(res, label[i] + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">max_independent_set</span><span class="params">()</span> <span class="comment">//最大独立集/最小团覆盖</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		std::<span class="built_in">memset</span>(vis, <span class="literal">false</span>, (n + <span class="number">1</span>) * <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">bool</span>));</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="keyword">if</span> (!vis[order[i]])</span><br><span class="line">		&#123;</span><br><span class="line">			++res;</span><br><span class="line">			vis[order[i]] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = h[order[i]]; ~j; j = e[j].ne) vis[e[j].ver] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="完美图与伴完美图"><a href="#完美图与伴完美图" class="headerlink" title="完美图与伴完美图"></a>完美图与伴完美图</h2><p>CDQ 的 ppt 只讲了定义</p>
+<ul>
+<li><strong>完美图</strong>：一个图称完美图，当且仅当它的所有导出子图都满足 $\omega(G) = \chi(G)$ </li>
+<li><strong>伴完美图</strong>：一个图称伴完美图，当且仅当它的每一个导出子图都满足 $\alpha(G) = \kappa(G)$ </li>
+</ul>
+<p><strong>Theorem8</strong> ：完美图 = 伴完美图（那定义个寄啊）</p>
+<p>弦图是完美图的一种</p>
+<h2 id="区间图"><a href="#区间图" class="headerlink" title="区间图"></a>区间图</h2><ul>
+<li><strong>区间图</strong>：给定一些区间，在一张图上每个点代表一个区间，两点间有边当且仅当对应两区间有交，则称此图为区间图</li>
+</ul>
+<p><strong>Theorem9</strong> ：区间图一定是弦图</p>
+<p>若区间图中存在一个长度 $&gt; 3$ 的无弦环，对应在区间里面就有 $k &gt; 3$ 个区间，它们依次有交点，而最后一个区间必须要和第一个区间相交才能构成环，这就意味着它会与中间的区间相交，这与该环无弦矛盾</p>
+<p>值得注意的是 Theorem9 只对线型的区间成立，如果是圆环上的一些区间的话，它们是可以构成长度 $&gt; 3$ 的无弦环的</p>
+<p>区间图的判断要用到 PQ Tree 非常复杂，这里略过</p>
+<h2 id="极大团树"><a href="#极大团树" class="headerlink" title="极大团树"></a>极大团树</h2><p>不知道有啥用的树</p>
+<ul>
+<li><strong>极大团树</strong>：定义一个图的极大团树 $T$ 为： $T$ 的顶点为 $G$ 所有极大团，对于每个点，包含它的的所有极大团为 $T$ 的一个联通子图</li>
+</ul>
+<p>嫖一张 ppt 上的图：<img src="https://s2.loli.net/2022/06/28/xwtaQMNsdlfEh4q.png" alt="CT"></p>
+<p><strong>Theorem10</strong> ：一个图为弦图的充要条件是它存在一棵极大团树；一个图为区间图的充要条件是它存在一棵极大团树是一条链</p>
+<p>顺便， ppt 上的图也给出了极大团树的构建方法：</p>
+<ol>
+<li>找出弦图的所有极大团</li>
+<li>构建图 $G’$ ：极大团为点，两点之间边权为两个极大团的交集中的点的个数</li>
+<li>求 $G’$ 的一棵最大生成树</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+              <a href="/tags/%E6%9A%B4%E5%8A%9B/" rel="tag"><i class="fa fa-tag"></i> 暴力</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/27/ABC257/" rel="prev" title="ABC257">
+      <i class="fa fa-chevron-left"></i> ABC257
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/29/test2022-6-29%E6%80%BB%E7%BB%93/" rel="next" title="test2022/6/29总结">
+      test2022/6/29总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%A6%E5%9B%BE%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">弦图与区间图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%BC%95%E7%90%86%E3%80%81%E5%AE%9A%E7%90%86%E3%80%81%E6%8E%A8%E8%AE%BA"><span class="nav-number">1.2.</span> <span class="nav-text">一些引理、定理、推论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E5%AE%9A%E5%BC%A6%E5%9B%BE"><span class="nav-number">1.3.</span> <span class="nav-text">判定弦图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MCS-%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">MCS 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E6%AD%A3%E9%A2%98%EF%BC%9A%E5%88%A4%E5%AE%9A%E5%BC%A6%E5%9B%BE"><span class="nav-number">1.5.</span> <span class="nav-text">回归正题：判定弦图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%A6%E5%9B%BE%E7%9A%84%E6%9E%81%E5%A4%A7%E5%9B%A2"><span class="nav-number">1.6.</span> <span class="nav-text">弦图的极大团</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%A6%E5%9B%BE%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%A2-%E6%9C%80%E5%B0%8F%E6%9F%93%E8%89%B2"><span class="nav-number">1.7.</span> <span class="nav-text">弦图的最大团&#x2F;最小染色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%A6%E5%9B%BE%E7%9A%84%E6%9C%80%E5%A4%A7%E7%8B%AC%E7%AB%8B%E9%9B%86-%E6%9C%80%E5%B0%8F%E5%9B%A2%E8%A6%86%E7%9B%96"><span class="nav-number">1.8.</span> <span class="nav-text">弦图的最大独立集&#x2F;最小团覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MCS-%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.9.</span> <span class="nav-text">MCS 算法的代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E7%BE%8E%E5%9B%BE%E4%B8%8E%E4%BC%B4%E5%AE%8C%E7%BE%8E%E5%9B%BE"><span class="nav-number">1.10.</span> <span class="nav-text">完美图与伴完美图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%9B%BE"><span class="nav-number">1.11.</span> <span class="nav-text">区间图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E5%9B%A2%E6%A0%91"><span class="nav-number">1.12.</span> <span class="nav-text">极大团树</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Dyd"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Dyd</p>
+  <div class="site-description" itemprop="description">一人一人が、自分の森,迷う人を见失い、再会できた人は更にと対面した。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">175</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Dyd-true" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Dyd-true" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2741501882@qq.com" title="E-Mail → mailto:2741501882@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sighttp.qq.com/msgrd?v=1&uin=2741501882" title="QQ → https:&#x2F;&#x2F;sighttp.qq.com&#x2F;msgrd?v&#x3D;1&amp;uin&#x3D;2741501882" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/141393" title="LuoGu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;141393" rel="noopener" target="_blank"><i class=" fa-fw"></i>LuoGu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      some of my mates
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.pigaunt.top/" title="https:&#x2F;&#x2F;www.pigaunt.top" rel="noopener" target="_blank">PigAunt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hewo233.blog.luogu.org/" title="https:&#x2F;&#x2F;hewo233.blog.luogu.org" rel="noopener" target="_blank">Hewo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wiki.pigaunt.top/" title="https:&#x2F;&#x2F;wiki.pigaunt.top" rel="noopener" target="_blank">PekingOpera</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io" rel="noopener" target="_blank">lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io" rel="noopener" target="_blank">RuSun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://evrgardenviolet.github.io/" title="http:&#x2F;&#x2F;evrgardenviolet.github.io" rel="noopener" target="_blank">闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io" rel="noopener" target="_blank">mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/koshentoP/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;koshentoP&#x2F;" rel="noopener" target="_blank">Tir_JK_LOVER</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dyd</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">1.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">17:21</span>
+</div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "The site has running for "+dnum+" days ";
+        document.getElementById("times").innerHTML = hnum + " hours " + mnum + " minutes " + snum + " seconds";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://dyd-true.github.io/mathjax/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
